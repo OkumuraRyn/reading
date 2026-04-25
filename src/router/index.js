@@ -5,7 +5,7 @@ import AllVocabView from '../views/AllVocabView.vue';
 import MemorizeView from '../views/MemorizeView.vue';   // ✅ 新增
 
 const router = createRouter({
-  history: createWebHistory(),
+  history: createWebHashHistory(),
   routes: [
     { path: '/', component: HomeView },
     { path: '/article/:id', component: ArticleView },
