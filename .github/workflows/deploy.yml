@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - main
+  workflow_dispatch:  # 这一行是新增的，用来生成手动触发按钮
 
 permissions:
   contents: write
