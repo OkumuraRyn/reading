@@ -55,7 +55,8 @@
 <script setup>
 import { ref, reactive } from 'vue';
 import { categorizedArticles } from '../data/index';
-import { studyStore } from '../store/studyStore';
+import { useStudyStore } from '../store/studyStore';
+const studyStore = useStudyStore();
 
 // 默认展开第一个分类
 const expandedCategories = reactive(new Set());
