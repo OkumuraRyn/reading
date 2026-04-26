@@ -9,16 +9,45 @@ const openai = new OpenAI({
 
 // 缓存管理保持不变
 const CACHE_NAME = 'cet_ai_cache';
-const getCache = () => JSON.parse(localStorage.getItem(CACHE_NAME) || '{}');
+const CACHE_DURATION = 7 * 24 * 60 * 60 * 1000; // 7 天
+
+const getCache = () => {
+  try {
+    const raw = localStorage.getItem(CACHE_NAME);
+    if (!raw) return {};
+    const cache = JSON.parse(raw);
+    const now = Date.now();
+    // 清理过期条目
+    let hasExpired = false;
+    for (const [key, entry] of Object.entries(cache)) {
+      if (now - entry.timestamp > CACHE_DURATION) {
+        delete cache[key];
+        hasExpired = true;
+      }
+    }
+    if (hasExpired) {
+      localStorage.setItem(CACHE_NAME, JSON.stringify(cache));
+    }
+    return cache;
+  } catch {
+    return {};
+  }
+};
+
 const setCache = (key, val) => {
   const cache = getCache();
-  cache[key] = val;
+  cache[key] = {
+    data: val,
+    timestamp: Date.now(),
+  };
   localStorage.setItem(CACHE_NAME, JSON.stringify(cache));
 };
 
+// getCachedResult 也要随之修改
 export function getCachedResult(type, query, context = "") {
   const key = `${type}_${query}_${context}`;
-  return getCache()[key] || null;
+  const entry = getCache()[key];
+  return entry ? entry.data : null;
 }
 
 export async function askDeepSeek(word, contextSent = "") {
