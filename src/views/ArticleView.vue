@@ -1,18 +1,7 @@
 <!-- src/views/ArticleView.vue -->
 <template>
-  <div v-if="article" class="main-reader">
-    <!-- 全文朗读按钮（固定右下角） -->
-    <button class="full-read-btn" @click="toggleFullReading">
-      {{
-        readingState === 'playing'
-          ? '⏸️ 暂停'
-          : readingState === 'paused'
-            ? '▶️ 继续朗读'
-            : '🔊 全文朗读'
-      }}
-    </button>
-
-    <!-- 左侧：文章阅读区 -->
+  <div v-if="article" class="reader-wrapper">
+    <!-- 文章阅读区（全宽） -->
     <ArticleReader
       :article="article"
       :reading-state="readingState"
@@ -26,19 +15,31 @@
       @speak-paragraph="speakParagraph"
     />
 
-    <!-- 右侧/底部：AI 智能面板 -->
+    <!-- AI 浮动面板（始终悬浮） -->
     <AiPanel
       ref="aiPanelRef"
       :selected-sentence="selectedSentence"
       :selected-sentence-cn="selectedSentenceCn"
       @add-to-vocab="handleAddToVocab"
     />
+
+    <!-- 全文朗读按钮 -->
+    <button class="full-read-btn" @click="toggleFullReading">
+      {{
+        readingState === 'playing'
+          ? '⏸️ 暂停'
+          : readingState === 'paused'
+            ? '▶️ 继续朗读'
+            : '🔊 全文朗读'
+      }}
+    </button>
   </div>
 
   <div v-else class="loading-container">
     <p>加载中...</p>
   </div>
 </template>
+
 
 <script setup>
 import { ref, onMounted, onUnmounted, watch, nextTick } from 'vue'
@@ -203,29 +204,18 @@ onMounted(() => {
 </script>
 
 <style scoped>
-/* ========== 整体布局 ========== */
-.main-reader {
-  display: flex;
-  height: 100vh;
-  background: #fff;
-  overflow: hidden;
+/* 改为单栏全宽布局 */
+.reader-wrapper {
+  position: relative;
+  width: 100%;
 }
 
-.loading-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  color: #94a3b8;
-  font-size: 1.1rem;
-}
-
-/* ========== 全文朗读按钮 ========== */
+/* 全文朗读按钮与浮动面板不冲突，调低一点位置 */
 .full-read-btn {
   position: fixed;
   bottom: 30px;
   right: 30px;
-  z-index: 1500;
+  z-index: 800;
   background: #42b983;
   color: white;
   border: none;
@@ -235,30 +225,12 @@ onMounted(() => {
   font-weight: bold;
   cursor: pointer;
   box-shadow: 0 8px 24px rgba(66, 185, 131, 0.4);
-  transition: transform 0.2s, opacity 0.2s;
-}
-.full-read-btn:hover {
-  transform: scale(1.05);
 }
 
-/* ========== 全局跳转高亮 ========== */
-:global(.jump-highlight-global) {
-  background: rgba(140, 220, 94, 0.56) !important;
-  border-radius: 4px;
-  transition: background 0.3s;
-}
-
-/* ========== 移动端适配 ========== */
 @media (max-width: 768px) {
-  .main-reader {
-    flex-direction: column;
-    overflow-x: hidden;
-    overflow-y: auto;
-  }
-
   .full-read-btn {
-    bottom: 90px;
-    right: 15px;
+    bottom: 20px;
+    right: 16px;
     padding: 10px 18px;
     font-size: 14px;
   }
