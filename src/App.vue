@@ -24,7 +24,15 @@
         </router-link>
         <button class="mobile-close-btn" @click="isMenuOpen = false">×</button>
       </div>
-
+<div class="api-key-area">
+  <input
+    type="password"
+    placeholder="🔑 输入 DeepSeek API Key"
+    :value="apiKey"
+    @blur="saveApiKey"
+    class="api-key-input"
+  />
+</div>
       <!-- ========== 树状目录导航（核心改动） ========== -->
       <nav class="nav-content">
         <!-- 单词默写（特殊入口） -->
@@ -71,21 +79,14 @@
           </Transition>
         </div>
       </nav>
-      <div style="padding: 10px 12px; border-top: 1px solid #e2e8f0; margin-top: auto;">
-  <input
-    type="password"
-    placeholder="输入 DeepSeek API Key"
-    @blur="saveApiKey"
-    style="width: 100%; padding: 6px; font-size: 0.8rem; border: 1px solid #ccc; border-radius: 4px;"
-  />
-</div>
+      
       <!-- ========== 树状目录结束 ========== -->
     </aside>
 
     <!-- 主内容区 -->
-    <main class="main-content">
-      <router-view :key="$route.fullPath" />
-    </main>
+    <main class="main-content" :class="{ 'hide-ai-btn': isMenuOpen }">
+  <router-view :key="$route.fullPath" />
+</main>
   </div>
 </template>
 
@@ -95,10 +96,14 @@ import { categorizedArticles } from './data/index';
 
 const isMenuOpen = ref(false);
 
+  import { ref } from 'vue';
+
+const apiKey = ref(localStorage.getItem('deepseek_api_key') || '');
   const saveApiKey = (e) => {
   const key = e.target.value.trim();
-  if (key) {
-    localStorage.setItem('deepseek_api_key', key);
+  if (val) {
+    localStorage.setItem('deepseek_api_key', val);
+    apiKey.value = val;
   }
 };
 
@@ -426,5 +431,27 @@ body {
     width: 100%;
     max-width: 320px;
   }
+}
+
+  .api-key-area {
+  padding: 8px 16px;
+  background: #f8fafc;
+  border-bottom: 1px solid #e2e8f0;
+}
+.api-key-input {
+  width: 100%;
+  padding: 6px 10px;
+  font-size: 0.8rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  outline: none;
+  background: white;
+}
+.api-key-input:focus {
+  border-color: #42b983;
+}
+  .hide-ai-btn :deep(.full-read-btn),
+.hide-ai-btn :deep(.mobile-drag-handle) {
+  display: none !important;
 }
 </style>
