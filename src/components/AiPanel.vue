@@ -78,13 +78,17 @@
 </template>
 
 <script setup>
-import { ref, onMounted, onBeforeUnmount } from 'vue'
+import { ref, computed, onMounted, onBeforeUnmount } from 'vue'
 import { useStudyStore } from '../store/studyStore'
 import { askAiQuestion, getCachedResult } from '../services/aiService'
 
 const props = defineProps({
   selectedSentence: { type: String, default: '' },
   selectedSentenceCn: { type: String, default: '' },
+  // 新增朗读相关属性
+  readingState: { type: String, default: 'idle' },
+  onToggleFullReading: { type: Function, default: () => {} },
+  onStopFullReading: { type: Function, default: () => {} },
 })
 
 const emit = defineEmits(['add-to-vocab'])
@@ -92,6 +96,16 @@ const emit = defineEmits(['add-to-vocab'])
 const studyStore = useStudyStore()
 const isAiExpanded = ref(false)
 const userQuestion = ref('')
+
+// 朗读状态映射（原样显示）
+const displayReadingState = computed(() => props.readingState)
+
+const handleToggleReading = () => {
+  props.onToggleFullReading()
+}
+const handleStopReading = () => {
+  props.onStopFullReading()
+}
 
 // ==================== 提问处理 ====================
 const handleQuestionSubmit = async () => {
