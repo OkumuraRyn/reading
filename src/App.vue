@@ -389,6 +389,14 @@ body {
 .hide-ai-panel :deep(.mobile-drag-handle) {
   display: none !important;
 }
+  /* 菜单打开时隐藏 AI 面板、朗读按钮等 */
+.hide-ai-panel :deep(.ai-float) {
+  display: none !important;
+}
+.hide-ai-panel :deep(.full-read-btn),
+.hide-ai-panel :deep(.mobile-drag-handle) {
+  display: none !important;
+}
 
 /* 移动端：菜单打开时完全隐藏底部 AI 面板，避免穿透遮罩 */
 @media (max-width: 768px) {
