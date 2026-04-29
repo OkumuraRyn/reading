@@ -3,7 +3,7 @@ import OpenAI from "openai";
 const openai = new OpenAI({
   // 使用 Vite 代理，密钥由后端隐藏
   baseURL: 'https://api.deepseek.com/v1',
-  apiKey: import.meta.env.VITE_DEEPSEEK_API_KEY,
+  apiKey: localStorage.getItem('deepseek_api_key') || '',
   dangerouslyAllowBrowser: true
 });
 
