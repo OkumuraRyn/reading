@@ -1,3 +1,4 @@
+<!-- src/App.vue -->
 <template>
   <div class="app-container">
     <!-- 桌面端菜单按钮 -->
@@ -24,18 +25,17 @@
         </router-link>
         <button class="mobile-close-btn" @click="isMenuOpen = false">×</button>
       </div>
-<div class="api-key-area">
-  <input
-    type="password"
-    placeholder="🔑 输入 DeepSeek API Key"
-    :value="apiKey"
-    @blur="saveApiKey"
-    class="api-key-input"
-  />
-</div>
-      <!-- ========== 树状目录导航（核心改动） ========== -->
+      <div class="api-key-area">
+        <input
+          type="password"
+          placeholder="🔑 输入 DeepSeek API Key"
+          :value="apiKey"
+          @blur="saveApiKey"
+          class="api-key-input"
+        />
+      </div>
       <nav class="nav-content">
-        <!-- 单词默写（特殊入口） -->
+        <!-- 单词默写 -->
         <router-link
           to="/memorize"
           class="nav-link special-link"
@@ -50,7 +50,6 @@
 
         <!-- 分类树 -->
         <div v-for="(articles, category) in categorizedArticles" :key="category" class="tree-group">
-          <!-- 分类标题（可点击展开/收起） -->
           <div class="tree-parent" @click="toggleCategory(category)">
             <span class="tree-arrow" :class="{ expanded: expandedCategories.has(category) }">
               {{ expandedCategories.has(category) ? '▾' : '▸' }}
@@ -58,8 +57,6 @@
             <span class="category-name">{{ category }}</span>
             <span class="category-count">{{ articles.length }}</span>
           </div>
-
-          <!-- 子文章列表（带折叠动画） -->
           <Transition name="tree-slide">
             <div v-if="expandedCategories.has(category)" class="tree-children">
               <router-link
@@ -79,14 +76,12 @@
           </Transition>
         </div>
       </nav>
-      
-      <!-- ========== 树状目录结束 ========== -->
     </aside>
 
     <!-- 主内容区 -->
-    <main class="main-content" :class="{ 'hide-ai-btn': isMenuOpen }">
-  <router-view :key="$route.fullPath" />
-</main>
+    <main class="main-content" :class="{ 'hide-ai-panel': isMenuOpen }">
+      <router-view :key="$route.fullPath" />
+    </main>
   </div>
 </template>
 
@@ -96,10 +91,8 @@ import { categorizedArticles } from './data/index';
 
 const isMenuOpen = ref(false);
 
-// 默认展开第一个分类
+// ✅ 改动：默认全部合上，不展开任何分类
 const expandedCategories = reactive(new Set());
-const firstCategory = Object.keys(categorizedArticles)[0];
-if (firstCategory) expandedCategories.add(firstCategory);
 
 const toggleCategory = (category) => {
   if (expandedCategories.has(category)) {
@@ -119,6 +112,7 @@ const saveApiKey = (e) => {
   }
 };
 </script>
+
 <style scoped>
 /* ============ 全局重置 ============ */
 body {
@@ -244,13 +238,10 @@ body {
 }
 
 /* ============ 树状目录样式 ============ */
-
-/* 分类组 */
 .tree-group {
   margin-bottom: 4px;
 }
 
-/* 分类标题（父节点） */
 .tree-parent {
   display: flex;
   align-items: center;
@@ -270,7 +261,6 @@ body {
   background: #eef2f6;
 }
 
-/* 三角箭头 */
 .tree-arrow {
   font-size: 0.75rem;
   width: 16px;
@@ -283,12 +273,10 @@ body {
   color: #42b983;
 }
 
-/* 分类名称 */
 .category-name {
   flex: 1;
 }
 
-/* 文章数量标签 */
 .category-count {
   background: #e2e8f0;
   color: #64748b;
@@ -298,7 +286,6 @@ body {
   font-weight: 600;
 }
 
-/* 子节点容器 */
 .tree-children {
   padding-left: 12px;
   border-left: 2px solid #e2e8f0;
@@ -306,7 +293,6 @@ body {
   overflow: hidden;
 }
 
-/* 展开/收起动画 */
 .tree-slide-enter-active,
 .tree-slide-leave-active {
   transition: all 0.25s ease;
@@ -318,7 +304,6 @@ body {
   opacity: 0;
 }
 
-/* 子节点链接 */
 .tree-child {
   padding: 8px 12px !important;
   margin-top: 0 !important;
@@ -334,7 +319,6 @@ body {
   border-left: 3px solid #42b983 !important;
 }
 
-/* 普通导航链接 */
 .nav-link {
   display: flex;
   gap: 10px;
@@ -352,7 +336,6 @@ body {
   background: #eefdf5;
 }
 
-/* 特殊链接（默写） */
 .special-link {
   margin-bottom: 16px;
   border: 1px dashed #d1fae5;
@@ -366,14 +349,12 @@ body {
   border-color: #42b983;
 }
 
-/* 图标 */
 .nav-icon {
   font-size: 1rem;
   flex-shrink: 0;
   margin-top: 1px;
 }
 
-/* 文字信息 */
 .nav-info {
   min-width: 0;
 }
@@ -400,6 +381,20 @@ body {
   flex: 1;
   min-width: 0;
   background: white;
+}
+
+/* ============ 菜单打开时隐藏 AI 面板和朗读按钮 ============ */
+/* ✅ 改动：统一处理，在移动端完全隐藏 AI 面板，在桌面端隐藏浮动按钮 */
+.hide-ai-panel :deep(.full-read-btn),
+.hide-ai-panel :deep(.mobile-drag-handle) {
+  display: none !important;
+}
+
+/* 移动端：菜单打开时完全隐藏底部 AI 面板，避免穿透遮罩 */
+@media (max-width: 768px) {
+  .hide-ai-panel :deep(.ai-panel) {
+    display: none !important;
+  }
 }
 
 /* ============ 移动端适配 ============ */
@@ -430,7 +425,7 @@ body {
   }
 }
 
-  .api-key-area {
+.api-key-area {
   padding: 8px 16px;
   background: #f8fafc;
   border-bottom: 1px solid #e2e8f0;
@@ -446,9 +441,5 @@ body {
 }
 .api-key-input:focus {
   border-color: #42b983;
-}
-  .hide-ai-btn :deep(.full-read-btn),
-.hide-ai-btn :deep(.mobile-drag-handle) {
-  display: none !important;
 }
 </style>
