@@ -30,7 +30,6 @@
           :key="pIdx"
           class="para-block para-with-speaker"
         >
-          <!-- 段落朗读按钮 -->
           <span
             class="para-speaker-btn"
             @click.stop="$emit('speak-paragraph', para)"
@@ -39,7 +38,6 @@
             🔊
           </span>
 
-          <!-- 句子 -->
           <span
             v-for="(sent, sIdx) in para.sentences"
             :key="sIdx"
@@ -150,7 +148,7 @@
                 }}
               </span>
               <span
-                v-if="v.detail && v.detail.length > 35"
+                v-if="v.detail && v.detail.length > 55"
                 class="expand-label"
               >
                 {{ isExpanded(v.word) ? ' [收起]' : ' [展开]' }}
@@ -227,9 +225,10 @@ const toggleExpand = (word) => {
   }
 }
 
+// ✅ 改动：截断长度从 35 增加到 55
 const truncateText = (text) => {
   if (!text) return ''
-  return text.length > 35 ? text.substring(0, 35) + '...' : text
+  return text.length > 55 ? text.substring(0, 55) + '...' : text
 }
 
 // ==================== Tokenizer ====================
@@ -558,6 +557,8 @@ defineExpose({ articleRef })
   cursor: pointer;
   border-top: 1px solid #f1f5f9;
   transition: background 0.2s;
+  word-break: break-word;
+  overflow-wrap: break-word;
 }
 .v-item-detail:hover {
   background: #f1f5f9;
@@ -582,10 +583,16 @@ defineExpose({ articleRef })
 /* ========== 移动端适配 ========== */
 @media (max-width: 768px) {
   .article-section {
-    padding: 20px 15px 120px 15px;
+    padding: 20px 15px 140px 15px;
   }
   .para-with-speaker {
     padding-left: 30px;
+  }
+  .art-header h1 {
+    font-size: 1.5rem;
+  }
+  .art-title-cn {
+    font-size: 0.95rem;
   }
   .v-card {
     flex-wrap: wrap;
@@ -593,6 +600,10 @@ defineExpose({ articleRef })
   .v-card input {
     width: 100%;
     order: 4;
+  }
+  .v-info {
+    flex-wrap: wrap;
+    gap: 4px;
   }
 }
 </style>
