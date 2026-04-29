@@ -96,23 +96,11 @@ import { categorizedArticles } from './data/index';
 
 const isMenuOpen = ref(false);
 
-  import { ref } from 'vue';
-
-const apiKey = ref(localStorage.getItem('deepseek_api_key') || '');
-  const saveApiKey = (e) => {
-  const key = e.target.value.trim();
-  if (val) {
-    localStorage.setItem('deepseek_api_key', val);
-    apiKey.value = val;
-  }
-};
-
 // 默认展开第一个分类
 const expandedCategories = reactive(new Set());
 const firstCategory = Object.keys(categorizedArticles)[0];
 if (firstCategory) expandedCategories.add(firstCategory);
 
-// 切换分类展开/收起
 const toggleCategory = (category) => {
   if (expandedCategories.has(category)) {
     expandedCategories.delete(category);
@@ -120,8 +108,17 @@ const toggleCategory = (category) => {
     expandedCategories.add(category);
   }
 };
-</script>
 
+// API Key 管理
+const apiKey = ref(localStorage.getItem('deepseek_api_key') || '');
+const saveApiKey = (e) => {
+  const val = e.target.value.trim();
+  if (val) {
+    localStorage.setItem('deepseek_api_key', val);
+    apiKey.value = val;
+  }
+};
+</script>
 <style scoped>
 /* ============ 全局重置 ============ */
 body {
