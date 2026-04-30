@@ -157,8 +157,13 @@ let startY = 0
 
 const setDefaultPosition = () => {
   if (!isMobile.value) {
-    panelX.value = Math.max(20, window.innerWidth - 420)
-    panelY.value = Math.max(20, window.innerHeight - 480)
+    // 与桌面端目录按钮（左上角 20,20，高度 42px）对齐，下方留 10px 间距
+    const menuBtnLeft = 20;
+    const menuBtnTop = 20;
+    const menuBtnHeight = 42;
+    const gap = 10;
+    panelX.value = menuBtnLeft;
+    panelY.value = menuBtnTop + menuBtnHeight + gap;
   }
 }
 onMounted(setDefaultPosition)
