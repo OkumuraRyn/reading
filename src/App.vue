@@ -118,7 +118,7 @@
 
 <script setup>
 import { ref, reactive } from 'vue';
-import { categoryTreeData } from '../data/index';
+import { categoryTreeData } from './data/index';
 
 const isMenuOpen = ref(false);
 const expandedCategories = reactive(new Set());
