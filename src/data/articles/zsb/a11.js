@@ -1,6 +1,6 @@
 /* src/data/articles/zsb/a4.js */
 export default {
-  id: "ZSB-3",
+  id: "ZSB-1",
   type: "ZSB",
   title: "The Search for Mallory",
   titleCn: "寻找马洛里",
