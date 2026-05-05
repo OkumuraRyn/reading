@@ -19,32 +19,65 @@
       </div>
     </header>
 
-    <!-- ========== 树状分类展示 ========== -->
-    <section v-for="(articles, category) in categorizedArticles" :key="category" class="category-section">
-      <h2 class="category-title" @click="toggleCategory(category)">
-        <span class="tree-arrow" :class="{ expanded: expandedCategories.has(category) }">
-          {{ expandedCategories.has(category) ? '▾' : '▸' }}
+    <!-- 遍历树形分类数据 -->
+    <section v-for="(group, parentName) in categoryTreeData" :key="parentName" class="category-section">
+      <!-- 父分类标题 -->
+      <h2 class="category-title" @click="toggleCategory(parentName)">
+        <span class="tree-arrow" :class="{ expanded: expandedCategories.has(parentName) }">
+          {{ expandedCategories.has(parentName) ? '▾' : '▸' }}
         </span>
-        {{ category }}
-        <span class="category-count">{{ articles.length }} 篇</span>
+        {{ parentName }}
+        <span class="category-count">{{ countParentArticles(group) }} 篇</span>
       </h2>
 
       <Transition name="home-slide">
-        <div v-if="expandedCategories.has(category)" class="article-grid">
-          <router-link
-            v-for="art in articles"
-            :key="art.id"
-            :to="`/article/${art.id}`"
-            class="article-card"
-          >
-            <div class="card-tag">{{ art.type }}</div>
-            <h2 class="card-title">#{{ art.id }} {{ art.title }}</h2>
-            <p class="card-subtitle" v-if="art.titleCn">{{ art.titleCn }}</p>
-            <div class="card-footer">
-              <span>{{ art.paragraphs.length }} 段落</span>
-              <span class="go-read">开始阅读 →</span>
+        <div v-if="expandedCategories.has(parentName)" class="category-body">
+          <!-- 普通文章（无子分类） -->
+          <div v-if="group.articles.length > 0" class="article-grid">
+            <router-link
+              v-for="art in group.articles"
+              :key="art.id"
+              :to="`/article/${art.id}`"
+              class="article-card"
+            >
+              <div class="card-tag">{{ art.type }}</div>
+              <h2 class="card-title">#{{ art.id }} {{ art.title }}</h2>
+              <p class="card-subtitle" v-if="art.titleCn">{{ art.titleCn }}</p>
+              <div class="card-footer">
+                <span>{{ art.paragraphs.length }} 段落</span>
+                <span class="go-read">开始阅读 →</span>
+              </div>
+            </router-link>
+          </div>
+
+          <!-- 子分组（长篇连载） -->
+          <div v-for="(sub, subName) in group.subGroups" :key="subName" class="sub-group">
+            <div class="sub-title" @click="toggleCategory(subName)">
+              <span class="tree-arrow" :class="{ expanded: expandedCategories.has(subName) }">
+                {{ expandedCategories.has(subName) ? '▾' : '▸' }}
+              </span>
+              <span class="sub-name">{{ subName }}</span>
+              <span class="category-count">{{ sub.articles.length }} 篇</span>
             </div>
-          </router-link>
+            <Transition name="home-slide">
+              <div v-if="expandedCategories.has(subName)" class="article-grid sub-grid">
+                <router-link
+                  v-for="art in sub.articles"
+                  :key="art.id"
+                  :to="`/article/${art.id}`"
+                  class="article-card"
+                >
+                  <div class="card-tag">{{ art.type }}</div>
+                  <h2 class="card-title">#{{ art.id }} {{ art.title }}</h2>
+                  <p class="card-subtitle" v-if="art.titleCn">{{ art.titleCn }}</p>
+                  <div class="card-footer">
+                    <span>{{ art.paragraphs.length }} 段落</span>
+                    <span class="go-read">开始阅读 →</span>
+                  </div>
+                </router-link>
+              </div>
+            </Transition>
+          </div>
         </div>
       </Transition>
     </section>
@@ -52,21 +85,28 @@
 </template>
 
 <script setup>
-import { ref, reactive } from 'vue';
-import { categorizedArticles } from '../data/index';
+import { reactive } from 'vue';
+import { categoryTreeData } from '../data/index';
 import { useStudyStore } from '../store/studyStore';
-const studyStore = useStudyStore();
 
-// ✅ 改动：默认全部合上，不展开任何分类
+const studyStore = useStudyStore();
 const expandedCategories = reactive(new Set());
 
-const toggleCategory = (category) => {
-  if (expandedCategories.has(category)) {
-    expandedCategories.delete(category);
+function toggleCategory(cat) {
+  if (expandedCategories.has(cat)) {
+    expandedCategories.delete(cat);
   } else {
-    expandedCategories.add(category);
+    expandedCategories.add(cat);
   }
-};
+}
+
+function countParentArticles(group) {
+  let count = group.articles.length;
+  for (const sub of Object.values(group.subGroups)) {
+    count += sub.articles.length;
+  }
+  return count;
+}
 </script>
 
 <style scoped>
@@ -134,7 +174,7 @@ const toggleCategory = (category) => {
   text-decoration: underline;
 }
 
-/* ========== 分类标题 ========== */
+/* ========== 分类区块 ========== */
 .category-section {
   margin-bottom: 30px;
 }
@@ -162,11 +202,11 @@ const toggleCategory = (category) => {
   text-align: center;
   transition: transform 0.2s;
   color: #94a3b8;
-  display: inline-block;
 }
 .tree-arrow.expanded {
   color: #42b983;
 }
+
 .category-count {
   font-size: 0.75rem;
   font-weight: 400;
@@ -174,7 +214,7 @@ const toggleCategory = (category) => {
   margin-left: auto;
 }
 
-/* ========== 折叠动画 ========== */
+/* 折叠动画 */
 .home-slide-enter-active,
 .home-slide-leave-active {
   transition: all 0.3s ease;
@@ -192,12 +232,38 @@ const toggleCategory = (category) => {
   opacity: 1;
 }
 
+/* ========== 子分组标题 ========== */
+.sub-group {
+  margin-top: 20px;
+}
+.sub-title {
+  font-size: 1.1rem;
+  color: #334155;
+  border-left: 3px solid #94a3b8;
+  padding: 8px 16px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: background 0.15s;
+}
+.sub-title:hover {
+  background: #f1f5f9;
+}
+.sub-name {
+  font-weight: 600;
+}
+
 /* ========== 文章网格 ========== */
 .article-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   gap: 20px;
   margin-bottom: 10px;
+}
+.sub-grid {
+  margin-top: 10px;
 }
 
 .article-card {
