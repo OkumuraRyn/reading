@@ -1,6 +1,6 @@
 /* src/data/articles/zsb/a2.js */
 export default {
-  id: "ZSB-1",
+  id: "ZSB-2",
   type: "ZSB",
   title: "The Colors of Emotion",
   titleCn: "情绪的色彩",
