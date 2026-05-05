@@ -48,64 +48,67 @@
           </div>
         </router-link>
 
-        <!-- 分类树 -->
+        <!-- 树形分类（自动支持父子结构） -->
         <div v-for="(group, parentName) in categoryTreeData" :key="parentName" class="tree-group">
-  <!-- 父分类 -->
-  <div class="tree-parent" @click="toggleCategory(parentName)">
-    <span class="tree-arrow" :class="{ expanded: expandedCategories.has(parentName) }">
-      {{ expandedCategories.has(parentName) ? '▾' : '▸' }}
-    </span>
-    <span class="category-name">{{ parentName }}</span>
-    <span class="category-count">{{ countParentArticles(group) }}</span>
-  </div>
-
-  <Transition name="tree-slide">
-    <div v-if="expandedCategories.has(parentName)" class="tree-children">
-      <!-- 普通文章 -->
-      <router-link
-        v-for="art in group.articles"
-        :key="art.id"
-        :to="`/article/${art.id}`"
-        class="nav-link tree-child"
-        @click="isMenuOpen = false"
-      >
-        <span class="nav-icon">📄</span>
-        <div class="nav-info">
-          <div class="en-title">#{{ art.id }} {{ art.title }}</div>
-          <div class="cn-title" v-if="art.titleCn">{{ art.titleCn }}</div>
-        </div>
-      </router-link>
-
-      <!-- 子分类 -->
-      <div v-for="(sub, subName) in group.subGroups" :key="subName" class="sub-group">
-        <div class="tree-parent sub-parent" @click.stop="toggleCategory(subName)">
-          <span class="tree-arrow" :class="{ expanded: expandedCategories.has(subName) }">
-            {{ expandedCategories.has(subName) ? '▾' : '▸' }}
-          </span>
-          <span class="category-name">{{ subName }}</span>
-          <span class="category-count">{{ sub.articles.length }}</span>
-        </div>
-        <Transition name="tree-slide">
-          <div v-if="expandedCategories.has(subName)" class="tree-children sub-children">
-            <router-link
-              v-for="art in sub.articles"
-              :key="art.id"
-              :to="`/article/${art.id}`"
-              class="nav-link tree-child"
-              @click="isMenuOpen = false"
-            >
-              <span class="nav-icon">📄</span>
-              <div class="nav-info">
-                <div class="en-title">#{{ art.id }} {{ art.title }}</div>
-                <div class="cn-title" v-if="art.titleCn">{{ art.titleCn }}</div>
-              </div>
-            </router-link>
+          <!-- 父分类 -->
+          <div class="tree-parent" @click="toggleCategory(parentName)">
+            <span class="tree-arrow" :class="{ expanded: expandedCategories.has(parentName) }">
+              {{ expandedCategories.has(parentName) ? '▾' : '▸' }}
+            </span>
+            <span class="category-name">{{ parentName }}</span>
+            <span class="category-count">{{ countParentArticles(group) }}</span>
           </div>
-        </Transition>
-      </div>
-    </div>
-  </Transition>
-</div>
+
+          <Transition name="tree-slide">
+            <div v-if="expandedCategories.has(parentName)" class="tree-children">
+              <!-- 普通文章（无子分类） -->
+              <router-link
+                v-for="art in group.articles"
+                :key="art.id"
+                :to="`/article/${art.id}`"
+                class="nav-link tree-child"
+                @click="isMenuOpen = false"
+              >
+                <span class="nav-icon">📄</span>
+                <div class="nav-info">
+                  <div class="en-title">#{{ art.id }} {{ art.title }}</div>
+                  <div class="cn-title" v-if="art.titleCn">{{ art.titleCn }}</div>
+                </div>
+              </router-link>
+
+              <!-- 子分类（长篇连载） -->
+              <div v-for="(sub, subName) in group.subGroups" :key="subName" class="sub-group">
+                <div class="tree-parent sub-parent" @click.stop="toggleCategory(subName)">
+                  <span class="tree-arrow" :class="{ expanded: expandedCategories.has(subName) }">
+                    {{ expandedCategories.has(subName) ? '▾' : '▸' }}
+                  </span>
+                  <span class="category-name">{{ subName }}</span>
+                  <span class="category-count">{{ sub.articles.length }}</span>
+                </div>
+                <Transition name="tree-slide">
+                  <div v-if="expandedCategories.has(subName)" class="tree-children sub-children">
+                    <router-link
+                      v-for="art in sub.articles"
+                      :key="art.id"
+                      :to="`/article/${art.id}`"
+                      class="nav-link tree-child"
+                      @click="isMenuOpen = false"
+                    >
+                      <span class="nav-icon">📄</span>
+                      <div class="nav-info">
+                        <div class="en-title">#{{ art.id }} {{ art.title }}</div>
+                        <div class="cn-title" v-if="art.titleCn">{{ art.titleCn }}</div>
+                      </div>
+                    </router-link>
+                  </div>
+                </Transition>
+              </div>
+            </div>
+          </Transition>
+        </div>
+      </nav>
+    </aside>
+
     <!-- 主内容区 -->
     <main class="main-content" :class="{ 'hide-ai-panel': isMenuOpen }">
       <router-view :key="$route.fullPath" />
@@ -115,13 +118,20 @@
 
 <script setup>
 import { ref, reactive } from 'vue';
-import { categoryTreeData } from './data/index';
+import { categoryTreeData } from '../data/index';
 
 const isMenuOpen = ref(false);
-
-// ✅ 改动：默认全部合上，不展开任何分类
 const expandedCategories = reactive(new Set());
 
+const toggleCategory = (category) => {
+  if (expandedCategories.has(category)) {
+    expandedCategories.delete(category);
+  } else {
+    expandedCategories.add(category);
+  }
+};
+
+// 计算父分类下的文章总数（包括子分类）
 const countParentArticles = (group) => {
   let total = group.articles.length;
   for (const sub of Object.values(group.subGroups)) {
@@ -411,13 +421,7 @@ body {
   background: white;
 }
 
-/* ============ 菜单打开时隐藏 AI 面板和朗读按钮 ============ */
-/* ✅ 改动：统一处理，在移动端完全隐藏 AI 面板，在桌面端隐藏浮动按钮 */
-.hide-ai-panel :deep(.full-read-btn),
-.hide-ai-panel :deep(.mobile-drag-handle) {
-  display: none !important;
-}
-  /* 菜单打开时隐藏 AI 面板、朗读按钮等 */
+/* ============ 菜单打开时隐藏 AI 面板 ============ */
 .hide-ai-panel :deep(.ai-float) {
   display: none !important;
 }
@@ -426,14 +430,13 @@ body {
   display: none !important;
 }
 
-/* 移动端：菜单打开时完全隐藏底部 AI 面板，避免穿透遮罩 */
 @media (max-width: 768px) {
   .hide-ai-panel :deep(.ai-panel) {
     display: none !important;
   }
 }
 
-/* ============ 移动端适配 ============ */
+/* 移动端适配 */
 @media (max-width: 768px) {
   .desktop-menu-btn {
     display: none;
@@ -479,7 +482,8 @@ body {
   border-color: #42b983;
 }
 
-  .sub-parent {
+/* 子分组额外缩进 */
+.sub-parent {
   padding-left: 24px;
   font-weight: 600;
   font-size: 0.82rem;
