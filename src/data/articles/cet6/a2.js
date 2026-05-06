@@ -1,23 +1,13 @@
-/* src/data/articles/cet6/day2_loneliness.js */
+/* src/data/articles/cet6/a2.js */
 export default {
-    id: "CET6-2",
-    type: "CET6",
+  id: "CET6-2",
+  type: "CET6",
   title: "How to Stop Feeling Lonely in Your Relationship",
+  titleCn: "如何停止在感情中感到孤独",
   paragraphs: [
+    { type: "date", text: "May 2, 2026" },
     {
-      sentences: [
-        { en: "How to Stop Feeling Lonely in Your Relationship", cn: "如何停止在感情中感到孤独" }
-      ]
-    },
-    {
-      title: "KEY POINTS",
-      sentences: [
-        { en: "Early survival habits create distance in intimate relationships.", cn: "早期的生存习惯会在亲密关系中制造距离。" },
-        { en: "Feeling loved requires exposing your full self and appreciating your partner’s complexity.", cn: "感到被爱需要展示完整的自我，并欣赏伴侣的复杂性。" },
-        { en: "Adopting new mindsets allows you to see your partner and your relationship with fresh eyes.", cn: "采取新的思维方式能让你用全新的眼光审视你的伴侣和感情。" }
-      ]
-    },
-    {
+      type: "text",
       sentences: [
         { en: "“Even though we are together, I still feel alone.”", cn: "“尽管我们在一起，我仍然觉得孤独。”" },
         { en: "“Being alone is bearable; loneliness while in a relationship is painful.”", cn: "“一个人待着是可以忍受的；但在一段感情中感到孤独却是痛苦的。”" },
@@ -25,14 +15,16 @@ export default {
       ]
     },
     {
+      type: "text",
       sentences: [
         { en: "Sadly, most people who have been in a long-term relationship recognize the feelings being expressed in these statements.", cn: "遗憾的是，大多数长期处于一段关系中的人都能体会到这些话语中所表达的情感。" },
         { en: "And sadly, most of them don’t know how they got to a place in their love relationship where they feel so alone and unloved.", cn: "更遗憾的是，他们大多数人并不知道自己的感情是如何走到这一步的——在这里，他们感到如此孤独且不被爱。" },
         { en: "And worst of all, they don’t know how to come back from it and re-establish the intimacy and emotional connection they once enjoyed.", cn: "最糟糕的是，他们不知道该如何从中恢复，并重建曾经享受过的亲密感和情感连接。" }
       ]
     },
+    { type: "heading", level: 2, text: "What Happened? The Fantasy Bond" },
     {
-      title: "What Happened? The Fantasy Bond",
+      type: "text",
       sentences: [
         { en: "I have been writing and lecturing about the fantasy bond for many years now.", cn: "多年来，我一直致力于关于“幻想纽带”的写作和演讲。" },
         { en: "The fantasy bond, a term originated by my father, Robert Firestone Ph.D., is a defensive adaptation that develops in infancy when the baby is solely dependent on a parent for survival.", cn: "“幻想纽带”是由我父亲罗伯特·费尔斯通博士提出的术语，是一种在婴儿期产生的防御性适应，当时婴儿完全依赖父母生存。" },
@@ -42,6 +34,7 @@ export default {
       ]
     },
     {
+      type: "text",
       sentences: [
         { en: "This defense continues to serve a person through stressful situations in childhood, adolescence and into their adult relationships.", cn: "这种防御机制在童年、青少年时期的压力情境中，乃至成年后的社交关系中持续发挥作用。" },
         { en: "The fantasy bond tends to show up most powerfully where people feel the most vulnerable: in their romantic relationships.", cn: "幻想纽带往往在人们感到最脆弱的地方表现得最为强烈：那就是在他们的浪漫关系中。" },
@@ -52,6 +45,7 @@ export default {
       ]
     },
     {
+      type: "text",
       sentences: [
         { en: "So, they are caught in a dilemma: they are drawn to being close and intimate, but they are also afraid and self-protective.", cn: "因此，他们陷入了两难境地：他们渴望亲近和亲密，但也感到恐惧并带有自我保护意识。" },
         { en: "People often resolve this conflict and relieve their anxieties and insecurities by forming a fantasy bond with their partner.", cn: "人们经常通过与伴侣建立幻想纽带，来解决这一冲突并缓解他们的焦虑和不安全感。" },
@@ -62,6 +56,7 @@ export default {
       ]
     },
     {
+      type: "text",
       sentences: [
         { en: "Formation of the fantasy bond leads to communication breakdowns within a couple.", cn: "幻想纽带的形成会导致伴侣之间的沟通崩溃。" },
         { en: "As they fail to see each other as individuals, their conversations become less personal and meaningful.", cn: "由于他们未能将彼此视为独立的个体，他们的对话变得不再那么私人化且富有意义。" },
@@ -72,8 +67,9 @@ export default {
         { en: "Instead, they relate to each other with less compassion, empathy, interest, and understanding.", cn: "取而代之的是，他们在相处中少了同情、共情、兴趣和理解。" }
       ]
     },
+    { type: "heading", level: 2, text: "How to Reestablish Love: The Five Mindsets" },
     {
-      title: "How to Reestablish Love: The Five Mindsets",
+      type: "text",
       sentences: [
         { en: "In their book How to Feel Loved: The Five Mindsets That Get You More of What Matters Most, happiness scholar Sonja Lyubomirsky and relationship scientist Harry Reis lay out a clear path of how to not only experience the love coming toward you that already exists, but also how to actually cultivate loving feelings toward you from others.", cn: "在他们的著作《如何感到被爱：获得最重要事物的五种心态》中，幸福学者索尼娅·柳波莫斯基和关系科学家哈里·雷斯阐明了一条清晰的路径，不仅告诉你如何体验已经存在的爱，还告诉你如何真正地培养他人对你的爱意。" },
         { en: "Truly feeling loved, they’ve discovered, differs widely from the actions usually associated with loving, being loved, and falling in love.", cn: "他们发现，真正感到被爱与通常与爱他人、被爱和坠入爱河相关的行为大不相同。" },
@@ -81,6 +77,7 @@ export default {
       ]
     },
     {
+      type: "text",
       sentences: [
         { en: "The Five Mindsets that these authors present also offer a means by which to challenge the fantasy bond by reestablishing communication between a couple.", cn: "作者提出的这五种心态还通过重建伴侣间的沟通，提供了一种挑战幻想纽带的手段。" },
         { en: "1. Sharing: showing our vulnerabilities and inner world, not just the polished parts.", cn: "1. 分享：展示我们的脆弱和内心世界，而不仅仅是光鲜亮丽的部分。" },
@@ -91,14 +88,7 @@ export default {
       ]
     },
     {
-      title: "THE BASICS",
-      sentences: [
-        { en: "Why Relationships Matter", cn: "为什么人际关系很重要" },
-        { en: "Take our Can You Spot Red Flags In A Relationship?", cn: "参加我们的“你能发现感情中的红灯信号吗？”测试" },
-        { en: "Find a therapist to strengthen relationships", cn: "寻找治疗师以加强人际关系" }
-      ]
-    },
-    {
+      type: "text",
       sentences: [
         { en: "These suggestions enable a person to see their partner with fresh eyes.", cn: "这些建议使一个人能用全新的眼光看待伴侣。" },
         { en: "The mindsets encourage each person to set aside assumptions they may have about their partner, to stop judging or dismissing them in any way.", cn: "这些心态鼓励每个人抛开对伴侣可能持有的假设，停止以任何方式评判或排斥他们。" },
@@ -107,6 +97,7 @@ export default {
       ]
     },
     {
+      type: "text",
       sentences: [
         { en: "The Five Mindsets support the individuality of each person, thereby allowing them to show up as an autonomous person once again.", cn: "这五种心态支持每个人的个性和独立，从而让他们再次以自主个体的身份出现。" },
         { en: "Following these suggestions helps to counteract the destructive impact of the fantasy bond.", cn: "遵循这些建议有助于抵消幻想纽带的破坏性影响。" },
