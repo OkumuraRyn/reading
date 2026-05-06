@@ -25,65 +25,83 @@
 
       <!-- 文章正文 -->
       <section class="reading-body">
-        <div
-          v-for="(para, pIdx) in article.paragraphs"
-          :key="pIdx"
-          class="para-block para-with-speaker"
-        >
-          <span
-            class="para-speaker-btn"
-            @click.stop="$emit('speak-paragraph', para)"
-            title="朗读全段"
-          >
-            🔊
-          </span>
+        <template v-for="(para, pIdx) in article.paragraphs" :key="pIdx">
+          <!-- 日期段落 -->
+          <div v-if="para.type === 'date'" class="para-date">
+            {{ para.text }}
+          </div>
 
-          <span
-            v-for="(sent, sIdx) in para.sentences"
-            :key="sIdx"
-            class="sent-item"
-            :class="{
-              'is-focused': selectedSentence === sent.en,
-              'is-playing':
-                readingState !== 'idle' &&
-                currentParaIdx === pIdx &&
-                currentSentIdx === sIdx,
-            }"
-            :data-pidx="pIdx"
-            :data-sidx="sIdx"
-            @click.stop="handleSentenceClick(sent)"
+          <!-- 标题段落 -->
+          <h2
+            v-else-if="para.type === 'heading' && para.level === 2"
+            class="para-heading para-heading-2"
           >
+            {{ para.text }}
+          </h2>
+          <h3
+            v-else-if="para.type === 'heading' && para.level === 3"
+            class="para-heading para-heading-3"
+          >
+            {{ para.text }}
+          </h3>
+
+          <!-- 普通文本段落（默认类型或无 type 时） -->
+          <div v-else class="para-block para-with-speaker">
             <span
-              v-for="(token, tIdx) in tokenize(sent.en)"
-              :key="tIdx"
-              class="token-wrapper"
+              class="para-speaker-btn"
+              @click.stop="$emit('speak-paragraph', para)"
+              title="朗读全段"
+            >
+              🔊
+            </span>
+
+            <span
+              v-for="(sent, sIdx) in para.sentences"
+              :key="sIdx"
+              class="sent-item"
+              :class="{
+                'is-focused': selectedSentence === sent.en,
+                'is-playing':
+                  readingState !== 'idle' &&
+                  currentParaIdx === pIdx &&
+                  currentSentIdx === sIdx,
+              }"
+              :data-pidx="pIdx"
+              :data-sidx="sIdx"
+              @click.stop="handleSentenceClick(sent)"
             >
               <span
-                v-if="token.isWord"
-                :id="`art-word-${token.text.toLowerCase()}`"
-                class="word-token"
-                :class="{
-                  'is-added-green': isWordInCurrentVocab(token.text),
-                  'is-review-yellow': isWordInOtherVocab(token.text),
-                }"
-                @dblclick.stop="
-                  $emit('query-word', token.text, sent.en);
-                  $emit('speak', token.text)
-                "
-                @contextmenu.stop.prevent="
-                  $emit('query-word', token.text, sent.en);
-                  $emit('speak', token.text)
-                "
-                @touchstart="handleWordTouchStart($event, token.text, sent.en)"
-                @touchend="handleWordTouchEnd"
-                @touchmove="handleWordTouchMove"
+                v-for="(token, tIdx) in tokenize(sent.en)"
+                :key="tIdx"
+                class="token-wrapper"
               >
-                {{ token.text }}
+                <span
+                  v-if="token.isWord"
+                  :id="`art-word-${token.text.toLowerCase()}`"
+                  class="word-token"
+                  :class="{
+                    'is-added-green': isWordInCurrentVocab(token.text),
+                    'is-review-yellow': isWordInOtherVocab(token.text),
+                  }"
+                  @dblclick.stop="
+                    $emit('query-word', token.text, sent.en);
+                    $emit('speak', token.text)
+                  "
+                  @contextmenu.stop.prevent="
+                    $emit('query-word', token.text, sent.en);
+                    $emit('speak', token.text)
+                  "
+                  @touchstart="handleWordTouchStart($event, token.text, sent.en)"
+                  @touchend="handleWordTouchEnd"
+                  @touchmove="handleWordTouchMove"
+                >
+                  {{ token.text }}
+                </span>
+                <span v-else>{{ token.text }}</span>
               </span>
-              <span v-else>{{ token.text }}</span>
             </span>
-          </span>
-        </div>
+          </div>
+        </template>
       </section>
 
       <!-- 默写练习区 -->
@@ -225,7 +243,6 @@ const toggleExpand = (word) => {
   }
 }
 
-// ✅ 改动：截断长度从 35 增加到 55
 const truncateText = (text) => {
   if (!text) return ''
   return text.length > 55 ? text.substring(0, 55) + '...' : text
@@ -347,6 +364,31 @@ defineExpose({ articleRef })
 }
 .selection-tip button:hover {
   background: #f0fdf4;
+}
+
+/* ========== 新增段落类型样式 ========== */
+.para-date {
+  color: #94a3b8;
+  font-size: 0.9rem;
+  margin-bottom: 25px;
+  font-style: italic;
+  text-align: center;
+}
+
+.para-heading {
+  color: #1e293b;
+  font-weight: 700;
+  margin: 32px 0 16px;
+  padding-bottom: 6px;
+  border-bottom: 2px solid #f1f5f9;
+}
+.para-heading-2 {
+  font-size: 1.4rem;
+}
+.para-heading-3 {
+  font-size: 1.15rem;
+  color: #475569;
+  border-bottom: none;
 }
 
 /* ========== 段落与句子 ========== */
