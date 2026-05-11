@@ -206,6 +206,109 @@ defineExpose({ articleRef })
   color: #475569;
   line-height: 1.7;
 }
+
+  /* ========== 顶部功能栏 ========== */
+.top-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #f0f0f0;
+}
+.top-date {
+  font-size: 0.9rem;
+  color: #999;
+  font-weight: 500;
+}
+.top-actions {
+  display: flex;
+  gap: 10px;
+}
+.action-btn {
+  background: none;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  padding: 4px 14px;
+  font-size: 0.85rem;
+  color: #666;
+  cursor: pointer;
+}
+.action-active {
+  background: #f0fdf4;
+  border-color: #42b983;
+  color: #42b983;
+  font-weight: 600;
+}
+
+/* ========== 标题区 ========== */
+.art-header {
+  margin-bottom: 30px;
+}
+.art-header h1 {
+  font-size: 2.2rem;
+  font-weight: 800;
+  line-height: 1.3;
+  color: #1e293b;
+  margin-bottom: 12px;
+}
+.art-title-cn {
+  font-size: 1.1rem;
+  color: #64748b;
+  margin-bottom: 10px;
+  font-weight: 500;
+}
+.difficulty-badge {
+  display: inline-block;
+  background: #f1f5f9;
+  color: #64748b;
+  font-size: 0.8rem;
+  padding: 2px 12px;
+  border-radius: 12px;
+  font-weight: 500;
+}
+
+/* ========== 段落样式 ========== */
+.para-block {
+  display: flex;
+  margin-bottom: 32px;
+  position: relative;
+}
+
+.para-side {
+  width: 36px;
+  margin-right: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 2px;
+}
+
+.para-trans-btn {
+  background: none;
+  border: 1px solid #e2e8f0;
+  border-radius: 6px;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.85rem;
+  color: #94a3b8;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.para-trans-btn:hover,
+.para-trans-btn.trans-open {
+  border-color: #42b983;
+  color: #42b983;
+  background: #f0fdf4;
+}
+
+.para-content {
+  flex: 1;
+  min-width: 0;
+}
 /* 句子 */
 .sent-item {
   display: inline;
