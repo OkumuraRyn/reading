@@ -1,15 +1,7 @@
 <!-- src/App.vue -->
 <template>
   <div class="app-container">
-    <!-- 桌面端菜单按钮 -->
-  <button class="desktop-menu-btn" @click="isMenuOpen = true">☰</button>
-
-
-    <!-- 移动端顶栏 -->
-    <header class="mobile-navbar">
-      <button class="menu-toggle" @click="isMenuOpen = !isMenuOpen">☰ 目录</button>
-      <div class="brand">English Reading</div>
-    </header>
+    <!-- 无桌面端菜单按钮，无移动端顶栏 -->
 
     <!-- 遮罩层 -->
     <div
@@ -111,18 +103,24 @@
     </aside>
 
     <!-- 主内容区 -->
-        <main class="main-content" :class="{ 'hide-ai-panel': isMenuOpen }">
+            <main class="main-content" :class="{ 'hide-ai-panel': isMenuOpen }">
       <router-view :key="$route.fullPath" />
     </main>
   </div>
 </template>
 
 <script setup>
-import { ref, reactive } from 'vue';
+import { ref, provide } from 'vue';
 import { categoryTreeData } from './data/index';
 
 const isMenuOpen = ref(false);
-const expandedCategories = reactive(new Set());
+
+// 提供打开侧栏的方法供子组件调用
+provide('openMenu', () => {
+  isMenuOpen.value = true;
+});
+
+const expandedCategories = ref(new Set());
 
 const toggleCategory = (category) => {
   if (expandedCategories.has(category)) {
@@ -153,63 +151,12 @@ const saveApiKey = (e) => {
 </script>
 
 <style scoped>
-/* ============ 全局重置 ============ */
-body {
-  margin: 0;
-  padding: 0;
-  font-family: 'Inter', -apple-system, sans-serif;
-  color: #334155;
-  background: white;
-}
-
 .app-container {
   display: flex;
   min-height: 100vh;
   position: relative;
 }
 
-/* ============ 桌面端菜单按钮 ============ */
-.desktop-menu-btn {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: absolute;            /* 改为 absolute */
-  top: 20px;
-  right: 20px;                  /* 右上角 */
-  z-index: 1010;
-  width: 42px;
-  height: 42px;
-  background: #42b983;
-  color: white;
-  border: none;
-  border-radius: 50%;           /* 圆形 */
-  font-size: 22px;
-  cursor: pointer;
-  box-shadow: 0 4px 12px rgba(66, 185, 131, 0.3);
-  transition: transform 0.2s;
-}
-.desktop-menu-btn:hover {
-  transform: scale(1.05);
-}
-/* ============ 移动端顶栏 ============ */
-.mobile-navbar {
-  display: none;
-}
-.menu-toggle {
-  background: #42b983;
-  color: white;
-  border: none;
-  padding: 6px 14px;
-  border-radius: 6px;
-  font-size: 14px;
-  cursor: pointer;
-}
-.brand {
-  font-weight: bold;
-  color: #475569;
-}
-
-/* ============ 遮罩 ============ */
 .menu-overlay {
   position: fixed;
   inset: 0;
@@ -225,7 +172,6 @@ body {
   visibility: visible;
 }
 
-/* ============ 侧边栏（抽屉式） ============ */
 .sidebar {
   position: fixed;
   top: 0;
@@ -438,8 +384,9 @@ body {
 
 /* 移动端适配 */
 @media (max-width: 768px) {
-  .desktop-menu-btn {
-    display: none;
+  .sidebar {
+    width: 100%;
+    max-width: 320px;
   }
   .mobile-navbar {
     display: flex;
