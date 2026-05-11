@@ -1,30 +1,61 @@
-/* src/composables/useFullReading.js */
-
 import { ref, onUnmounted } from 'vue';
 
 export function useFullReading() {
   const readingState = ref('idle'); // idle | playing | paused
   const currentParaIdx = ref(-1);
   const currentSentIdx = ref(-1);
+  const currentIndex = ref(0);     // 当前句子在队列中的全局索引
   
   let sentenceQueue = [];
-  let currentIndex = 0;
+  let utterance = null;
 
-  const start = (paragraphs) => {
-    // 构建句子队列
+  const stopCurrentUtterance = () => {
+    if (utterance) {
+      utterance.onend = null;
+      utterance.onerror = null;
+      window.speechSynthesis.cancel();
+    }
+  };
+
+  const playNext = () => {
+    if (readingState.value !== 'playing') return;
+    if (currentIndex.value >= sentenceQueue.length) {
+      stop();
+      return;
+    }
+
+    const { text, pIdx, sIdx } = sentenceQueue[currentIndex.value];
+    currentParaIdx.value = pIdx;
+    currentSentIdx.value = sIdx;
+
+    utterance = new SpeechSynthesisUtterance(text);
+    utterance.lang = 'en-US';
+    utterance.rate = 0.9;
+    utterance.onend = () => {
+      currentIndex.value++;
+      playNext();
+    };
+    utterance.onerror = () => {
+      currentIndex.value++;
+      playNext();
+    };
+    window.speechSynthesis.speak(utterance);
+  };
+
+  const start = (paragraphs, startIndex = 0) => {
     sentenceQueue = [];
     paragraphs.forEach((para, pIdx) => {
       para.sentences.forEach((sent, sIdx) => {
         sentenceQueue.push({ text: sent.en, pIdx, sIdx });
       });
     });
-    currentIndex = 0;
+    currentIndex.value = startIndex;
     readingState.value = 'playing';
     playNext();
   };
 
   const pause = () => {
-    window.speechSynthesis.cancel();
+    stopCurrentUtterance();
     readingState.value = 'paused';
   };
 
@@ -34,50 +65,46 @@ export function useFullReading() {
   };
 
   const stop = () => {
-    window.speechSynthesis.cancel();
+    stopCurrentUtterance();
     readingState.value = 'idle';
     currentParaIdx.value = -1;
     currentSentIdx.value = -1;
+    currentIndex.value = 0;
     sentenceQueue = [];
-    currentIndex = 0;
   };
 
-  const playNext = () => {
-    if (readingState.value !== 'playing') return;
-    if (currentIndex >= sentenceQueue.length) {
-      stop();
-      return;
+  const gotoIndex = (index) => {
+    if (index < 0 || index >= sentenceQueue.length) return;
+    const wasPlaying = readingState.value === 'playing';
+    stopCurrentUtterance();
+    currentIndex.value = index;
+    if (wasPlaying) {
+      readingState.value = 'playing';
+      playNext();
+    } else {
+      // 暂停状态切换句子，只更新高亮，不播放
+      const { pIdx, sIdx } = sentenceQueue[index];
+      currentParaIdx.value = pIdx;
+      currentSentIdx.value = sIdx;
     }
-
-    const { text, pIdx, sIdx } = sentenceQueue[currentIndex];
-    currentParaIdx.value = pIdx;
-    currentSentIdx.value = sIdx;
-
-    const utterance = new SpeechSynthesisUtterance(text);
-    utterance.lang = 'en-US';
-    utterance.rate = 0.9;
-    utterance.onend = () => {
-      currentIndex++;
-      playNext();
-    };
-    utterance.onerror = () => {
-      currentIndex++;
-      playNext();
-    };
-    window.speechSynthesis.speak(utterance);
   };
 
-  onUnmounted(() => {
-    stop();
-  });
+  const nextSentence = () => gotoIndex(currentIndex.value + 1);
+  const prevSentence = () => gotoIndex(currentIndex.value - 1);
+
+  onUnmounted(() => stop());
 
   return {
     readingState,
     currentParaIdx,
     currentSentIdx,
+    currentIndex,
     start,
     pause,
     resume,
     stop,
+    nextSentence,
+    prevSentence,
+    gotoIndex
   };
 }
