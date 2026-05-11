@@ -2,88 +2,81 @@
 <template>
   <main class="article-section" ref="articleRef">
     <div class="article-content-wrapper">
-      <nav class="breadcrumb">
-        <router-link to="/">← 目录</router-link> / {{ article.type }}
-      </nav>
+      <!-- 顶部功能栏 -->
+      <div class="top-bar">
+        <span class="top-date">Mon May 11</span>
+        <div class="top-actions">
+          <button class="action-btn">译</button>
+          <button class="action-btn action-active">精</button>
+        </div>
+      </div>
 
+      <!-- 文章标题 -->
       <header class="art-header">
         <h1>{{ article.title }}</h1>
         <p v-if="article.titleCn" class="art-title-cn">{{ article.titleCn }}</p>
-        <div class="interaction-hint">
-          💡 单击单词查词并朗读 | 单击句子选中提问
-        </div>
-        <div v-if="selectedSentence" class="selection-tip">
-          已选中句子，可在 AI 面板提问
-          <button @click="$emit('clear-selection')">取消选中</button>
-        </div>
+        <span class="difficulty-badge">282词 · 高阶</span>
       </header>
 
+      <!-- 正文区域 -->
       <section class="reading-body">
         <template v-for="(para, pIdx) in article.paragraphs" :key="pIdx">
-          <div v-if="para.type === 'date'" class="para-date">
-            {{ para.text }}
-          </div>
-          <h2 v-else-if="para.type === 'heading' && para.level === 2" class="para-heading para-heading-2">
-            {{ para.text }}
-          </h2>
-          <h3 v-else-if="para.type === 'heading' && para.level === 3" class="para-heading para-heading-3">
-            {{ para.text }}
-          </h3>
-          <div v-else class="para-block para-with-speaker">
-            <span
-              class="para-speaker-btn"
-              @click.stop="$emit('speak-paragraph', para)"
-              title="朗读全段"
-            >🔊</span>
+          <div v-if="para.type === 'date'" class="para-date">{{ para.text }}</div>
+          <h2 v-else-if="para.type === 'heading' && para.level === 2" class="para-heading-2">{{ para.text }}</h2>
+          <h3 v-else-if="para.type === 'heading' && para.level === 3" class="para-heading-3">{{ para.text }}</h3>
+          <div v-else class="para-block">
+            <!-- 左侧翻译按钮 -->
+            <div class="para-side">
+              <button
+                class="para-trans-btn"
+                @click.stop="toggleParaTrans(pIdx)"
+                :class="{ 'trans-open': expandedParas.has(pIdx) }"
+              >译</button>
+            </div>
 
-            <span
-              v-for="(sent, sIdx) in para.sentences"
-              :key="sIdx"
-              class="sent-item"
-              :class="{
-                'is-focused': selectedSentence === sent.en,
-                'is-playing': readingState !== 'idle' && currentParaIdx === pIdx && currentSentIdx === sIdx
-              }"
-              :data-pidx="pIdx"
-              :data-sidx="sIdx"
-              @click.stop="handleSentenceClick(sent)"
-            >
+            <!-- 句子正文 -->
+            <div class="para-content">
               <span
-                v-for="(token, tIdx) in tokenize(sent.en)"
-                :key="tIdx"
-                class="token-wrapper"
+                v-for="(sent, sIdx) in para.sentences"
+                :key="sIdx"
+                class="sent-item"
+                :class="{
+                  'is-focused': selectedSentence === sent.en,
+                  'is-playing': readingState !== 'idle' && currentParaIdx === pIdx && currentSentIdx === sIdx
+                }"
+                :data-pidx="pIdx"
+                :data-sidx="sIdx"
+                @click.stop="handleSentenceClick(sent)"
               >
                 <span
-                  v-if="token.isWord"
-                  :id="`art-word-${token.text.toLowerCase()}`"
-                  class="word-token"
-                  :class="{
-                    'is-added-green': isWordInCurrentVocab(token.text),
-                    'is-review-yellow': isWordInOtherVocab(token.text)
-                  }"
-                  @click.stop="handleWordClick(token.text, sent.en)"
-                >{{ token.text }}</span>
-                <span v-else>{{ token.text }}</span>
+                  v-for="(token, tIdx) in tokenize(sent.en)"
+                  :key="tIdx"
+                  class="token-wrapper"
+                >
+                  <span
+                    v-if="token.isWord"
+                    :id="`art-word-${token.text.toLowerCase()}`"
+                    class="word-token"
+                    :class="{
+                      'is-added-green': isWordInCurrentVocab(token.text),
+                      'is-review-yellow': isWordInOtherVocab(token.text)
+                    }"
+                    @click.stop="handleWordClick(token.text, sent.en)"
+                  >{{ token.text }}</span>
+                  <span v-else>{{ token.text }}</span>
+                </span>
               </span>
-            </span>
 
-            <!-- 整段翻译按钮 -->
-            <button
-              v-if="para.sentences && para.sentences.length"
-              class="para-trans-btn"
-              @click.stop="toggleParaTrans(pIdx)"
-            >
-              {{ expandedParas.has(pIdx) ? '收起译文' : '译' }}
-            </button>
-            <!-- 整段翻译内容 -->
-            <div v-if="expandedParas.has(pIdx)" class="para-trans-content">
-              {{ getParaTrans(para) }}
+              <!-- 整段翻译（展开时显示） -->
+              <div v-if="expandedParas.has(pIdx)" class="para-trans-content">
+                {{ getParaTrans(para) }}
+              </div>
             </div>
           </div>
         </template>
       </section>
 
-      <!-- 全文朗读按钮（放在文章末尾） -->
+      <!-- 全文朗读按钮 -->
       <div class="read-all-btn-wrapper">
         <button class="read-all-btn" @click="$emit('toggle-full-reading')">
           🔊 全文朗读
@@ -206,233 +199,209 @@ defineExpose({ articleRef })
 <style scoped>
 /* 原有样式保持不变，增加以下新样式 */
 
-.para-trans-btn {
-  display: inline-block;
-  margin-top: 8px;
-  padding: 2px 12px;
-  font-size: 0.85rem;
-  color: #42b983;
-  background: #f0fdf4;
-  border: 1px solid #42b983;
-  border-radius: 4px;
-  cursor: pointer;
-}
-
-.para-trans-content {
-  margin-top: 8px;
-  padding: 10px 12px;
-  background: #f8fafc;
-  border-left: 3px solid #42b983;
-  border-radius: 4px;
-  color: #475569;
-  line-height: 1.6;
-  font-size: 0.9rem;
-}
-
-.read-all-btn-wrapper {
-  display: flex;
-  justify-content: center;
-  margin: 25px 0 40px;
-}
-
-.read-all-btn {
-  padding: 8px 30px;
-  font-size: 1rem;
-  color: #42b983;
-  background: white;
-  border: 2px solid #42b983;
-  border-radius: 6px;
-  font-weight: bold;
-  cursor: pointer;
-  transition: background 0.2s;
-}
-.read-all-btn:hover {
-  background: #f0fdf4;
-}
 /* ========== 文章区域 ========== */
 .article-section {
   flex: 1;
   overflow-y: auto;
-  padding: 40px 20px 120px 20px;
+  padding: 24px 20px 120px;
+  background: #fff;
 }
 
 .article-content-wrapper {
-  max-width: 800px;
+  max-width: 720px;
   margin: 0 auto;
 }
 
-/* ========== 面包屑 ========== */
-.breadcrumb {
-  font-size: 0.85rem;
-  color: #94a3b8;
-  margin-bottom: 15px;
-}
-.breadcrumb a {
-  color: #64748b;
-  text-decoration: none;
-}
-.breadcrumb a:hover {
-  color: #42b983;
-}
-
-/* ========== 文章标题 ========== */
-.art-header h1 {
-  font-size: 2.2rem;
-  margin-bottom: 8px;
-  color: #1e293b;
-}
-.art-title-cn {
-  font-size: 1.1rem;
-  color: #42b983;
-  font-weight: 500;
-  margin-bottom: 10px;
-}
-.interaction-hint {
-  font-size: 0.8rem;
-  color: #94a3b8;
-  margin-bottom: 20px;
-  line-height: 1.5;
-}
-.selection-tip {
-  background: #eefdf5;
-  padding: 10px 15px;
-  border-radius: 8px;
-  font-size: 0.9rem;
-  color: #34a871;
+/* ========== 顶部功能栏 ========== */
+.top-bar {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 20px;
+  margin-bottom: 24px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #f0f0f0;
 }
-.selection-tip button {
-  background: #fff;
-  border: 1px solid #42b983;
-  color: #42b983;
-  padding: 2px 10px;
-  border-radius: 4px;
+.top-date {
+  font-size: 0.9rem;
+  color: #999;
+  font-weight: 500;
+}
+.top-actions {
+  display: flex;
+  gap: 10px;
+}
+.action-btn {
+  background: none;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  padding: 4px 14px;
+  font-size: 0.85rem;
+  color: #666;
   cursor: pointer;
 }
-.selection-tip button:hover {
+.action-active {
+  background: #f0fdf4;
+  border-color: #42b983;
+  color: #42b983;
+  font-weight: 600;
+}
+
+/* ========== 标题区 ========== */
+.art-header {
+  margin-bottom: 30px;
+}
+.art-header h1 {
+  font-size: 2.2rem;
+  font-weight: 800;
+  line-height: 1.3;
+  color: #1e293b;
+  margin-bottom: 12px;
+}
+.art-title-cn {
+  font-size: 1.1rem;
+  color: #64748b;
+  margin-bottom: 10px;
+  font-weight: 500;
+}
+.difficulty-badge {
+  display: inline-block;
+  background: #f1f5f9;
+  color: #64748b;
+  font-size: 0.8rem;
+  padding: 2px 12px;
+  border-radius: 12px;
+  font-weight: 500;
+}
+
+/* ========== 段落样式 ========== */
+.para-block {
+  display: flex;
+  margin-bottom: 32px;
+  position: relative;
+}
+
+.para-side {
+  width: 36px;
+  margin-right: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 2px;
+}
+
+.para-trans-btn {
+  background: none;
+  border: 1px solid #e2e8f0;
+  border-radius: 6px;
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.85rem;
+  color: #94a3b8;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.para-trans-btn:hover,
+.para-trans-btn.trans-open {
+  border-color: #42b983;
+  color: #42b983;
   background: #f0fdf4;
 }
 
-/* ========== 新增段落类型样式 ========== */
-.para-date {
-  color: #94a3b8;
-  font-size: 0.9rem;
-  margin-bottom: 25px;
-  font-style: italic;
-  text-align: center;
+.para-content {
+  flex: 1;
+  min-width: 0;
 }
-
-.para-heading {
-  color: #1e293b;
-  font-weight: 700;
-  margin: 32px 0 16px;
-  padding-bottom: 6px;
-  border-bottom: 2px solid #f1f5f9;
-}
-.para-heading-2 {
-  font-size: 1.4rem;
-}
-.para-heading-3 {
-  font-size: 1.15rem;
-  color: #475569;
-  border-bottom: none;
-}
-
-/* ========== 段落与句子 ========== */
-.para-with-speaker {
-  position: relative;
-  padding-left: 35px;
-}
-.para-speaker-btn {
-  position: absolute;
-  left: 0;
-  top: 5px;
-  cursor: pointer;
-  font-size: 1.1rem;
-  opacity: 0.3;
-  transition: opacity 0.2s;
-  user-select: none;
-}
-.para-speaker-btn:hover {
-  opacity: 1;
-  transform: scale(1.2);
-}
-
-.para-block {
-  margin-bottom: 25px;
-  line-height: 2;
-  font-size: 1.15rem;
-  color: #334155;
-}
-
+/* 句子 */
 .sent-item {
   display: inline;
-  transition: all 0.2s;
-  border-radius: 4px;
-  padding: 2px 4px;
+  line-height: 2.2;
+  font-size: 1.25rem;
+  color: #334155;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  letter-spacing: 0.01em;
+  word-spacing: 0.08em;
   cursor: pointer;
+  transition: background 0.15s;
+  border-radius: 4px;
+  padding: 2px 0;
   border-bottom: 2px solid transparent;
-  -webkit-tap-highlight-color: transparent;
 }
 .sent-item:hover {
   background: #f8fafc;
 }
 .is-focused {
   background: #f0fdf4;
-  border-bottom: 2px solid #42b983;
+  border-bottom-color: #42b983;
 }
 .is-playing {
   background: #f0fdf4;
-  border-bottom: 2px solid #42b983;
+  border-bottom-color: #42b983;
   animation: pulse-border 1.5s ease-in-out infinite;
 }
 
-@keyframes pulse-border {
-  0%,
-  100% {
-    border-bottom-color: #42b983;
-  }
-  50% {
-    border-bottom-color: #a7f3d0;
-  }
-}
-
-/* ========== 单词 ========== */
-.token-wrapper {
-  display: contents;
-}
-
+/* 单词标记 */
 .word-token {
   cursor: pointer;
-  transition: all 0.2s;
+  transition: all 0.15s;
   border-radius: 3px;
+  padding: 1px 2px;
   user-select: none;
   -webkit-user-select: none;
-  padding: 1px 2px;
 }
 .word-token:hover {
   background: #f1f5f9;
-  color: #42b983;
 }
 .is-added-green {
   color: #42b983 !important;
-  font-weight: bold;
+  font-weight: 600;
 }
 .is-review-yellow {
   color: #eab308 !important;
-  font-weight: bold;
+  font-weight: 600;
   border-bottom: 2px dashed #eab308;
 }
 
+/* 段落翻译内容 */
+.para-trans-content {
+  margin-top: 12px;
+  padding: 12px 16px;
+  background: #f8fafc;
+  border-left: 3px solid #42b983;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  color: #475569;
+  line-height: 1.7;
+}
+
+/* 全文朗读按钮 */
+.read-all-btn-wrapper {
+  display: flex;
+  justify-content: center;
+  margin: 40px 0 50px;
+}
+.read-all-btn {
+  padding: 10px 35px;
+  font-size: 1rem;
+  color: #42b983;
+  background: white;
+  border: 2px solid #42b983;
+  border-radius: 30px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.read-all-btn:hover {
+  background: #f0fdf4;
+}
 /* ========== 默写区域 ========== */
 .dictation-area {
-  margin-top: 60px;
-  padding-top: 40px;
+  margin-top: 50px;
+  padding-top: 30px;
   border-top: 2px solid #f1f5f9;
-  padding-bottom: 100px;
+  padding-bottom: 60px;
 }
 .box-header {
   display: flex;
@@ -572,30 +541,26 @@ defineExpose({ articleRef })
   margin-bottom: 40px;
 }
 
-/* ========== 移动端适配 ========== */
+@keyframes pulse-border {
+  0%, 100% { border-bottom-color: #42b983; }
+  50% { border-bottom-color: #a7f3d0; }
+}
+
+/* 移动端调整 */
 @media (max-width: 768px) {
   .article-section {
-    padding: 20px 15px 140px 15px;
-  }
-  .para-with-speaker {
-    padding-left: 30px;
+    padding: 16px 16px 120px;
   }
   .art-header h1 {
-    font-size: 1.5rem;
+    font-size: 1.6rem;
   }
-  .art-title-cn {
-    font-size: 0.95rem;
+  .sent-item {
+    font-size: 1.15rem;
+    line-height: 2;
   }
-  .v-card {
-    flex-wrap: wrap;
-  }
-  .v-card input {
-    width: 100%;
-    order: 4;
-  }
-  .v-info {
-    flex-wrap: wrap;
-    gap: 4px;
+  .para-side {
+    width: 30px;
+    margin-right: 8px;
   }
 }
 </style>
