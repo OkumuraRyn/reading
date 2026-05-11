@@ -1,7 +1,5 @@
-<!-- src/views/ArticleView.vue -->
 <template>
   <div v-if="article" class="reader-wrapper">
-    <!-- 文章阅读区（全宽） -->
     <ArticleReader
       :article="article"
       :reading-state="readingState"
@@ -13,9 +11,9 @@
       @query-word="handleQueryWord"
       @speak="speak"
       @speak-paragraph="speakParagraph"
+      @toggle-full-reading="toggleFullReading"
     />
 
-    <!-- AI 浮动面板（始终悬浮） -->
     <AiPanel
       ref="aiPanelRef"
       :selected-sentence="selectedSentence"
@@ -23,23 +21,19 @@
       @add-to-vocab="handleAddToVocab"
     />
 
-    <!-- 全文朗读按钮 -->
-    <button class="full-read-btn" @click="toggleFullReading">
-      {{
-        readingState === 'playing'
-          ? '⏸️ 暂停'
-          : readingState === 'paused'
-            ? '▶️ 继续朗读'
-            : '🔊 全文朗读'
-      }}
-    </button>
+    <!-- 底部朗读控制栏 -->
+    <Transition name="control-slide">
+      <div v-if="showControls" class="reading-control-bar">
+        <button @click="prevSentence" :disabled="readingState === 'idle'">⏮ 上一句</button>
+        <button v-if="readingState === 'playing'" @click="pauseFullReading">⏸ 暂停</button>
+        <button v-else-if="readingState === 'paused'" @click="resumeFullReading">▶️ 继续</button>
+        <button v-else disabled>⏸ 暂停</button>
+        <button @click="nextSentence" :disabled="readingState === 'idle'">⏭ 下一句</button>
+      </div>
+    </Transition>
   </div>
-
-  <div v-else class="loading-container">
-    <p>加载中...</p>
-  </div>
+  <div v-else class="loading-container"><p>加载中...</p></div>
 </template>
-
 
 <script setup>
 import { ref, onMounted, onUnmounted, watch, nextTick } from 'vue'
@@ -47,18 +41,14 @@ import { useRoute } from 'vue-router'
 import { useStudyStore } from '../store/studyStore'
 import { useFullReading } from '../composables/useFullReading'
 import { allArticles } from '../data/index'
-import { askDeepSeek, askAiQuestion, getCachedResult } from '../services/aiService'
+import { askDeepSeek, getCachedResult } from '../services/aiService'
 import ArticleReader from '../components/ArticleReader.vue'
 import AiPanel from '../components/AiPanel.vue'
 
-// ==================== 路由与 Store ====================
 const route = useRoute()
 const studyStore = useStudyStore()
-
-// ==================== 文章数据 ====================
 const article = ref(null)
 
-// ==================== 全文朗读 ====================
 const {
   readingState,
   currentParaIdx,
@@ -67,11 +57,16 @@ const {
   pause: pauseFullReading,
   resume: resumeFullReading,
   stop: stopFullReading,
+  nextSentence,
+  prevSentence
 } = useFullReading()
+
+const showControls = ref(false)
 
 const toggleFullReading = () => {
   if (readingState.value === 'idle' && article.value) {
     startFullReading(article.value.paragraphs)
+    showControls.value = true
   } else if (readingState.value === 'playing') {
     pauseFullReading()
   } else if (readingState.value === 'paused') {
@@ -83,43 +78,39 @@ const toggleFullReading = () => {
 watch([currentParaIdx, currentSentIdx], ([pIdx, sIdx]) => {
   if (pIdx >= 0 && sIdx >= 0) {
     nextTick(() => {
-      const el = document.querySelector(
-        `.sent-item[data-pidx="${pIdx}"][data-sidx="${sIdx}"]`
-      )
+      const el = document.querySelector(`.sent-item[data-pidx="${pIdx}"][data-sidx="${sIdx}"]`)
       el?.scrollIntoView({ behavior: 'smooth', block: 'center' })
     })
   }
 })
 
-// 路由变化时停止朗读
-watch(
-  () => route.params.id,
-  () => {
-    if (readingState.value !== 'idle') stopFullReading()
-  }
-)
+// 路由变化或朗读结束隐藏控制栏
+watch(readingState, (val) => {
+  if (val === 'idle') showControls.value = false
+})
+
+watch(() => route.params.id, () => {
+  if (readingState.value !== 'idle') stopFullReading()
+})
 
 onUnmounted(() => {
   if (readingState.value !== 'idle') stopFullReading()
 })
 
-// ==================== 语音朗读 ====================
 const speak = (content) => {
   if (!window.speechSynthesis) return
   window.speechSynthesis.cancel()
-  const utterance = new SpeechSynthesisUtterance(content)
-  utterance.lang = 'en-US'
-  utterance.rate = 0.9
-  window.speechSynthesis.speak(utterance)
+  const u = new SpeechSynthesisUtterance(content)
+  u.lang = 'en-US'
+  u.rate = 0.9
+  window.speechSynthesis.speak(u)
 }
 
 const speakParagraph = (para) => {
-  if (!window.speechSynthesis) return
-  const text = para.sentences.map((s) => s.en).join(' ')
+  const text = para.sentences.map(s => s.en).join(' ')
   speak(text)
 }
 
-// ==================== 句子选中 ====================
 const selectedSentence = ref('')
 const selectedSentenceCn = ref('')
 
@@ -134,14 +125,12 @@ const clearSelection = () => {
   selectedSentenceCn.value = ''
 }
 
-// ==================== AI 单词查询 ====================
 const aiPanelRef = ref(null)
 
 const handleQueryWord = async (word, sentenceEn) => {
   if (!aiPanelRef.value) return
   aiPanelRef.value.isAiExpanded = true
 
-  // 检查缓存（7 天有效期已在 aiService 中处理）
   const cached = getCachedResult('dict', word, sentenceEn)
   if (cached) {
     studyStore.currentDictEntry = { word, detail: cached }
@@ -150,89 +139,86 @@ const handleQueryWord = async (word, sentenceEn) => {
 
   studyStore.isAiLoading = true
   studyStore.currentDictEntry = null
-
   try {
     const res = await askDeepSeek(word, sentenceEn)
     studyStore.currentDictEntry = { word, detail: res }
   } catch (err) {
-    studyStore.currentDictEntry = {
-      word,
-      detail: `❌ 查询失败：${err.message || '网络错误，请稍后再试'}`,
-    }
+    studyStore.currentDictEntry = { word, detail: `❌ 查询失败：${err.message || '网络错误'}` }
   } finally {
     studyStore.isAiLoading = false
   }
 }
 
-// ==================== 添加到词汇本 ====================
 const handleAddToVocab = () => {
   if (studyStore.currentDictEntry?.word && article.value) {
     studyStore.addToVocab(studyStore.currentDictEntry, article.value.id)
   }
 }
 
-// ==================== 单词跳转高亮 ====================
-watch(
-  () => studyStore.jumpTarget,
-  (target) => {
-    if (!target) return
-    nextTick(() => {
-      let element = null
-      if (target.section === 'article') {
-        element = document.querySelector(
-          `#art-word-${target.word.toLowerCase()}`
-        )
-      } else if (target.section === 'vocabulary') {
-        element = document.getElementById(
-          `vocab-card-${target.word.toLowerCase()}`
-        )
-      }
-      if (element) {
-        element.scrollIntoView({ behavior: 'smooth', block: 'center' })
-        element.classList.add('jump-highlight-global')
-        setTimeout(() => element.classList.remove('jump-highlight-global'), 1500)
-      }
-    })
-  }
-)
+watch(() => studyStore.jumpTarget, (target) => {
+  if (!target) return
+  nextTick(() => {
+    let element = null
+    if (target.section === 'article') {
+      element = document.querySelector(`#art-word-${target.word.toLowerCase()}`)
+    } else if (target.section === 'vocabulary') {
+      element = document.getElementById(`vocab-card-${target.word.toLowerCase()}`)
+    }
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth', block: 'center' })
+      element.classList.add('jump-highlight-global')
+      setTimeout(() => element.classList.remove('jump-highlight-global'), 1500)
+    }
+  })
+})
 
-// ==================== 初始化 ====================
 onMounted(() => {
   studyStore.init()
-  article.value = allArticles.find((a) => a.id === route.params.id)
+  article.value = allArticles.find(a => a.id === route.params.id)
 })
 </script>
 
 <style scoped>
-/* 改为单栏全宽布局 */
-.reader-wrapper {
-  position: relative;
-  width: 100%;
-}
+.reader-wrapper { position: relative; width: 100%; }
 
-/* 全文朗读按钮与浮动面板不冲突，调低一点位置 */
-.full-read-btn {
+.reading-control-bar {
   position: fixed;
-  bottom: 30px;
-  right: 30px;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: white;
+  border-radius: 40px;
+  padding: 10px 24px;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+  display: flex;
+  gap: 16px;
   z-index: 800;
-  background: #42b983;
-  color: white;
+}
+.reading-control-bar button {
+  background: #f1f5f9;
   border: none;
-  padding: 12px 24px;
-  border-radius: 30px;
-  font-size: 16px;
-  font-weight: bold;
+  padding: 8px 20px;
+  border-radius: 20px;
+  font-weight: 600;
+  color: #334155;
   cursor: pointer;
-  box-shadow: 0 8px 24px rgba(66, 185, 131, 0.4);
+  transition: background 0.2s;
+}
+.reading-control-bar button:hover:not(:disabled) {
+  background: #e2e8f0;
+}
+.reading-control-bar button:disabled {
+  opacity: 0.5;
+  cursor: default;
 }
 
-@media (max-width: 768px) {
-  .full-read-btn {
-    bottom: 20px;
-    right: 16px;
-    padding: 10px 18px;
-    font-size: 14px;
-  }
+.control-slide-enter-active,
+.control-slide-leave-active {
+  transition: all 0.3s ease;
+}
+.control-slide-enter-from,
+.control-slide-leave-to {
+  opacity: 0;
+  transform: translateX(-50%) translateY(20px);
 }
 </style>
