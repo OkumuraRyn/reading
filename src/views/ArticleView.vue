@@ -1,5 +1,17 @@
 <template>
   <div v-if="article" class="reader-wrapper">
+    <!-- 顶部功能栏 -->
+    <div class="top-bar">
+      <button class="hamburger-btn" @click="openMenu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      <button class="read-btn" @click="toggleFullReading">
+        {{ readingState === 'playing' ? '⏸' : readingState === 'paused' ? '▶' : '读' }}
+      </button>
+    </div>
+
     <ArticleReader
       :article="article"
       :reading-state="readingState"
@@ -36,7 +48,7 @@
 </template>
 
 <script setup>
-import { ref, onMounted, onUnmounted, watch, nextTick } from 'vue'
+import { ref, inject, onMounted, onUnmounted, watch, nextTick } from 'vue'
 import { useRoute } from 'vue-router'
 import { useStudyStore } from '../store/studyStore'
 import { useFullReading } from '../composables/useFullReading'
@@ -48,6 +60,8 @@ import AiPanel from '../components/AiPanel.vue'
 const route = useRoute()
 const studyStore = useStudyStore()
 const article = ref(null)
+
+const openMenu = inject('openMenu')   // 从 App.vue 注入打开侧栏方法
 
 const {
   readingState,
@@ -74,25 +88,13 @@ const toggleFullReading = () => {
   }
 }
 
-// 滚动到当前朗读句子
-watch([currentParaIdx, currentSentIdx], ([pIdx, sIdx]) => {
-  if (pIdx >= 0 && sIdx >= 0) {
-    nextTick(() => {
-      const el = document.querySelector(`.sent-item[data-pidx="${pIdx}"][data-sidx="${sIdx}"]`)
-      el?.scrollIntoView({ behavior: 'smooth', block: 'center' })
-    })
-  }
-})
-
-// 路由变化或朗读结束隐藏控制栏
+// 朗读结束或路由变化时隐藏控制栏
 watch(readingState, (val) => {
   if (val === 'idle') showControls.value = false
 })
-
 watch(() => route.params.id, () => {
   if (readingState.value !== 'idle') stopFullReading()
 })
-
 onUnmounted(() => {
   if (readingState.value !== 'idle') stopFullReading()
 })
@@ -179,8 +181,52 @@ onMounted(() => {
 </script>
 
 <style scoped>
-.reader-wrapper { position: relative; width: 100%; }
+.reader-wrapper {
+  position: relative;
+  width: 100%;
+}
 
+/* 顶部功能栏 */
+.top-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 20px;
+  background: #fff;
+  border-bottom: 1px solid #f0f0f0;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.hamburger-btn {
+  background: none;
+  border: none;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 4px;
+  cursor: pointer;
+}
+.hamburger-btn span {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: #666;
+  border-radius: 2px;
+}
+
+.read-btn {
+  background: none;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  padding: 4px 16px;
+  font-size: 1rem;
+  color: #666;
+  cursor: pointer;
+}
+
+/* 底部朗读控制栏 */
 .reading-control-bar {
   position: fixed;
   bottom: 20px;
@@ -221,4 +267,4 @@ onMounted(() => {
   opacity: 0;
   transform: translateX(-50%) translateY(20px);
 }
-</style>
+  </style>
