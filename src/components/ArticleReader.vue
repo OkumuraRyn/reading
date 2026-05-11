@@ -2,20 +2,10 @@
 <template>
   <main class="article-section" ref="articleRef">
     <div class="article-content-wrapper">
-      <!-- 顶部功能栏 -->
-      <div class="top-bar">
-        <span class="top-date">Mon May 11</span>
-        <div class="top-actions">
-          <button class="action-btn">译</button>
-          <button class="action-btn action-active">精</button>
-        </div>
-      </div>
-
       <!-- 文章标题 -->
       <header class="art-header">
         <h1>{{ article.title }}</h1>
         <p v-if="article.titleCn" class="art-title-cn">{{ article.titleCn }}</p>
-        <span class="difficulty-badge">282词 · 高阶</span>
       </header>
 
       <!-- 正文区域 -->
@@ -25,16 +15,6 @@
           <h2 v-else-if="para.type === 'heading' && para.level === 2" class="para-heading-2">{{ para.text }}</h2>
           <h3 v-else-if="para.type === 'heading' && para.level === 3" class="para-heading-3">{{ para.text }}</h3>
           <div v-else class="para-block">
-            <!-- 左侧翻译按钮 -->
-            <div class="para-side">
-              <button
-                class="para-trans-btn"
-                @click.stop="toggleParaTrans(pIdx)"
-                :class="{ 'trans-open': expandedParas.has(pIdx) }"
-              >译</button>
-            </div>
-
-            <!-- 句子正文 -->
             <div class="para-content">
               <span
                 v-for="(sent, sIdx) in para.sentences"
@@ -67,7 +47,11 @@
                 </span>
               </span>
 
-              <!-- 整段翻译（展开时显示） -->
+              <!-- 段落末尾翻译按钮 -->
+              <button
+                class="para-trans-btn"
+                @click.stop="toggleParaTrans(pIdx)"
+              >译</button>
               <div v-if="expandedParas.has(pIdx)" class="para-trans-content">
                 {{ getParaTrans(para) }}
               </div>
@@ -75,13 +59,6 @@
           </div>
         </template>
       </section>
-
-      <!-- 全文朗读按钮 -->
-      <div class="read-all-btn-wrapper">
-        <button class="read-all-btn" @click="$emit('toggle-full-reading')">
-          🔊 全文朗读
-        </button>
-      </div>
 
       <section class="dictation-area">
         <!-- ... 原默写区域代码不变 ... -->
@@ -116,8 +93,8 @@
 </template>
 
 <script setup>
-import { ref, computed, reactive } from 'vue'
-import { useStudyStore } from '../store/studyStore'
+import { reactive, computed } from 'vue';
+import { useStudyStore } from '../store/studyStore';
 
 const props = defineProps({
   article: Object,
@@ -125,7 +102,7 @@ const props = defineProps({
   currentParaIdx: { type: Number, default: -1 },
   currentSentIdx: { type: Number, default: -1 },
   selectedSentence: { type: String, default: '' }
-})
+});
 
 const emit = defineEmits([
   'select-sentence',
@@ -134,33 +111,12 @@ const emit = defineEmits([
   'speak',
   'speak-paragraph',
   'toggle-full-reading'
-])
+]);
 
-const studyStore = useStudyStore()
-const articleRef = ref(null)
-const expandedWords = ref(new Set())
-const expandedParas = reactive(new Set())   // 储存展开翻译的段落索引
-
-const currentArticleVocab = computed(() => {
-  if (!props.article) return []
-  const articleId = props.article.id
-  return studyStore.vocabularyList.filter(v => {
-    return v.articleId === articleId || (v.sources && v.sources.includes(articleId))
-  })
-})
-
-const isWordInCurrentVocab = (word) => currentArticleVocab.value.some(v => v.word.toLowerCase() === word.toLowerCase())
-const isWordInOtherVocab = (word) => {
-  const w = word.toLowerCase()
-  return !isWordInCurrentVocab(word) && studyStore.vocabularyList.some(v => v.word.toLowerCase() === w)
-}
-
-const isExpanded = (word) => expandedWords.value.has(word)
-const toggleExpand = (word) => {
-  if (expandedWords.value.has(word)) expandedWords.value.delete(word)
-  else expandedWords.value.add(word)
-}
-const truncateText = (text) => text && text.length > 55 ? text.substring(0, 55) + '...' : text
+const studyStore = useStudyStore();
+const articleRef = ref(null);
+const expandedWords = ref(new Set());
+const expandedParas = reactive(new Set());   // 控制段落翻译展开
 
 const tokenize = (text) => text.split(/(\b\w+\b)/g).map(t => ({ text: t, isWord: /^\w+$/.test(t) }))
 
@@ -197,56 +153,16 @@ defineExpose({ articleRef })
 </script>
 
 <style scoped>
-/* 原有样式保持不变，增加以下新样式 */
-
-/* ========== 文章区域 ========== */
 .article-section {
   flex: 1;
   overflow-y: auto;
   padding: 24px 20px 120px;
   background: #fff;
 }
-
 .article-content-wrapper {
   max-width: 720px;
   margin: 0 auto;
 }
-
-/* ========== 顶部功能栏 ========== */
-.top-bar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 24px;
-  padding-bottom: 12px;
-  border-bottom: 1px solid #f0f0f0;
-}
-.top-date {
-  font-size: 0.9rem;
-  color: #999;
-  font-weight: 500;
-}
-.top-actions {
-  display: flex;
-  gap: 10px;
-}
-.action-btn {
-  background: none;
-  border: 1px solid #ddd;
-  border-radius: 6px;
-  padding: 4px 14px;
-  font-size: 0.85rem;
-  color: #666;
-  cursor: pointer;
-}
-.action-active {
-  background: #f0fdf4;
-  border-color: #42b983;
-  color: #42b983;
-  font-weight: 600;
-}
-
-/* ========== 标题区 ========== */
 .art-header {
   margin-bottom: 30px;
 }
@@ -260,59 +176,35 @@ defineExpose({ articleRef })
 .art-title-cn {
   font-size: 1.1rem;
   color: #64748b;
+  font-weight: 500;
   margin-bottom: 10px;
-  font-weight: 500;
-}
-.difficulty-badge {
-  display: inline-block;
-  background: #f1f5f9;
-  color: #64748b;
-  font-size: 0.8rem;
-  padding: 2px 12px;
-  border-radius: 12px;
-  font-weight: 500;
 }
 
-/* ========== 段落样式 ========== */
-.para-block {
-  display: flex;
-  margin-bottom: 32px;
-  position: relative;
-}
-
-.para-side {
-  width: 36px;
-  margin-right: 12px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding-top: 2px;
-}
-
+/* 段落翻译按钮 */
 .para-trans-btn {
   background: none;
-  border: 1px solid #e2e8f0;
-  border-radius: 6px;
-  width: 32px;
-  height: 32px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 2px 10px;
   font-size: 0.85rem;
-  color: #94a3b8;
+  color: #666;
+  margin-top: 10px;
   cursor: pointer;
   transition: all 0.2s;
 }
-.para-trans-btn:hover,
-.para-trans-btn.trans-open {
+.para-trans-btn:hover {
   border-color: #42b983;
   color: #42b983;
-  background: #f0fdf4;
 }
-
-.para-content {
-  flex: 1;
-  min-width: 0;
+.para-trans-content {
+  margin-top: 10px;
+  padding: 10px 12px;
+  background: #f8fafc;
+  border-left: 3px solid #42b983;
+  border-radius: 4px;
+  font-size: 0.95rem;
+  color: #475569;
+  line-height: 1.7;
 }
 /* 句子 */
 .sent-item {
