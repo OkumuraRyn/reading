@@ -2,58 +2,39 @@
 <template>
   <main class="article-section" ref="articleRef">
     <div class="article-content-wrapper">
-      <!-- 面包屑导航 -->
       <nav class="breadcrumb">
         <router-link to="/">← 目录</router-link> / {{ article.type }}
       </nav>
 
-      <!-- 文章标题 -->
       <header class="art-header">
         <h1>{{ article.title }}</h1>
-        <p v-if="article.titleCn" class="art-title-cn">
-          {{ article.titleCn }}
-        </p>
+        <p v-if="article.titleCn" class="art-title-cn">{{ article.titleCn }}</p>
         <div class="interaction-hint">
-          💡 手机端：<strong>长按单词查词</strong> | 单击句子分析/朗读 |
-          单词右键直接读
+          💡 单击单词查词并朗读 | 单击句子选中提问
         </div>
         <div v-if="selectedSentence" class="selection-tip">
-          已选中句子，可在下方 AI 面板提问
+          已选中句子，可在 AI 面板提问
           <button @click="$emit('clear-selection')">取消选中</button>
         </div>
       </header>
 
-      <!-- 文章正文 -->
       <section class="reading-body">
         <template v-for="(para, pIdx) in article.paragraphs" :key="pIdx">
-          <!-- 日期段落 -->
           <div v-if="para.type === 'date'" class="para-date">
             {{ para.text }}
           </div>
-
-          <!-- 标题段落 -->
-          <h2
-            v-else-if="para.type === 'heading' && para.level === 2"
-            class="para-heading para-heading-2"
-          >
+          <h2 v-else-if="para.type === 'heading' && para.level === 2" class="para-heading para-heading-2">
             {{ para.text }}
           </h2>
-          <h3
-            v-else-if="para.type === 'heading' && para.level === 3"
-            class="para-heading para-heading-3"
-          >
+          <h3 v-else-if="para.type === 'heading' && para.level === 3" class="para-heading para-heading-3">
             {{ para.text }}
           </h3>
-
-          <!-- 普通文本段落（默认类型或无 type 时） -->
           <div v-else class="para-block para-with-speaker">
             <span
               class="para-speaker-btn"
               @click.stop="$emit('speak-paragraph', para)"
               title="朗读全段"
-            >
-              🔊
-            </span>
+            >🔊</span>
 
             <span
               v-for="(sent, sIdx) in para.sentences"
@@ -61,10 +42,7 @@
               class="sent-item"
               :class="{
                 'is-focused': selectedSentence === sent.en,
-                'is-playing':
-                  readingState !== 'idle' &&
-                  currentParaIdx === pIdx &&
-                  currentSentIdx === sIdx,
+                'is-playing': readingState !== 'idle' && currentParaIdx === pIdx && currentSentIdx === sIdx
               }"
               :data-pidx="pIdx"
               :data-sidx="sIdx"
@@ -81,110 +59,71 @@
                   class="word-token"
                   :class="{
                     'is-added-green': isWordInCurrentVocab(token.text),
-                    'is-review-yellow': isWordInOtherVocab(token.text),
+                    'is-review-yellow': isWordInOtherVocab(token.text)
                   }"
-                  @dblclick.stop="
-                    $emit('query-word', token.text, sent.en);
-                    $emit('speak', token.text)
-                  "
-                  @contextmenu.stop.prevent="
-                    $emit('query-word', token.text, sent.en);
-                    $emit('speak', token.text)
-                  "
-                  @touchstart="handleWordTouchStart($event, token.text, sent.en)"
-                  @touchend="handleWordTouchEnd"
-                  @touchmove="handleWordTouchMove"
-                >
-                  {{ token.text }}
-                </span>
+                  @click.stop="handleWordClick(token.text, sent.en)"
+                >{{ token.text }}</span>
                 <span v-else>{{ token.text }}</span>
               </span>
             </span>
+
+            <!-- 整段翻译按钮 -->
+            <button
+              v-if="para.sentences && para.sentences.length"
+              class="para-trans-btn"
+              @click.stop="toggleParaTrans(pIdx)"
+            >
+              {{ expandedParas.has(pIdx) ? '收起译文' : '译' }}
+            </button>
+            <!-- 整段翻译内容 -->
+            <div v-if="expandedParas.has(pIdx)" class="para-trans-content">
+              {{ getParaTrans(para) }}
+            </div>
           </div>
         </template>
       </section>
 
-      <!-- 默写练习区 -->
+      <!-- 全文朗读按钮（放在文章末尾） -->
+      <div class="read-all-btn-wrapper">
+        <button class="read-all-btn" @click="$emit('toggle-full-reading')">
+          🔊 全文朗读
+        </button>
+      </div>
+
       <section class="dictation-area">
+        <!-- ... 原默写区域代码不变 ... -->
         <div class="box-header">
           <div class="header-main">
             <h3>Vocabulary Dictation</h3>
             <span class="badge">{{ currentArticleVocab.length }} 词</span>
           </div>
-          <router-link to="/all-vocabulary" class="view-all-btn">
-            查看全量词本 →
-          </router-link>
+          <router-link to="/all-vocabulary" class="view-all-btn">查看全量词本 →</router-link>
         </div>
-
         <div class="vocab-grid">
-          <div
-            v-for="(v, idx) in currentArticleVocab"
-            :key="v.word"
-            :id="`vocab-card-${v.word.toLowerCase()}`"
-            class="v-card-container"
-          >
+          <div v-for="(v, idx) in currentArticleVocab" :key="v.word" :id="`vocab-card-${v.word.toLowerCase()}`" class="v-card-container">
             <div class="v-card">
               <div class="v-index">#{{ idx + 1 }}</div>
               <div class="v-info">
-                <strong
-                  class="v-playable"
-                  @click="$emit('speak', v.word)"
-                >
-                  {{ v.word }} 🔊
-                </strong>
-                <span
-                  class="jump-link"
-                  @click="studyStore.performJump(v.word, 'article')"
-                >
-                  [原文]
-                </span>
+                <strong class="v-playable" @click="$emit('speak', v.word)">{{ v.word }} 🔊</strong>
+                <span class="jump-link" @click="studyStore.performJump(v.word, 'article')">[原文]</span>
               </div>
-              <input
-                type="text"
-                placeholder="输入拼写"
-                :data-word="v.word"
-                @keyup.enter="handleSpellCheck"
-              />
-              <button
-                class="v-del"
-                @click="studyStore.removeVocabItem(v.word)"
-              >
-                ×
-              </button>
+              <input type="text" placeholder="输入拼写" :data-word="v.word" @keyup.enter="handleSpellCheck" />
+              <button class="v-del" @click="studyStore.removeVocabItem(v.word)">×</button>
             </div>
-            <div
-              v-if="v.detail"
-              class="v-item-detail"
-              :class="{ 'is-expanded': isExpanded(v.word) }"
-              @click="toggleExpand(v.word)"
-            >
-              <span class="detail-text">
-                {{
-                  isExpanded(v.word)
-                    ? v.detail
-                    : truncateText(v.detail)
-                }}
-              </span>
-              <span
-                v-if="v.detail && v.detail.length > 55"
-                class="expand-label"
-              >
-                {{ isExpanded(v.word) ? ' [收起]' : ' [展开]' }}
-              </span>
+            <div v-if="v.detail" class="v-item-detail" :class="{ 'is-expanded': isExpanded(v.word) }" @click="toggleExpand(v.word)">
+              <span class="detail-text">{{ isExpanded(v.word) ? v.detail : truncateText(v.detail) }}</span>
+              <span v-if="v.detail && v.detail.length > 55" class="expand-label">{{ isExpanded(v.word) ? ' [收起]' : ' [展开]' }}</span>
             </div>
           </div>
         </div>
-
-        <div v-if="currentArticleVocab.length === 0" class="empty-tip">
-          本篇文章暂无存入单词
-        </div>
+        <div v-if="currentArticleVocab.length === 0" class="empty-tip">本篇文章暂无存入单词</div>
       </section>
     </div>
   </main>
 </template>
 
 <script setup>
-import { ref, computed } from 'vue'
+import { ref, computed, reactive } from 'vue'
 import { useStudyStore } from '../store/studyStore'
 
 const props = defineProps({
@@ -192,7 +131,7 @@ const props = defineProps({
   readingState: { type: String, default: 'idle' },
   currentParaIdx: { type: Number, default: -1 },
   currentSentIdx: { type: Number, default: -1 },
-  selectedSentence: { type: String, default: '' },
+  selectedSentence: { type: String, default: '' }
 })
 
 const emit = defineEmits([
@@ -201,95 +140,61 @@ const emit = defineEmits([
   'query-word',
   'speak',
   'speak-paragraph',
+  'toggle-full-reading'
 ])
 
 const studyStore = useStudyStore()
 const articleRef = ref(null)
 const expandedWords = ref(new Set())
+const expandedParas = reactive(new Set())   // 储存展开翻译的段落索引
 
-// ==================== 当前文章词汇 ====================
 const currentArticleVocab = computed(() => {
   if (!props.article) return []
   const articleId = props.article.id
-  return studyStore.vocabularyList.filter((v) => {
-    const isPrimary = v.articleId === articleId
-    const isInSources = v.sources && v.sources.includes(articleId)
-    return isPrimary || isInSources
+  return studyStore.vocabularyList.filter(v => {
+    return v.articleId === articleId || (v.sources && v.sources.includes(articleId))
   })
 })
 
-const isWordInCurrentVocab = (word) => {
-  return currentArticleVocab.value.some(
-    (v) => v.word.toLowerCase() === word.toLowerCase()
-  )
-}
-
+const isWordInCurrentVocab = (word) => currentArticleVocab.value.some(v => v.word.toLowerCase() === word.toLowerCase())
 const isWordInOtherVocab = (word) => {
   const w = word.toLowerCase()
-  return (
-    !isWordInCurrentVocab(word) &&
-    studyStore.vocabularyList.some((v) => v.word.toLowerCase() === w)
-  )
+  return !isWordInCurrentVocab(word) && studyStore.vocabularyList.some(v => v.word.toLowerCase() === w)
 }
 
-// ==================== 词条展开/收起 ====================
 const isExpanded = (word) => expandedWords.value.has(word)
-
 const toggleExpand = (word) => {
-  if (expandedWords.value.has(word)) {
-    expandedWords.value.delete(word)
-  } else {
-    expandedWords.value.add(word)
-  }
+  if (expandedWords.value.has(word)) expandedWords.value.delete(word)
+  else expandedWords.value.add(word)
+}
+const truncateText = (text) => text && text.length > 55 ? text.substring(0, 55) + '...' : text
+
+const tokenize = (text) => text.split(/(\b\w+\b)/g).map(t => ({ text: t, isWord: /^\w+$/.test(t) }))
+
+const handleSentenceClick = (sent) => emit('select-sentence', sent)
+
+// 单击单词：查词 + 朗读
+const handleWordClick = (word, sentenceEn) => {
+  emit('query-word', word, sentenceEn)
+  emit('speak', word)
 }
 
-const truncateText = (text) => {
-  if (!text) return ''
-  return text.length > 55 ? text.substring(0, 55) + '...' : text
+// 段落翻译开关
+const toggleParaTrans = (pIdx) => {
+  if (expandedParas.has(pIdx)) expandedParas.delete(pIdx)
+  else expandedParas.add(pIdx)
 }
 
-// ==================== Tokenizer ====================
-const tokenize = (text) =>
-  text.split(/(\b\w+\b)/g).map((t) => ({
-    text: t,
-    isWord: /^\w+$/.test(t),
-  }))
-
-// ==================== 句子交互 ====================
-const handleSentenceClick = (sent) => {
-  emit('select-sentence', sent)
+// 获取整段翻译
+const getParaTrans = (para) => {
+  return para.sentences.map(s => s.cn).join('')
 }
 
-// ==================== 单词长按交互 ====================
-let touchTimer = null
-let isLongPress = false
-
-const handleWordTouchStart = (e, word, sentence) => {
-  isLongPress = false
-  touchTimer = setTimeout(() => {
-    isLongPress = true
-    emit('query-word', word, sentence)
-    if (navigator.vibrate) navigator.vibrate(50)
-  }, 600)
-}
-
-const handleWordTouchEnd = () => {
-  clearTimeout(touchTimer)
-  touchTimer = null
-}
-
-const handleWordTouchMove = () => {
-  clearTimeout(touchTimer)
-  touchTimer = null
-}
-
-// ==================== 拼写检查 ====================
 const handleSpellCheck = (e) => {
   const input = e.target
   const value = input.value.trim().toLowerCase()
   const target = input.getAttribute('data-word')
   if (!value || !target) return
-
   const isOk = value === target.toLowerCase()
   input.style.borderColor = isOk ? '#42b983' : '#ef4444'
   input.style.backgroundColor = isOk ? '#f0fdf4' : '#fef2f2'
@@ -299,6 +204,51 @@ defineExpose({ articleRef })
 </script>
 
 <style scoped>
+/* 原有样式保持不变，增加以下新样式 */
+
+.para-trans-btn {
+  display: inline-block;
+  margin-top: 8px;
+  padding: 2px 12px;
+  font-size: 0.85rem;
+  color: #42b983;
+  background: #f0fdf4;
+  border: 1px solid #42b983;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.para-trans-content {
+  margin-top: 8px;
+  padding: 10px 12px;
+  background: #f8fafc;
+  border-left: 3px solid #42b983;
+  border-radius: 4px;
+  color: #475569;
+  line-height: 1.6;
+  font-size: 0.9rem;
+}
+
+.read-all-btn-wrapper {
+  display: flex;
+  justify-content: center;
+  margin: 25px 0 40px;
+}
+
+.read-all-btn {
+  padding: 8px 30px;
+  font-size: 1rem;
+  color: #42b983;
+  background: white;
+  border: 2px solid #42b983;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.read-all-btn:hover {
+  background: #f0fdf4;
+}
 /* ========== 文章区域 ========== */
 .article-section {
   flex: 1;
