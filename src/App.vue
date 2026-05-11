@@ -2,7 +2,8 @@
 <template>
   <div class="app-container">
     <!-- 桌面端菜单按钮 -->
-    <button class="desktop-menu-btn" @click="isMenuOpen = true">☰</button>
+  <button class="desktop-menu-btn" @click="isMenuOpen = true">☰</button>
+
 
     <!-- 移动端顶栏 -->
     <header class="mobile-navbar">
@@ -110,7 +111,7 @@
     </aside>
 
     <!-- 主内容区 -->
-    <main class="main-content" :class="{ 'hide-ai-panel': isMenuOpen }">
+        <main class="main-content" :class="{ 'hide-ai-panel': isMenuOpen }">
       <router-view :key="$route.fullPath" />
     </main>
   </div>
@@ -172,16 +173,16 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  position: fixed;
+  position: absolute;            /* 改为 absolute */
   top: 20px;
-  left: 20px;
+  right: 20px;                  /* 右上角 */
   z-index: 1010;
   width: 42px;
   height: 42px;
   background: #42b983;
   color: white;
   border: none;
-  border-radius: 10px;
+  border-radius: 50%;           /* 圆形 */
   font-size: 22px;
   cursor: pointer;
   box-shadow: 0 4px 12px rgba(66, 185, 131, 0.3);
@@ -190,7 +191,6 @@ body {
 .desktop-menu-btn:hover {
   transform: scale(1.05);
 }
-
 /* ============ 移动端顶栏 ============ */
 .mobile-navbar {
   display: none;
