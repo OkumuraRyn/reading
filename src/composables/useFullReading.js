@@ -4,8 +4,8 @@ export function useFullReading() {
   const readingState = ref('idle'); // idle | playing | paused
   const currentParaIdx = ref(-1);
   const currentSentIdx = ref(-1);
-  const currentIndex = ref(0);     // 当前句子在队列中的全局索引
-  
+  const currentIndex = ref(0);
+
   let sentenceQueue = [];
   let utterance = null;
 
@@ -45,10 +45,14 @@ export function useFullReading() {
   const start = (paragraphs, startIndex = 0) => {
     sentenceQueue = [];
     paragraphs.forEach((para, pIdx) => {
-      para.sentences.forEach((sent, sIdx) => {
-        sentenceQueue.push({ text: sent.en, pIdx, sIdx });
-      });
+      // 关键修复：只处理包含 sentences 的段落
+      if (para.sentences && Array.isArray(para.sentences)) {
+        para.sentences.forEach((sent, sIdx) => {
+          sentenceQueue.push({ text: sent.en, pIdx, sIdx });
+        });
+      }
     });
+    if (sentenceQueue.length === 0) return;
     currentIndex.value = startIndex;
     readingState.value = 'playing';
     playNext();
@@ -82,7 +86,6 @@ export function useFullReading() {
       readingState.value = 'playing';
       playNext();
     } else {
-      // 暂停状态切换句子，只更新高亮，不播放
       const { pIdx, sIdx } = sentenceQueue[index];
       currentParaIdx.value = pIdx;
       currentSentIdx.value = sIdx;
