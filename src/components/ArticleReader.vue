@@ -52,7 +52,7 @@
                 class="para-trans-btn"
                 @click.stop="toggleParaTrans(pIdx)"
               >译</button>
-              <div v-if="expandedParas.has(pIdx)" class="para-trans-content">
+              <div v-if="hasParaTrans(pIdx)" class="para-trans-content">
                 {{ getParaTrans(para) }}
               </div>
             </div>
@@ -60,8 +60,8 @@
         </template>
       </section>
 
+      <!-- 默写区域 -->
       <section class="dictation-area">
-        <!-- ... 原默写区域代码不变 ... -->
         <div class="box-header">
           <div class="header-main">
             <h3>Vocabulary Dictation</h3>
@@ -93,8 +93,8 @@
 </template>
 
 <script setup>
-import { ref,reactive, computed } from 'vue';
-import { useStudyStore } from '../store/studyStore';
+import { ref, reactive, computed } from 'vue'
+import { useStudyStore } from '../store/studyStore'
 
 const props = defineProps({
   article: Object,
@@ -102,7 +102,7 @@ const props = defineProps({
   currentParaIdx: { type: Number, default: -1 },
   currentSentIdx: { type: Number, default: -1 },
   selectedSentence: { type: String, default: '' }
-});
+})
 
 const emit = defineEmits([
   'select-sentence',
@@ -111,32 +111,73 @@ const emit = defineEmits([
   'speak',
   'speak-paragraph',
   'toggle-full-reading'
-]);
+])
 
-const studyStore = useStudyStore();
-const articleRef = ref(null);
-const expandedWords = ref(new Set());
-const expandedParas = reactive(new Set());   // 控制段落翻译展开
+const studyStore = useStudyStore()
+const articleRef = ref(null)
 
-const tokenize = (text) => text.split(/(\b\w+\b)/g).map(t => ({ text: t, isWord: /^\w+$/.test(t) }))
+// 单词详情展开控制
+const expandedWords = ref(new Set())
+const isExpanded = (word) => expandedWords.value.has(word)
+const toggleExpand = (word) => {
+  if (expandedWords.value.has(word)) {
+    expandedWords.value.delete(word)
+  } else {
+    expandedWords.value.add(word)
+  }
+}
+const truncateText = (text) => {
+  if (!text) return ''
+  return text.length > 55 ? text.substring(0, 55) + '...' : text
+}
 
-const handleSentenceClick = (sent) => emit('select-sentence', sent)
+// 段落翻译展开控制
+const expandedParas = reactive({})
+const toggleParaTrans = (pIdx) => {
+  expandedParas[pIdx] = !expandedParas[pIdx]
+}
+const hasParaTrans = (pIdx) => {
+  return !!expandedParas[pIdx]
+}
+const getParaTrans = (para) => {
+  return para.sentences.map(s => s.cn).join('')
+}
 
-// 单击单词：查词 + 朗读
+// 当前文章的词汇
+const currentArticleVocab = computed(() => {
+  if (!props.article) return []
+  const articleId = props.article.id
+  return studyStore.vocabularyList.filter(v => {
+    return v.articleId === articleId || (v.sources && v.sources.includes(articleId))
+  })
+})
+
+const isWordInCurrentVocab = (word) => {
+  return currentArticleVocab.value.some(v => v.word.toLowerCase() === word.toLowerCase())
+}
+
+const isWordInOtherVocab = (word) => {
+  const w = word.toLowerCase()
+  return !isWordInCurrentVocab(word) &&
+    studyStore.vocabularyList.some(v => v.word.toLowerCase() === w)
+}
+
+// Tokenizer
+const tokenize = (text) => {
+  return text.split(/(\b\w+\b)/g).map(t => ({
+    text: t,
+    isWord: /^\w+$/.test(t)
+  }))
+}
+
+// 事件处理
+const handleSentenceClick = (sent) => {
+  emit('select-sentence', sent)
+}
+
 const handleWordClick = (word, sentenceEn) => {
   emit('query-word', word, sentenceEn)
   emit('speak', word)
-}
-
-// 段落翻译开关
-const toggleParaTrans = (pIdx) => {
-  if (expandedParas.has(pIdx)) expandedParas.delete(pIdx)
-  else expandedParas.add(pIdx)
-}
-
-// 获取整段翻译
-const getParaTrans = (para) => {
-  return para.sentences.map(s => s.cn).join('')
 }
 
 const handleSpellCheck = (e) => {
@@ -153,16 +194,20 @@ defineExpose({ articleRef })
 </script>
 
 <style scoped>
+/* ========== 文章区域 ========== */
 .article-section {
   flex: 1;
   overflow-y: auto;
   padding: 24px 20px 120px;
   background: #fff;
 }
+
 .article-content-wrapper {
   max-width: 720px;
   margin: 0 auto;
 }
+
+/* ========== 文章标题 ========== */
 .art-header {
   margin-bottom: 30px;
 }
@@ -180,144 +225,47 @@ defineExpose({ articleRef })
   margin-bottom: 10px;
 }
 
-/* 段落翻译按钮 */
-.para-trans-btn {
-  background: none;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  padding: 2px 10px;
-  font-size: 0.85rem;
-  color: #666;
-  margin-top: 10px;
-  cursor: pointer;
-  transition: all 0.2s;
-}
-.para-trans-btn:hover {
-  border-color: #42b983;
-  color: #42b983;
-}
-.para-trans-content {
-  margin-top: 10px;
-  padding: 10px 12px;
-  background: #f8fafc;
-  border-left: 3px solid #42b983;
-  border-radius: 4px;
-  font-size: 0.95rem;
-  color: #475569;
-  line-height: 1.7;
-}
-
-  /* ========== 顶部功能栏 ========== */
-.top-bar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 24px;
-  padding-bottom: 12px;
-  border-bottom: 1px solid #f0f0f0;
-}
-.top-date {
-  font-size: 0.9rem;
-  color: #999;
-  font-weight: 500;
-}
-.top-actions {
-  display: flex;
-  gap: 10px;
-}
-.action-btn {
-  background: none;
-  border: 1px solid #ddd;
-  border-radius: 6px;
-  padding: 4px 14px;
-  font-size: 0.85rem;
-  color: #666;
-  cursor: pointer;
-}
-.action-active {
-  background: #f0fdf4;
-  border-color: #42b983;
-  color: #42b983;
-  font-weight: 600;
-}
-
-/* ========== 标题区 ========== */
-.art-header {
-  margin-bottom: 30px;
-}
-.art-header h1 {
-  font-size: 2.2rem;
-  font-weight: 800;
-  line-height: 1.3;
-  color: #1e293b;
-  margin-bottom: 12px;
-}
-.art-title-cn {
-  font-size: 1.1rem;
-  color: #64748b;
-  margin-bottom: 10px;
-  font-weight: 500;
-}
-.difficulty-badge {
-  display: inline-block;
-  background: #f1f5f9;
-  color: #64748b;
-  font-size: 0.8rem;
-  padding: 2px 12px;
-  border-radius: 12px;
-  font-weight: 500;
-}
-
-/* ========== 段落样式 ========== */
-.para-block {
-  display: flex;
-  margin-bottom: 32px;
-  position: relative;
-}
-
-.para-side {
-  width: 36px;
-  margin-right: 12px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding-top: 2px;
-}
-
-.para-trans-btn {
-  background: none;
-  border: 1px solid #e2e8f0;
-  border-radius: 6px;
-  width: 32px;
-  height: 32px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 0.85rem;
+/* ========== 新增段落类型样式 ========== */
+.para-date {
   color: #94a3b8;
-  cursor: pointer;
-  transition: all 0.2s;
+  font-size: 0.9rem;
+  margin-bottom: 25px;
+  font-style: italic;
+  text-align: center;
 }
-.para-trans-btn:hover,
-.para-trans-btn.trans-open {
-  border-color: #42b983;
-  color: #42b983;
-  background: #f0fdf4;
+
+.para-heading-2 {
+  font-size: 1.4rem;
+  color: #1e293b;
+  font-weight: 700;
+  margin: 32px 0 16px;
+  padding-bottom: 6px;
+  border-bottom: 2px solid #f1f5f9;
+}
+
+.para-heading-3 {
+  font-size: 1.15rem;
+  color: #475569;
+  font-weight: 700;
+  margin: 25px 0 12px;
+}
+
+/* ========== 段落与句子 ========== */
+.para-block {
+  margin-bottom: 32px;
 }
 
 .para-content {
-  flex: 1;
-  min-width: 0;
-}
-/* 句子 */
-.sent-item {
-  display: inline;
   line-height: 2.2;
   font-size: 1.25rem;
   color: #334155;
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   letter-spacing: 0.01em;
   word-spacing: 0.08em;
+}
+
+.sent-item {
+  display: inline;
   cursor: pointer;
   transition: background 0.15s;
   border-radius: 4px;
@@ -337,7 +285,16 @@ defineExpose({ articleRef })
   animation: pulse-border 1.5s ease-in-out infinite;
 }
 
-/* 单词标记 */
+@keyframes pulse-border {
+  0%, 100% { border-bottom-color: #42b983; }
+  50% { border-bottom-color: #a7f3d0; }
+}
+
+/* ========== 单词 ========== */
+.token-wrapper {
+  display: contents;
+}
+
 .word-token {
   cursor: pointer;
   transition: all 0.15s;
@@ -359,38 +316,34 @@ defineExpose({ articleRef })
   border-bottom: 2px dashed #eab308;
 }
 
-/* 段落翻译内容 */
+/* ========== 翻译按钮 & 翻译内容 ========== */
+.para-trans-btn {
+  margin-top: 10px;
+  background: none;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 2px 10px;
+  font-size: 0.85rem;
+  color: #666;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.para-trans-btn:hover {
+  border-color: #42b983;
+  color: #42b983;
+}
+
 .para-trans-content {
-  margin-top: 12px;
+  margin-top: 10px;
   padding: 12px 16px;
   background: #f8fafc;
   border-left: 3px solid #42b983;
-  border-radius: 8px;
+  border-radius: 4px;
   font-size: 0.95rem;
   color: #475569;
   line-height: 1.7;
 }
 
-/* 全文朗读按钮 */
-.read-all-btn-wrapper {
-  display: flex;
-  justify-content: center;
-  margin: 40px 0 50px;
-}
-.read-all-btn {
-  padding: 10px 35px;
-  font-size: 1rem;
-  color: #42b983;
-  background: white;
-  border: 2px solid #42b983;
-  border-radius: 30px;
-  font-weight: bold;
-  cursor: pointer;
-  transition: all 0.2s;
-}
-.read-all-btn:hover {
-  background: #f0fdf4;
-}
 /* ========== 默写区域 ========== */
 .dictation-area {
   margin-top: 50px;
@@ -536,12 +489,7 @@ defineExpose({ articleRef })
   margin-bottom: 40px;
 }
 
-@keyframes pulse-border {
-  0%, 100% { border-bottom-color: #42b983; }
-  50% { border-bottom-color: #a7f3d0; }
-}
-
-/* 移动端调整 */
+/* ========== 移动端适配 ========== */
 @media (max-width: 768px) {
   .article-section {
     padding: 16px 16px 120px;
@@ -549,13 +497,20 @@ defineExpose({ articleRef })
   .art-header h1 {
     font-size: 1.6rem;
   }
-  .sent-item {
+  .para-content {
     font-size: 1.15rem;
     line-height: 2;
   }
-  .para-side {
-    width: 30px;
-    margin-right: 8px;
+  .v-card {
+    flex-wrap: wrap;
+  }
+  .v-card input {
+    width: 100%;
+    order: 4;
+  }
+  .v-info {
+    flex-wrap: wrap;
+    gap: 4px;
   }
 }
 </style>
