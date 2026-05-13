@@ -23,7 +23,6 @@
       @query-word="handleQueryWord"
       @speak="speak"
       @speak-paragraph="speakParagraph"
-      @toggle-full-reading="toggleFullReading"
     />
 
     <AiPanel
@@ -61,7 +60,7 @@ const route = useRoute()
 const studyStore = useStudyStore()
 const article = ref(null)
 
-const openMenu = inject('openMenu')   // 从 App.vue 注入打开侧栏方法
+const openMenu = inject('openMenu')
 
 const {
   readingState,
@@ -80,7 +79,12 @@ const showControls = ref(false)
 const toggleFullReading = () => {
   if (readingState.value === 'idle' && article.value) {
     startFullReading(article.value.paragraphs)
-    showControls.value = true
+    // 延迟确保 readingState 已更新，避免被 watch 立即重置
+    nextTick(() => {
+      if (readingState.value === 'playing') {
+        showControls.value = true
+      }
+    })
   } else if (readingState.value === 'playing') {
     pauseFullReading()
   } else if (readingState.value === 'paused') {
@@ -88,13 +92,18 @@ const toggleFullReading = () => {
   }
 }
 
-// 朗读结束或路由变化时隐藏控制栏
+// 朗读状态变为 idle 时隐藏控制栏
 watch(readingState, (val) => {
-  if (val === 'idle') showControls.value = false
+  if (val === 'idle') {
+    showControls.value = false
+  }
 })
+
+// 路由切换停止朗读
 watch(() => route.params.id, () => {
   if (readingState.value !== 'idle') stopFullReading()
 })
+
 onUnmounted(() => {
   if (readingState.value !== 'idle') stopFullReading()
 })
@@ -157,6 +166,7 @@ const handleAddToVocab = () => {
   }
 }
 
+// 单词跳转高亮
 watch(() => studyStore.jumpTarget, (target) => {
   if (!target) return
   nextTick(() => {
@@ -267,4 +277,4 @@ onMounted(() => {
   opacity: 0;
   transform: translateX(-50%) translateY(20px);
 }
-  </style>
+</style>
