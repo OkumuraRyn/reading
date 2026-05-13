@@ -93,7 +93,7 @@
 </template>
 
 <script setup>
-import { reactive, computed } from 'vue';
+import { ref,reactive, computed } from 'vue';
 import { useStudyStore } from '../store/studyStore';
 
 const props = defineProps({
