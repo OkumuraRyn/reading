@@ -14,7 +14,7 @@
     <aside class="sidebar" :class="{ 'is-open': isMenuOpen }">
       <div class="sidebar-header">
         <router-link to="/" @click="isMenuOpen = false" style="text-decoration:none; color:inherit">
-          <h2>📚 学习目录</h2>
+          <h2>学习目录</h2>
         </router-link>
         <button class="mobile-close-btn" @click="isMenuOpen = false">×</button>
       </div>
@@ -34,7 +34,7 @@
           class="nav-link special-link"
           @click="isMenuOpen = false"
         >
-          <span class="nav-icon">📝</span>
+          <span class="nav-icon"></span>
           <div class="nav-info">
             <div class="en-title">单词默写</div>
             <div class="cn-title">Memorize & Spell</div>
@@ -120,7 +120,7 @@ provide('openMenu', () => {
   isMenuOpen.value = true;
 });
 
-const expandedCategories = ref(new Set());
+const expandedCategories = reactive(new Set());
 
 const toggleCategory = (category) => {
   if (expandedCategories.has(category)) {
