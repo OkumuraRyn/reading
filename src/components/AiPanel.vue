@@ -12,7 +12,6 @@
     @mousedown="startDrag"
     @touchstart="startDrag"
   >
-    <!-- 折叠按钮（桌面端通过拖拽逻辑展开，移动端 click 直接展开） -->
     <div
       v-if="!isAiExpanded"
       class="float-btn"
@@ -21,7 +20,6 @@
       Ai
     </div>
 
-    <!-- 展开卡片（毛玻璃效果 + 透明标题栏） -->
     <div v-else class="ai-card glass-card">
       <div class="card-header" @mousedown.stop @touchstart.stop>
         <span>AI 助手分析</span>
@@ -79,7 +77,7 @@
 </template>
 
 <script setup>
-import { ref, watch, onMounted, onBeforeUnmount } from 'vue'
+import { ref, computed, watch, onMounted, onBeforeUnmount } from 'vue'
 import { useStudyStore } from '../store/studyStore'
 import { askAiQuestion, getCachedResult } from '../services/aiService'
 
@@ -98,7 +96,6 @@ const isAiExpanded = ref(false)
 const userQuestion = ref('')
 const panelRef = ref(null)
 
-// 朗读状态映射（原样显示）
 const displayReadingState = computed(() => props.readingState)
 
 const handleToggleReading = () => {
@@ -108,7 +105,6 @@ const handleStopReading = () => {
   props.onStopFullReading()
 }
 
-// ==================== 提问处理 ====================
 const handleQuestionSubmit = async () => {
   const question = userQuestion.value.trim()
   if (!question) return
@@ -137,7 +133,6 @@ const handleQuestionSubmit = async () => {
   }
 }
 
-// ==================== 移动端检测 ====================
 const isMobile = ref(window.innerWidth <= 768)
 const updateMobile = () => {
   isMobile.value = window.innerWidth <= 768
@@ -145,14 +140,13 @@ const updateMobile = () => {
 window.addEventListener('resize', updateMobile)
 onBeforeUnmount(() => window.removeEventListener('resize', updateMobile))
 
-// ==================== 桌面端拖拽 ====================
 const panelX = ref(window.innerWidth - 420)
 const panelY = ref(window.innerHeight - 480)
 const dragging = ref(false)
 const hasMoved = ref(false)
-const DRAG_THRESHOLD = 5 // 移动超过此像素才算拖拽
+const DRAG_THRESHOLD = 5
 
-let dragSource = null // 'float' | 'header'
+let dragSource = null
 let startX = 0
 let startY = 0
 
@@ -171,8 +165,7 @@ window.addEventListener('resize', setDefaultPosition)
 onBeforeUnmount(() => window.removeEventListener('resize', setDefaultPosition))
 
 const startDrag = (e) => {
-  if (isMobile.value) return // 移动端禁用拖拽
-
+  if (isMobile.value) return
   const headerEl = e.target.closest('.card-header')
   const floatBtnEl = e.target.closest('.float-btn')
   if (!headerEl && !floatBtnEl) return
@@ -224,10 +217,8 @@ const stopDrag = () => {
 
 onBeforeUnmount(stopDrag)
 
-// ==================== 点击外部关闭 ====================
 const handleClickOutside = (event) => {
   if (!isAiExpanded.value) return
-  // 如果点击在 panelRef 外部，则收起
   if (panelRef.value && !panelRef.value.contains(event.target)) {
     isAiExpanded.value = false
   }
@@ -235,7 +226,6 @@ const handleClickOutside = (event) => {
 
 watch(isAiExpanded, (val) => {
   if (val) {
-    // 使用 setTimeout 避免当次点击立即关闭
     setTimeout(() => {
       document.addEventListener('click', handleClickOutside)
     }, 0)
@@ -252,7 +242,7 @@ defineExpose({ isAiExpanded })
 </script>
 
 <style scoped>
-  .mobile-reading-controls {
+.mobile-reading-controls {
   display: flex;
   gap: 8px;
   padding: 10px 16px;
@@ -275,14 +265,13 @@ defineExpose({ isAiExpanded })
 .mobile-reading-controls button:hover {
   background: rgba(66, 185, 131, 0.2);
 }
-/* ========== 浮动容器 ========== */
+
 .ai-float {
   position: fixed;
   z-index: 899;
   user-select: none;
 }
 
-/* 折叠按钮 */
 .float-btn {
   width: 48px;
   height: 48px;
@@ -302,7 +291,6 @@ defineExpose({ isAiExpanded })
   box-shadow: 0 6px 20px rgba(66, 185, 131, 0.5);
 }
 
-/* 毛玻璃卡片 */
 .ai-card {
   width: 360px;
   max-height: 520px;
@@ -317,7 +305,6 @@ defineExpose({ isAiExpanded })
   box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
 }
 
-/* 半透明毛玻璃标题栏 */
 .card-header {
   background: rgba(66, 185, 131, 0.75);
   backdrop-filter: blur(8px);
@@ -357,7 +344,6 @@ defineExpose({ isAiExpanded })
   color: #334155;
 }
 
-/* 上下文预览 */
 .context-preview {
   background: rgba(241, 245, 249, 0.7);
   padding: 10px;
@@ -374,7 +360,6 @@ defineExpose({ isAiExpanded })
   padding-top: 5px;
 }
 
-/* 结果动画 */
 .result-area { animation: fadeIn 0.3s ease; }
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(10px); }
@@ -404,7 +389,6 @@ defineExpose({ isAiExpanded })
 }
 .save-word-btn:hover { background: #2e865f; }
 
-/* 空状态 */
 .empty-state {
   text-align: center;
   color: #94a3b8;
@@ -412,7 +396,6 @@ defineExpose({ isAiExpanded })
 }
 .empty-icon { font-size: 2rem; margin-bottom: 8px; }
 
-/* 加载 */
 .loading-state {
   text-align: center;
   color: #42b983;
@@ -432,7 +415,6 @@ defineExpose({ isAiExpanded })
 }
 @keyframes spin { to { transform: rotate(360deg); } }
 
-/* 输入区域 */
 .ai-input-group {
   display: flex;
   gap: 8px;
@@ -463,7 +445,6 @@ defineExpose({ isAiExpanded })
 .ai-input-group button:hover:not(:disabled) { background: #2e865f; }
 .ai-input-group button:disabled { background: #cbd5e1; cursor: not-allowed; }
 
-/* ========== 移动端 ========== */
 @media (max-width: 768px) {
   .ai-float {
     left: 0 !important;
