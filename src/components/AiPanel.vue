@@ -1,6 +1,7 @@
 <!-- src/components/AiPanel.vue -->
 <template>
   <div
+    ref="panelRef"
     class="ai-float"
     :class="{
       'is-expanded': isAiExpanded,
@@ -78,14 +79,13 @@
 </template>
 
 <script setup>
-import { ref, computed, onMounted, onBeforeUnmount } from 'vue'
+import { ref, watch, onMounted, onBeforeUnmount } from 'vue'
 import { useStudyStore } from '../store/studyStore'
 import { askAiQuestion, getCachedResult } from '../services/aiService'
 
 const props = defineProps({
   selectedSentence: { type: String, default: '' },
   selectedSentenceCn: { type: String, default: '' },
-  // 新增朗读相关属性
   readingState: { type: String, default: 'idle' },
   onToggleFullReading: { type: Function, default: () => {} },
   onStopFullReading: { type: Function, default: () => {} },
@@ -96,6 +96,7 @@ const emit = defineEmits(['add-to-vocab'])
 const studyStore = useStudyStore()
 const isAiExpanded = ref(false)
 const userQuestion = ref('')
+const panelRef = ref(null)
 
 // 朗读状态映射（原样显示）
 const displayReadingState = computed(() => props.readingState)
@@ -157,7 +158,6 @@ let startY = 0
 
 const setDefaultPosition = () => {
   if (!isMobile.value) {
-    // 与桌面端目录按钮（左上角 20,20，高度 42px）对齐，下方留 10px 间距
     const menuBtnLeft = 20;
     const menuBtnTop = 20;
     const menuBtnHeight = 42;
@@ -204,7 +204,6 @@ const onDrag = (e) => {
   panelX.value = Math.min(Math.max(newX, 0), window.innerWidth - 60)
   panelY.value = Math.min(Math.max(newY, 0), window.innerHeight - 60)
 
-  // 判断是否移动超过阈值
   if (Math.abs(newX - panelX.value) > DRAG_THRESHOLD || Math.abs(newY - panelY.value) > DRAG_THRESHOLD) {
     hasMoved.value = true
   }
@@ -217,7 +216,6 @@ const stopDrag = () => {
   document.removeEventListener('touchmove', onDrag)
   document.removeEventListener('touchend', stopDrag)
 
-  // 桌面端 float 按钮：未移动视为点击，展开面板
   if (dragSource === 'float' && !hasMoved.value && !isMobile.value) {
     isAiExpanded.value = true
   }
@@ -225,6 +223,30 @@ const stopDrag = () => {
 }
 
 onBeforeUnmount(stopDrag)
+
+// ==================== 点击外部关闭 ====================
+const handleClickOutside = (event) => {
+  if (!isAiExpanded.value) return
+  // 如果点击在 panelRef 外部，则收起
+  if (panelRef.value && !panelRef.value.contains(event.target)) {
+    isAiExpanded.value = false
+  }
+}
+
+watch(isAiExpanded, (val) => {
+  if (val) {
+    // 使用 setTimeout 避免当次点击立即关闭
+    setTimeout(() => {
+      document.addEventListener('click', handleClickOutside)
+    }, 0)
+  } else {
+    document.removeEventListener('click', handleClickOutside)
+  }
+})
+
+onBeforeUnmount(() => {
+  document.removeEventListener('click', handleClickOutside)
+})
 
 defineExpose({ isAiExpanded })
 </script>
