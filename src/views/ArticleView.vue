@@ -8,7 +8,7 @@
         <span></span>
       </button>
       <button class="read-btn" @click="toggleFullReading">
-        {{ readingState === 'playing' ? '⏸' : readingState === 'paused' ? '▶' : '读' }}
+        {{ readingState === 'playing' ? '｜｜' : readingState === 'paused' ? '▶' : '读' }}
       </button>
     </div>
 
@@ -35,11 +35,11 @@
     <!-- 底部朗读控制栏 -->
     <Transition name="control-slide">
       <div v-if="showControls" class="reading-control-bar">
-        <button @click="prevSentence" :disabled="readingState === 'idle'">⏮ 上一句</button>
-        <button v-if="readingState === 'playing'" @click="pauseFullReading">⏸ 暂停</button>
-        <button v-else-if="readingState === 'paused'" @click="resumeFullReading">▶️ 继续</button>
-        <button v-else disabled>⏸ 暂停</button>
-        <button @click="nextSentence" :disabled="readingState === 'idle'">⏭ 下一句</button>
+        <button @click="prevSentence" :disabled="readingState === 'idle'">上一句</button>
+        <button v-if="readingState === 'playing'" @click="pauseFullReading">暂停</button>
+        <button v-else-if="readingState === 'paused'" @click="resumeFullReading">继续</button>
+        <button v-else disabled>暂停</button>
+        <button @click="nextSentence" :disabled="readingState === 'idle'">下一句</button>
       </div>
     </Transition>
   </div>
