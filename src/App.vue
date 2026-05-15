@@ -1,8 +1,6 @@
 <!-- src/App.vue -->
 <template>
   <div class="app-container">
-    <!-- 无桌面端菜单按钮，无移动端顶栏 -->
-
     <!-- 遮罩层 -->
     <div
       class="menu-overlay"
@@ -14,7 +12,7 @@
     <aside class="sidebar" :class="{ 'is-open': isMenuOpen }">
       <div class="sidebar-header">
         <router-link to="/" @click="isMenuOpen = false" style="text-decoration:none; color:inherit">
-          <h2>学习目录</h2>
+          <h2>📚 学习目录</h2>
         </router-link>
         <button class="mobile-close-btn" @click="isMenuOpen = false">×</button>
       </div>
@@ -34,7 +32,7 @@
           class="nav-link special-link"
           @click="isMenuOpen = false"
         >
-          <span class="nav-icon"></span>
+          <span class="nav-icon">📝</span>
           <div class="nav-info">
             <div class="en-title">单词默写</div>
             <div class="cn-title">Memorize & Spell</div>
@@ -45,15 +43,15 @@
         <div v-for="(group, parentName) in categoryTreeData" :key="parentName" class="tree-group">
           <!-- 父分类 -->
           <div class="tree-parent" @click="toggleCategory(parentName)">
-            <span class="tree-arrow" :class="{ expanded: expandedCategories.has(parentName) }">
-              {{ expandedCategories.has(parentName) ? '▾' : '▸' }}
+            <span class="tree-arrow" :class="{ expanded: expandedCategories[parentName] }">
+              {{ expandedCategories[parentName] ? '▾' : '▸' }}
             </span>
             <span class="category-name">{{ parentName }}</span>
             <span class="category-count">{{ countParentArticles(group) }}</span>
           </div>
 
           <Transition name="tree-slide">
-            <div v-if="expandedCategories.has(parentName)" class="tree-children">
+            <div v-if="expandedCategories[parentName]" class="tree-children">
               <!-- 普通文章（无子分类） -->
               <router-link
                 v-for="art in group.articles"
@@ -72,14 +70,14 @@
               <!-- 子分类（长篇连载） -->
               <div v-for="(sub, subName) in group.subGroups" :key="subName" class="sub-group">
                 <div class="tree-parent sub-parent" @click.stop="toggleCategory(subName)">
-                  <span class="tree-arrow" :class="{ expanded: expandedCategories.has(subName) }">
-                    {{ expandedCategories.has(subName) ? '▾' : '▸' }}
+                  <span class="tree-arrow" :class="{ expanded: expandedCategories[subName] }">
+                    {{ expandedCategories[subName] ? '▾' : '▸' }}
                   </span>
                   <span class="category-name">{{ subName }}</span>
                   <span class="category-count">{{ sub.articles.length }}</span>
                 </div>
                 <Transition name="tree-slide">
-                  <div v-if="expandedCategories.has(subName)" class="tree-children sub-children">
+                  <div v-if="expandedCategories[subName]" class="tree-children sub-children">
                     <router-link
                       v-for="art in sub.articles"
                       :key="art.id"
@@ -103,14 +101,14 @@
     </aside>
 
     <!-- 主内容区 -->
-            <main class="main-content" :class="{ 'hide-ai-panel': isMenuOpen }">
+    <main class="main-content" :class="{ 'hide-ai-panel': isMenuOpen }">
       <router-view :key="$route.fullPath" />
     </main>
   </div>
 </template>
 
 <script setup>
-import { ref, provide } from 'vue';
+import { ref, reactive, provide } from 'vue';
 import { categoryTreeData } from './data/index';
 
 const isMenuOpen = ref(false);
@@ -120,13 +118,14 @@ provide('openMenu', () => {
   isMenuOpen.value = true;
 });
 
-const expandedCategories = reactive(new Set());
+// ✅ 改用普通对象代替 Set
+const expandedCategories = reactive({});
 
 const toggleCategory = (category) => {
-  if (expandedCategories.has(category)) {
-    expandedCategories.delete(category);
+  if (expandedCategories[category]) {
+    delete expandedCategories[category];
   } else {
-    expandedCategories.add(category);
+    expandedCategories[category] = true;
   }
 };
 
@@ -151,12 +150,22 @@ const saveApiKey = (e) => {
 </script>
 
 <style scoped>
+/* ============ 全局重置 ============ */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Inter', -apple-system, sans-serif;
+  color: #334155;
+  background: white;
+}
+
 .app-container {
   display: flex;
   min-height: 100vh;
   position: relative;
 }
 
+/* ============ 遮罩 ============ */
 .menu-overlay {
   position: fixed;
   inset: 0;
@@ -172,6 +181,7 @@ const saveApiKey = (e) => {
   visibility: visible;
 }
 
+/* ============ 侧边栏（抽屉式） ============ */
 .sidebar {
   position: fixed;
   top: 0;
