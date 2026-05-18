@@ -81,4 +81,95 @@ export default {
     {
       type: "text",
       sentences: [
-        { en: "Letting the other person do the talking helps in family situations as well. Barbara Wilson's relationship with her daughter, Laurie, was deteriorating. One day, Mrs. Wilson just gave up. When Laurie returned after disobeying, she looked at her and said
+        { en: "Letting the other person do the talking helps in family situations as well. Barbara Wilson's relationship with her daughter, Laurie, was deteriorating. One day, Mrs. Wilson just gave up. When Laurie returned after disobeying, she looked at her and said sadly, 'Why, Laurie, why?' Laurie told her, first hesitantly, and then it all flowed out. Mrs. Wilson realized she had never listened to her. From that time on, she let Laurie do all the talking she wanted, and their relationship improved immeasurably.", cn: "让对方多说话在家庭生活中也有帮助。芭芭拉·威尔逊与女儿劳里的关系在恶化。一天，威尔逊夫人放弃了。当劳里违命回来后，她看着她，悲伤地说：“为什么，劳里，为什么？”劳里先是犹豫地，然后一股脑儿全说了出来。威尔逊夫人意识到她从未听过女儿说话。从那以后，她让劳里畅所欲言，她们的关系大大改善了。" }
+      ]
+    },
+    {
+      type: "text",
+      sentences: [
+        { en: "Even our friends would much rather talk to us about their achievements than listen to us boast about ours. La Rochefoucauld, the French philosopher, said: 'If you want enemies, excel your friends; but if you want friends, let your friends excel you.' Why is that true? Because when our friends excel us, they feel important; but when we excel them, they will feel inferior and envious.", cn: "即使是我们的朋友，也更愿意和我们谈论他们的成就，而不是听我们夸耀自己的成就。法国哲学家拉罗什福科说：“如果你想要敌人，就超过你的朋友；但如果你想要朋友，就让你朋友超过你。”为什么这样说？因为当我们的朋友超过我们时，他们感到重要；但当我们超过他们时，他们会感到自卑和嫉妒。" }
+      ]
+    },
+    { type: "heading", level: 3, text: "PRINCIPLE 6 – Let the other person do a great deal of the talking." },
+
+    { type: "heading", level: 2, text: "Chapter 7 – How to Get Cooperation" },
+    {
+      type: "text",
+      sentences: [
+        { en: "Don't you have much more faith in ideas that you discover for yourself than in ideas that are handed to you on a silver platter? If so, isn't it bad judgment to try to ram your opinions down the throats of other people? Isn't it wiser to make suggestions—and let the other person think out the conclusion?", cn: "你自己发现的想法，是不是比那些用银盘端给你的想法，更让你信服？如果是这样，试图把自己的意见强加于别人，难道不是判断力差吗？提出建议——让对方自己得出结论，不是更明智吗？" }
+      ]
+    },
+    {
+      type: "text",
+      sentences: [
+        { en: "Adolph Seltz of Philadelphia, sales manager in an automobile showroom, called a sales meeting. He urged his people to tell him exactly what they expected from him. As they talked, he wrote their ideas on the blackboard. He then said: 'I'll give you all these qualities you expect from me. Now I want you to tell me what I have a right to expect from you.' The replies came: loyalty, honesty, initiative, optimism, teamwork. The meeting ended with a new courage, and sales increased phenomenally.", cn: "费城一家汽车展厅的销售经理阿道夫·塞尔茨召集了一次销售会议。他鼓励员工们告诉他，他们期望从他那里得到什么。他们一边说，他一边把他们的想法写在黑板上。然后他说：“我会给你们所有你们期望从我这里得到的品质。现在我想让你们告诉我，我有权期望从你们这里得到什么。”回答来了：忠诚、诚实、主动性、乐观、团队合作。会议以新的勇气结束，销售额增长惊人。" }
+      ]
+    },
+    {
+      type: "text",
+      sentences: [
+        { en: "No one likes to feel that he or she is being sold something or told to do a thing. We much prefer to feel that we are buying of our own accord or acting on our own ideas. We like to be consulted about our wishes, our wants, our thoughts.", cn: "没有人喜欢觉得他或她正在被推销什么东西，或者被告知做什么事。我们更愿意觉得我们是自愿购买或按照自己的想法行事。我们喜欢被咨询我们的愿望、我们的需求、我们的想法。" }
+      ]
+    },
+    {
+      type: "text",
+      sentences: [
+        { en: "Take the case of Eugene Wesson. He lost thousands of dollars in commissions before he learned this truth. He sold sketches for a studio. He had called on one of the leading stylists once a week for three years. He never bought. Wesson decided on a new approach. He took some unfinished sketches to the buyer and asked: 'I want you to do me a little favor. Here are some uncompleted sketches. Won't you please tell me how we could finish them up in such a way that you could use them?' The buyer looked at the sketches and said: 'Leave these with me for a few days.' When Wesson returned, he got the buyer's suggestions, had the sketches finished accordingly, and they were all accepted. He had let the buyer feel that the ideas were his.", cn: "以尤金·韦森为例。他在学会这个道理之前，损失了数千美元的佣金。他为一间工作室销售草图。他曾每周一次、连续三年拜访一位顶尖造型师。对方从不购买。韦森决定采用新方法。他带了一些未完成的草图去找买主，问道：“我想请你帮个小忙。这里有一些未完成的草图。请你告诉我，我们怎样才能完成它们，让你能够使用？”买主看了看草图，说：“把这些留给我几天。”当韦森回来时，他得到了买主的建议，根据建议完成了草图，结果全被采纳了。他让买主觉得那些想法是他自己的。" }
+      ]
+    },
+    {
+      type: "text",
+      sentences: [
+        { en: "Letting the other person feel that the idea is his or hers not only works in business, it works in family life as well. Paul M. Davis wanted to visit historic sites in the eastern states, but his wife wanted to go to the western states. Their daughter had just completed a course in U.S. history. He asked her how she would like to visit the places she had learned about. She said she would love to. Later, his wife announced that the summer's vacation would be to the eastern states. They had all concurred.", cn: "让对方觉得想法是他或她自己的，不仅在商业中有效，在家庭生活中也有效。保罗·M·戴维斯想去东部各州参观历史遗迹，但他的妻子想去西部各州。他们的女儿刚刚完成美国历史课程。他问她是否愿意去参观她学到的地方。她说很愿意。后来，他的妻子宣布暑假要去东部各州。大家都同意了。" }
+      ]
+    },
+    {
+      type: "text",
+      sentences: [
+        { en: "Ralph Waldo Emerson in his essay 'Self-Reliance' stated: 'In every work of genius we recognize our own rejected thoughts; they come back to us with a certain alienated majesty.'", cn: "拉尔夫·沃尔多·爱默生在《自立》一文中写道：“在每一件天才的作品中，我们都能认出我们自己被摒弃的想法；它们以一种被异化的庄严姿态回到我们身边。”" },
+        { en: "Colonel Edward M. House learned that the best way to convert President Wilson to an idea was to plant it in his mind casually, so as to get him thinking about it on his own account. Several days later, Wilson would trot out the suggestion as his own. House didn't care about credit. He wanted results. So he let Wilson continue to feel that the idea was his.", cn: "爱德华·M·豪斯上校学到，说服威尔逊总统接受一个想法的最好方法，就是随意地把它植入他的脑海，让他自己开始思考。几天后，威尔逊就会把那个建议当作他自己的话说出来。豪斯不在乎功劳。他想要结果。于是他让威尔逊继续觉得那个想法是他自己的。" }
+      ]
+    },
+    { type: "heading", level: 3, text: "PRINCIPLE 7 – Let the other person feel that the idea is his or hers." },
+
+    { type: "heading", level: 2, text: "Chapter 8 – A Formula That Will Work Wonders for You" },
+    {
+      type: "text",
+      sentences: [
+        { en: "Remember that other people may be totally wrong. But they don't think so. Don't condemn them. Any fool can do that. Try to understand them. Only wise, tolerant, exceptional people even try to do that.", cn: "记住，其他人可能是完全错误的。但他们自己不这么认为。不要谴责他们。任何傻瓜都能做到。试着去理解他们。只有明智的、宽容的、不寻常的人才会尝试这样做。" },
+        { en: "There is a reason why the other man thinks and acts as he does. Ferret out that reason—and you have the key to his actions, perhaps to his personality.", cn: "对方之所以那么想、那么做，是有原因的。找出那个原因——你就找到了他行为的钥匙，也许是他个性的钥匙。" }
+      ]
+    },
+    {
+      type: "text",
+      sentences: [
+        { en: "Try honestly to put yourself in his place. If you say to yourself, 'How would I feel, how would I react if I were in his shoes?' you will save yourself time and irritation, for 'by becoming interested in the cause, we are less likely to dislike the effect.' And, in addition, you will sharply increase your skill in human relationships.", cn: "真诚地试着站在他的立场上。如果你对自己说：“如果我处在他的位置，我会有什么感觉，会如何反应？”你将节省时间和烦躁，因为“通过对原因感兴趣，我们就不太可能不喜欢结果”。此外，你将大大提高你的人际交往技巧。" }
+      ]
+    },
+    {
+      type: "text",
+      sentences: [
+        { en: "Kenneth M. Goode in his book How to Turn People Into Gold wrote: 'Stop a minute to contrast your keen interest in your own affairs with your mild concern about anything else. Realize then, that everybody else in the world feels exactly the same way!'", cn: "肯尼斯·M·古德在他的《如何化人为金》一书中写道：“停一分钟，把你对自己事务的浓厚兴趣与对其它事情的淡漠关心做一下对比。然后你就意识到，世界上其他每个人都完全有同感！”" }
+      ]
+    },
+    {
+      type: "text",
+      sentences: [
+        { en: "I have always enjoyed walking in a park near my home. I was distressed to see the young trees killed off by needless fires. In the beginning, when I saw a fire blazing, I would ride up to the boys, warn them that they could be jailed, order them to put it out, and threaten to have them arrested. They obeyed sullenly. Later, I changed my approach. I would say: 'Having a good time, boys? I loved to build fires myself when I was a boy. But you know they are very dangerous here. Won't you please rake all the leaves away from the fire now? And cover it with dirt before you leave? Thanks so much, boys.' What a difference that kind of talk made! It made the boys want to cooperate. I had handled the situation with consideration for their point of view.", cn: "我一直喜欢在家附近的公园里散步。看到幼树被无谓的火灾烧毁，我感到痛心。起初，当我看到火在燃烧时，我会骑马过去，警告那些男孩他们可能会被监禁，命令他们把火扑灭，并威胁要报警抓他们。他们虽然服从了，但带着抵触。后来，我改变了方法。我会说：“玩得开心吗，孩子们？我小时候也喜欢生火。但你们知道，这在公园里很危险。请你们现在把火周围的树叶耙开好吗？离开前用土盖住火？非常感谢，孩子们。”这种话产生了多大的不同啊！它让男孩们愿意合作。我在处理情况时考虑到了他们的观点。" }
+      ]
+    },
+    {
+      type: "text",
+      sentences: [
+        { en: "Tomorrow, before asking anyone to do something, why not pause and close your eyes and try to think the whole thing through from another person's point of view? Ask yourself: 'Why should he or she want to do it?' True, this will take time, but it will avoid making enemies and will get better results.", cn: "明天，在要求任何人做某事之前，为什么不暂停一下，闭上眼睛，试着从另一个人的角度彻底思考整件事？问自己：“他或她为什么要做这件事？”是的，这需要时间，但它会避免树敌，并获得更好的结果。" }
+      ]
+    },
+    {
+      type: "text",
+      sentences: [
+        { en: "I would rather walk the sidewalk in front of a person's office for two hours before an interview than step into that office without a perfectly clear idea of what I was going to say and what that person—from my knowledge of his or her interests and motives—was likely to answer.", cn: "我宁愿在面试前在他人的办公室外的人行道上走两个小时，也不愿意在完全不清楚我要说什么、以及根据我对对方兴趣和动机的了解，对方可能会回答什么的情况下走进那间办公室。" }
+      ]
+    },
+    { type: "heading", level: 3, text: "PRINCIPLE 8 – Try honestly to see things from the other person's point of view." }
+  ]
+};
