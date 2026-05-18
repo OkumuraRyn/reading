@@ -58,7 +58,6 @@ export default {
     },
     { type: "heading", level: 3, text: "PRINCIPLE 1 – The only way to get the best of an argument is to avoid it." },
 
-    // ========== Chapter 2 ==========
     { type: "heading", level: 2, text: "Chapter 2 – A Sure Way of Making Enemies—and How to Avoid It" },
     {
       type: "text",
@@ -107,7 +106,6 @@ export default {
     },
     { type: "heading", level: 3, text: "PRINCIPLE 2 – Show respect for the other person's opinions. Never say, 'You're wrong.'" },
 
-    // ========== Chapter 3 ==========
     { type: "heading", level: 2, text: "Chapter 3 – If You're Wrong, Admit It" },
     {
       type: "text",
@@ -159,7 +157,6 @@ export default {
     },
     { type: "heading", level: 3, text: "PRINCIPLE 3 – If you are wrong, admit it quickly and emphatically." },
 
-    // ========== Chapter 4 ==========
     { type: "heading", level: 2, text: "Chapter 4 – A Drop of Honey" },
     {
       type: "text",
