@@ -43,7 +43,7 @@ for (const [path, mod] of Object.entries(articleModules)) {
   }
 
   if (subDir) {
-    const subName = '长篇连载 · ' + dirNameToDisplay(subDir);
+    const subName = dirNameToDisplay(subDir);
     if (!builtTree[parentName].subGroups[subName]) {
       builtTree[parentName].subGroups[subName] = { articles: [] };
     }
