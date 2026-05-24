@@ -23,6 +23,7 @@
       @query-word="handleQueryWord"
       @speak="speak"
       @speak-paragraph="speakParagraph"
+      @jump-to-sentence="handleJumpToSentence"
     />
 
     <AiPanel
@@ -56,6 +57,27 @@ import { askDeepSeek, getCachedResult } from '../services/aiService'
 import ArticleReader from '../components/ArticleReader.vue'
 import AiPanel from '../components/AiPanel.vue'
 
+
+
+  // 计算句子在全局队列中的索引
+const getSentenceGlobalIndex = (pIdx, sIdx) => {
+  if (!article.value) return 0;
+  let index = 0;
+  for (let i = 0; i < pIdx; i++) {
+    const para = article.value.paragraphs[i];
+    if (para.sentences) index += para.sentences.length;
+  }
+  return index + sIdx;
+};
+
+// 长按句子：停止当前朗读，从该句重新开始
+const handleJumpToSentence = ({ pIdx, sIdx }) => {
+  if (!article.value) return;
+  const startIndex = getSentenceGlobalIndex(pIdx, sIdx);
+  stopFullReading();
+  startFullReading(article.value.paragraphs, startIndex);
+  showControls.value = true;
+};
 const route = useRoute()
 const studyStore = useStudyStore()
 const article = ref(null)
