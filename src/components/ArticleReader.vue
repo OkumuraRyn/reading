@@ -27,6 +27,9 @@
                 :data-pidx="pIdx"
                 :data-sidx="sIdx"
                 @click.stop="handleSentenceClick(sent)"
+                @touchstart.prevent="startLongPress(sent, pIdx, sIdx)"
+                @touchend.prevent="cancelLongPress"
+                @touchmove.prevent="cancelLongPress"
               >
                 <span
                   v-for="(token, tIdx) in tokenize(sent.en)"
@@ -110,7 +113,8 @@ const emit = defineEmits([
   'query-word',
   'speak',
   'speak-paragraph',
-  'toggle-full-reading'
+  'toggle-full-reading',
+  'jump-to-sentence'
 ])
 
 const studyStore = useStudyStore()
@@ -171,9 +175,34 @@ const tokenize = (text) => {
 }
 
 // 事件处理
+// 长按相关
+const longPressTimer = ref(null);
+const longPressTriggered = ref(false);
+
+const startLongPress = (sentence, pIdx, sIdx) => {
+  longPressTriggered.value = false;
+  longPressTimer.value = setTimeout(() => {
+    longPressTriggered.value = true;
+    emit('jump-to-sentence', { pIdx, sIdx, sentence });
+    if (navigator.vibrate) navigator.vibrate(50);
+  }, 500);
+};
+
+const cancelLongPress = () => {
+  if (longPressTimer.value) {
+    clearTimeout(longPressTimer.value);
+    longPressTimer.value = null;
+  }
+};
+
+// 修改原有的 handleSentenceClick，加入长按检查
 const handleSentenceClick = (sent) => {
-  emit('select-sentence', sent)
-}
+  if (longPressTriggered.value) {
+    longPressTriggered.value = false;
+    return;
+  }
+  emit('select-sentence', sent);
+};
 
 const handleWordClick = (word, sentenceEn) => {
   emit('query-word', word, sentenceEn)
