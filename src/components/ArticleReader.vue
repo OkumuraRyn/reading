@@ -27,9 +27,9 @@
                 :data-pidx="pIdx"
                 :data-sidx="sIdx"
                 @click.stop="handleSentenceClick(sent)"
-                @touchstart.prevent="startLongPress(sent, pIdx, sIdx)"
-                @touchend.prevent="cancelLongPress"
-                @touchmove.prevent="cancelLongPress"
+                @touchstart="startLongPress(sent, pIdx, sIdx)"
+                @touchend="cancelLongPress"
+                @touchmove="cancelLongPress"
               >
                 <span
                   v-for="(token, tIdx) in tokenize(sent.en)"
