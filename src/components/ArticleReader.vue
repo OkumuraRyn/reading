@@ -30,6 +30,9 @@
                 @touchstart="startLongPress(sent, pIdx, sIdx)"
                 @touchend="cancelLongPress"
                 @touchmove="cancelLongPress"
+                  @mousedown="startLongPress(sent, pIdx, sIdx)"
+  @mouseup="cancelLongPress"
+  @mouseleave="cancelLongPress"
               >
                 <span
                   v-for="(token, tIdx) in tokenize(sent.en)"
