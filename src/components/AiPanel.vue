@@ -27,13 +27,7 @@
       </div>
 
       <div class="ai-body">
-        <div v-if="selectedSentence" class="context-preview">
-          <small>当前句子</small>
-          <p>{{ selectedSentence }}</p>
-          <p v-if="selectedSentenceCn" class="translation-preview">
-            {{ selectedSentenceCn }}
-          </p>
-        </div>
+        
 
         <div v-if="studyStore.isAiLoading" class="loading-state">
           <span class="loading-spinner"></span>
