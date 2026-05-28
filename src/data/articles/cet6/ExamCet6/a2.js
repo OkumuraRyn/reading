@@ -2,8 +2,8 @@
 export default {
   id: "EXAM-CET6-2",
   type: "CET6真题",
-  title: "2025年12月大学英语六级考试真题（第一套）",
-  titleCn: "2025年12月 College English Test Band 6 (First Session)",
+  title: "2024年12月大学英语六级考试真题（第一套）",
+  titleCn: "2024年12月 College English Test Band 6 (First Session)",
   paragraphs: [
     { type: "heading", level: 2, text: "Part II: Listening Comprehension" },
     { type: "heading", level: 3, text: "Section A" },
