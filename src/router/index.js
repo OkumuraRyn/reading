@@ -9,7 +9,7 @@ const router = createRouter({
   routes: [
     { path: '/', component: HomeView },
     { path: '/article/:id', component: ArticleView },
-    
+        { path: '/all-vocabulary', component: AllVocabView },
     { path: '/memorize', component: MemorizeView }      // ✅ 新增
   ]
 });
