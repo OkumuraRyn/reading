@@ -18,14 +18,14 @@ export default {
     },
     {
       type: "text",
-      sentences": [
+      sentences: [
         { en: "Tariq's profession of love for his favorite vegetable earned him the name \"the Corn Kid\".", cn: "塔里克对他最喜爱的蔬菜表达爱意，为他赢得了\"玉米小子\"的称号。" },
         { en: "This was after his online interview attracted millions of views and was made into a song.", cn: "此前，他的网络采访吸引了数百万观看量，并被写成了一首歌。" }
       ]
     },
     {
       type: "text",
-      sentences": [
+      sentences: [
         { en: "South Dakota is one of the top corn producers in America.", cn: "南达科他州是美国最大的玉米产地之一。" },
         { en: "The corn provides nourishment across the globe.", cn: "这种玉米为全球提供营养。" },
         { en: "Tariq said, \"Not everyone has to like corn, but everyone should definitely try it, especially with butter.\"", cn: "塔里克说：\"不是每个人都必须喜欢玉米，但每个人肯定都应该尝尝，尤其是加黄油。\"" }
@@ -33,7 +33,7 @@ export default {
     },
     {
       type: "text",
-      sentences": [
+      sentences: [
         { en: "Tariq and his family were invited to South Dakota to attend the honorary ceremony at the state's Corn Palace.", cn: "塔里克和他的家人受邀前往南达科他州，参加在该州玉米宫举行的荣誉仪式。" },
         { en: "Officials wanted to highlight South Dakota's two largest industries: tourism and agriculture.", cn: "官员们希望突出南达科他州最大的两个产业：旅游业和农业。" },
         { en: "Tariq couldn't believe his eyes when he saw the palace made of corn.", cn: "当塔里克看到这座用玉米建造的宫殿时，他简直不敢相信自己的眼睛。" }
@@ -49,13 +49,13 @@ export default {
     },
     {
       type: "text",
-      sentences": [
+      sentences: [
         { en: "Jordan Jax and Tarod Goodman, both 23, were arrested after evidence gathered in an investigation showed the pair stole mail on multiple occasions using a postal key, according to a news release.", cn: "据一份新闻稿称，23岁的乔丹·贾克斯和塔罗德·古德曼被捕，此前调查收集的证据显示，这两人多次使用邮政钥匙窃取邮件。" }
       ]
     },
     {
       type: "text",
-      sentences": [
+      sentences: [
         { en: "Jax and Goodman stole mail for around four months.", cn: "贾克斯和古德曼盗窃邮件约四个月。" },
         { en: "Investigators reviewed videos of the collection boxes; the video showed the two men loading the stolen mail into Jax's vehicle.", cn: "调查人员查看了收集箱的录像；视频显示两人将偷来的邮件装进贾克斯的车里。" },
         { en: "Investigators were also able to recover the key that was used to open the collection boxes.", cn: "调查人员还找到了用于打开收集箱的钥匙。" }
@@ -63,14 +63,14 @@ export default {
     },
     {
       type: "text",
-      sentences": [
+      sentences: [
         { en: "Jax and Goodman each face up to five years in federal prison in the mail thefts and up to ten years for possession of the postal key.", cn: "贾克斯和古德曼因邮件盗窃罪各面临最高五年的联邦监禁，因持有邮政钥匙罪各面临最高十年的监禁。" }
       ]
     },
     { type: "heading", level: 3, text: "News Report Three" },
     {
       type: "text",
-      sentences": [
+      sentences: [
         { en: "Can fast-fashion be sustainable?", cn: "快时尚能可持续吗？" },
         { en: "Researchers think yes.", cn: "研究人员认为能。" },
         { en: "Identifying why the fast-fashion business model creates waste and determining whether regulators can establish incentives for consumers and manufacturers are steps to reduce waste.", cn: "确定快时尚商业模式产生浪费的原因，以及确定监管机构能否为消费者和制造商建立激励措施，是减少浪费的步骤。" }
@@ -78,20 +78,20 @@ export default {
     },
     {
       type: "text",
-      sentences": [
+      sentences: [
         { en: "Recently, the clothing industry has come under attack for creating a waste problem with serious environmental consequences.", cn: "最近，服装行业因制造了具有严重环境后果的浪费问题而受到抨击。" },
         { en: "In the absence of environmentally and economically feasible recycling options, fast-fashion manufacturers pump out low-quality clothes produced in high volumes that are worn only a few times and then discarded.", cn: "在缺乏环境和经济上可行的回收选择的情况下，快时尚制造商大量生产只穿几次就被丢弃的低质量服装。" }
       ]
     },
     {
       type: "text",
-      sentences": [
+      sentences: [
         { en: "The researchers put forth policy contributions, ranging from sustainable disposal of leftover stock to production tax to incentivize both manufacturers and consumers to be more waste conscious.", cn: "研究人员提出了政策建议，从可持续处理剩余库存到征收生产税，以激励制造商和消费者更有废物意识。" }
       ]
     },
     {
       type: "text",
-      sentences": [
+      sentences: [
         { en: "In order to devise effective policies to curb the environmental impact of the clothing industry, it is important to identify the source of the problem in the supply chain.", cn: "为了制定有效的政策来遏制服装行业对环境的影响，确定供应链中问题的根源很重要。" },
         { en: "Manufacturers, consumers, and regulatory bodies can then take an informed approach to recognize the environmental impact of fast-fashion and to design an ecosystem to reduce waste, incentivize innovation, and create new business models to manage waste.", cn: "制造商、消费者和监管机构随后可以采取明智的方法，认识快时尚对环境的影响，并设计一个生态系统来减少浪费、激励创新和创建新的商业模式来管理废物。" }
       ]
@@ -108,7 +108,7 @@ export default {
     },
     {
       type: "text",
-      sentences": [
+      sentences: [
         { en: "M: Ah, yes.", cn: "男：啊，是的。" },
         { en: "Rush hour is terrible, especially in the morning between 8 and 9.", cn: "高峰时间很糟糕，尤其是早上8点到9点之间。" },
         { en: "But what else can you expect in a city this big?", cn: "但在这个大城市里，你还能指望什么呢？" },
@@ -134,7 +134,7 @@ export default {
     },
     {
       type: "text",
-      sentences": [
+      sentences: [
         { en: "M: Yeah, it's more convenient.", cn: "男：是的，更方便。" },
         { en: "Bus No. 36 goes straight from my house to the office.", cn: "36路公交车从我家直达办公室。" },
         { en: "It's a 30-minute ride and I don't have to make any changes.", cn: "车程30分钟，我不用换乘。" },
@@ -174,7 +174,7 @@ export default {
     },
     {
       type: "text",
-      sentences": [
+      sentences: [
         { en: "W: Fixed?", cn: "女：修复？" },
         { en: "What do you mean?", cn: "你什么意思？" },
         { en: "You can't fix a scar.", cn: "疤痕是没法修复的。" },
@@ -188,7 +188,7 @@ export default {
     },
     {
       type: "text",
-      sentences": [
+      sentences: [
         { en: "M: I agree.", cn: "男：我同意。" },
         { en: "I can understand some scars and physical defects can be ugly and distracting, but not Johnny's.", cn: "我能理解有些疤痕和身体缺陷可能丑陋且碍眼，但约翰尼的不是。" },
         { en: "In fact, I thought it added character… like it gave him a certain uniqueness.", cn: "事实上，我认为它增添了性格……好像给了他很独特的气质。" },
@@ -201,7 +201,7 @@ export default {
     },
     {
       type: "text",
-      sentences": [
+      sentences: [
         { en: "W: Then why did he have the operation?", cn: "女：那他为什么做手术？" },
         { en: "M: Because his girlfriend wanted him to.", cn: "男：因为他女朋友想让他做。" },
         { en: "W: What?", cn: "女：什么？" },
@@ -228,7 +228,7 @@ export default {
     },
     {
       type: "text",
-      sentences": [
+      sentences: [
         { en: "The first theory is that language started with people making different sounds, mostly imitating the things around them, like animal calls, nature sounds, and the sounds of tools.", cn: "第一种理论认为，语言始于人们发出不同的声音，主要是模仿周围的事物，如动物的叫声、自然的声音和工具的声音。" },
         { en: "Perhaps they made the sound of wind to comment on the weather or imitated the sound of a bird to tell a friend that there was a bird nearby.", cn: "也许他们发出风声来评论天气，或者模仿鸟的叫声来告诉朋友附近有鸟。" },
         { en: "Then over hundreds of thousands of years, those sounds turned into words that people began to learn as part of their language.", cn: "然后经过几十万年，这些声音变成了人们开始作为语言一部分学习的单词。" },
@@ -237,7 +237,7 @@ export default {
     },
     {
       type: "text",
-      sentences": [
+      sentences: [
         { en: "The other main theory, which is more recent, is that people started off by gesturing—pointing at things with their hands and imitating actions using their bodies.", cn: "另一种较新的主要理论是，人们最初是通过手势开始的——用手指示事物，用身体模仿动作。" },
         { en: "Eventually these gestures turned into a full sign language.", cn: "最终这些手势变成了完整的手语。" },
         { en: "This theory guesses that after developing sign languages, people eventually started making sounds along with their gestures.", cn: "这一理论推测，在发展了手语之后，人们最终开始在手势的同时发出声音。" },
@@ -248,7 +248,7 @@ export default {
     { type: "heading", level: 3, text: "Passage Two" },
     {
       type: "text",
-      sentences": [
+      sentences: [
         { en: "Is it a good idea to display luxury brands and other signals of status?", cn: "展示奢侈品牌和其他地位信号是个好主意吗？" },
         { en: "It depends on the situation.", cn: "这取决于情况。" },
         { en: "Studies have shown that people who appear to be wealthy tend to be considered more intelligent, disciplined, and competent than those who do not.", cn: "研究表明，看起来富有的人往往被认为比那些不富有的人更聪明、更有纪律、更有能力。" }
@@ -256,7 +256,7 @@ export default {
     },
     {
       type: "text",
-      sentences": [
+      sentences: [
         { en: "But new research found that people believe someone who shows off their social status cares more about benefiting themselves than helping others.", cn: "但新的研究发现，人们认为炫耀自己社会地位的人更关心自身利益而不是帮助他人。" },
         { en: "This means people are less willing to collaborate with them.", cn: "这意味着人们不太愿意与他们合作。" },
         { en: "Modesty may be key when cooperation is essential, but the researchers also found that in some cases, status signaling has advantages.", cn: "当合作必不可少时，谦虚可能是关键，但研究人员也发现，在某些情况下，展示地位也有优势。" }
@@ -264,7 +264,7 @@ export default {
     },
     {
       type: "text",
-      sentences": [
+      sentences: [
         { en: "Experiments showed that participants were less likely to choose someone who signals their wealth or status to join a group seeking cooperative members.", cn: "实验表明，参与者不太可能选择那些炫耀财富或地位的人加入寻求合作成员的团队。" },
         { en: "But participants were more likely to choose that person when they're looking for a competitive team member.", cn: "但当参与者在寻找有竞争力的团队成员时，他们更有可能选择那个人。" },
         { en: "These findings suggest that people should change how they present themselves depending on their social goal.", cn: "这些发现表明，人们应该根据他们的社交目标改变展示自己的方式。" }
@@ -272,7 +272,7 @@ export default {
     },
     {
       type: "text",
-      sentences": [
+      sentences: [
         { en: "This is the era of social media.", cn: "这是社交媒体的时代。" },
         { en: "People can easily share their wealth and status to large audiences, but they need to consider the consequences.", cn: "人们可以轻松地向大量观众分享自己的财富和地位，但他们需要考虑后果。" },
         { en: "Posting about luxury purchases and expensive vacations online may help you to persuade others and frighten competitors, but it could also signal to potential friends or future employers that you are unlikely to think about the needs of others.", cn: "在网上发布奢侈品购买和昂贵假期的信息可能有助于你说服他人、吓退竞争者，但也可能向潜在的朋友或未来的雇主发出信号：你不太可能考虑他人的需求。" },
@@ -282,7 +282,7 @@ export default {
     { type: "heading", level: 3, text: "Passage Three" },
     {
       type: "text",
-      sentences": [
+      sentences: [
         { en: "Human fascination with animals goes back as far as humans do.", cn: "人类对动物的迷恋和人类历史一样久远。" },
         { en: "Of the oldest cave paintings discovered, some are up to 40,000 years old, and there are more images of animals than humans.", cn: "在发现的最古老的洞穴壁画中，有些已有4万年的历史，其中动物的图像比人类更多。" },
         { en: "At some point, humans began to capture and hold animals.", cn: "在某个时候，人类开始捕捉和圈养动物。" }
@@ -290,7 +290,7 @@ export default {
     },
     {
       type: "text",
-      sentences": [
+      sentences: [
         { en: "The first-known collections were held by royalty and were not open to the public.", cn: "已知最早的动物收藏由皇室拥有，不对公众开放。" },
         { en: "In Egypt, researchers have found buildings from around 3500 B.C., containing the remains of animals, including elephants, which were not native to Egypt.", cn: "在埃及，研究人员发现了大约公元前3500年的建筑，里面含有动物的遗骸，包括非埃及本土的大象。" },
         { en: "But life wasn't easy for these animals.", cn: "但这些动物的生活并不容易。" },
@@ -299,7 +299,7 @@ export default {
     },
     {
       type: "text",
-      sentences": [
+      sentences: [
         { en: "The first public exhibit of animals may have been created by Egypt's Queen Hatshepsut around 1480 B.C.", cn: "第一个公共动物展览可能是由埃及哈特谢普苏特女王在公元前1480年左右创建的。" },
         { en: "Researchers think the zoo was started with animals brought home from a far-off land known as Punt.", cn: "研究人员认为，这个动物园是从一个名为蓬特的遥远之地带回的动物开始的。" },
         { en: "It's unclear why the Queen built the zoo, but it might have been to show off her wealth and power.", cn: "女王建造动物园的原因尚不清楚，但可能是为了炫耀她的财富和权力。" }
@@ -307,7 +307,7 @@ export default {
     },
     {
       type: "text",
-      sentences": [
+      sentences: [
         { en: "Early zoos are found all over the world.", cn: "早期动物园在世界各地都有发现。" },
         { en: "In China, Emperor Wenwang is said to have built a \"Garden of Intelligence\" around 1060 B.C.", cn: "在中国，据说周文王在公元前1060年左右建造了一座\"灵囿\"。" },
         { en: "It included deer, birds, and many fish.", cn: "里面有鹿、鸟类和许多鱼。" },
@@ -321,14 +321,14 @@ export default {
     { type: "heading", level: 3, text: "Section A" },
     {
       type: "text",
-      sentences": [
+      sentences: [
         { en: "Psychologists have long been interested in how we construct our identities and the sorts of strategies that we use to present ourselves in society.", cn: "心理学家长期以来一直对我们如何构建自己的身份以及我们用来在社会中展示自己的各种策略感兴趣。" },
         { en: "New findings suggest that the kinds of complex and strategic self-presentation behaviour we see in adults appear at a much younger age than previously known.", cn: "新的发现表明，我们在成年人身上看到的那些复杂的、策略性的自我展示行为，出现在比以前所知的更年轻的年龄。" }
       ]
     },
     {
       type: "text",
-      sentences": [
+      sentences: [
         { en: "Research shows that a child's awareness of social standing comes from adults.", cn: "研究表明，孩子对社会地位的认识来自成年人。" },
         { en: "Like grown-ups, kids want to be accepted by those they admire.", cn: "像成年人一样，孩子们希望被他们所钦佩的人接受。" },
         { en: "Interactive experiences may provide opportunities for children to learn about what constitutes a desirable reputation and the kinds of strategies that are effective for building a good reputation in their social environment.", cn: "互动体验可能为孩子提供了机会，让他们了解什么构成了理想的声誉，以及在他们的社会环境中建立良好声誉的有效策略。" }
@@ -336,7 +336,7 @@ export default {
     },
     {
       type: "text",
-      sentences": [
+      sentences: [
         { en: "Five-year-olds aren't just aware of their reputations, they also behave strategically to alter their outward image.", cn: "五岁的孩子不仅意识到自己的声誉，他们还会策略性地改变自己的外在形象。" },
         { en: "They will vary their behaviour in order to appear moral or socially good in the eyes of key observers.", cn: "他们会改变自己的行为，以便在关键观察者眼中显得道德或社会形象良好。" },
         { en: "While we know that adults use a large variety of attributes to manage and create impressions, we don't yet know whether children understand and use the fact that different attributes are valuable at different times to different audiences.", cn: "虽然我们知道成年人使用各种各样的特质来管理和创造印象，但我们还不知道孩子们是否理解并运用了这样一个事实：不同的特质在不同的时间对不同的受众有不同的价值。" },
@@ -345,7 +345,7 @@ export default {
     },
     {
       type: "text",
-      sentences": [
+      sentences: [
         { en: "A question to think about is, \"What happens even earlier than age five?\"", cn: "一个值得思考的问题是：\"在五岁之前会发生什么？\"" },
         { en: "Children don't just show up to the first day of kindergarten and have the idea of reputation pop suddenly into existence.", cn: "孩子们并不是在幼儿园开学的第一天，声誉的概念就突然出现了。" },
         { en: "The logical question to ask is, \"What happens even earlier?\"", cn: "合乎逻辑的问题是：\"更早的时候会发生什么？\"" }
@@ -354,14 +354,14 @@ export default {
     { type: "heading", level: 3, text: "Section B — Getting young minds into design" },
     {
       type: "text",
-      sentences": [
+      sentences: [
         { en: "A) Recently, a leading design federation in the UK warned that the UK could face a creative skills shortage, after the latest figures revealed a drop of almost 10 percent in students studying Design and Technology.", cn: "A) 最近，英国一个领先的设计联合会警告说，英国可能面临创意技能短缺，此前最新数据显示，学习设计和技术的学生人数下降了近10%。" },
         { en: "These figures showed that the number of pupils that sat exams in Design and Technology fell 10 percent from 204,788 to 185,279 last year.", cn: "这些数据显示，参加设计和技术考试的学生人数从204,788人下降到185,279人，下降了10%。" }
       ]
     },
     {
       type: "text",
-      sentences": [
+      sentences: [
         { en: "B) Chief executive John Kampfner of the Creative Industries Federation thinks that this drop in figures has worrying implications for the skills pipeline in Britain's hugely successful arts and creative industries.", cn: "B) 创意产业联合会首席执行官约翰·坎普夫纳认为，这一数字下降对英国非常成功的艺术和创意产业的技能人才输送渠道产生了令人担忧的影响。" },
         { en: "He said, \"We already have skills shortages in many jobs such as animation and special effects.\"", cn: "他说：\"我们在动画和特效等许多工作岗位已经出现技能短缺。\"" },
         { en: "He added: \"Engineering, which requires a similar mix of creative and technical skills, also has recruitment problems.\"", cn: "他补充说：\"工程学也需要类似的创意和技术技能组合，同样存在招聘问题。\"" }
@@ -369,7 +369,7 @@ export default {
     },
     {
       type: "text",
-      sentences": [
+      sentences: [
         { en: "C) Many other designers and architects have expressed concern over the future supply of home-grown talent for UK firms, and industry bodies have pointed out that there has been a lack of roots-level support.", cn: "C) 许多其他设计师和建筑师对英国公司未来本土人才的供应表示担忧，行业机构指出，一直缺乏基层支持。" },
         { en: "However, if these designers had visited the Design Museum shop in London earlier this year their fears may have been eased.", cn: "然而，如果这些设计师今年早些时候参观了伦敦的设计博物馆商店，他们的担忧可能会有所缓解。" },
         { en: "With £10 to spend, they could have bought a fascinating children's toy called \"Dazzle Racer\".", cn: "花10英镑，他们就可以买到一个名为\"炫光赛车\"的迷人儿童玩具。" },
@@ -379,21 +379,21 @@ export default {
     },
     {
       type: "text",
-      sentences": [
+      sentences: [
         { en: "D) Well you'd expect the Design Museum to commission and make some interesting items, but this one was different.", cn: "D) 嗯，你会期望设计博物馆委托制作一些有趣的物品，但这个不同。" },
         { en: "Designed by a group of six Year 9 and Year 10 boys from Finchley Catholic High School, the toy was the winning entry in the museum's 2015 Design Ventura competition, which brings the business of design to life for students aged 13 to 16 by challenging them to develop a new creative, sustainable and commercially feasible product for the Design Museum shop and attracts hundreds of entries nationwide.", cn: "这个玩具是由芬奇利天主教高中的六名九年级和十年级男生设计的，是该博物馆2015年Design Ventura竞赛的获胜作品。该竞赛通过挑战13至16岁的学生为设计博物馆商店开发新的创意、可持续和商业可行的产品，将设计商业带入生活，吸引了全国数百件参赛作品。" }
       ]
     },
     {
       type: "text",
-      sentences": [
+      sentences: [
         { en: "E) \"We did Design Ventura in my previous school,\" says Liam Hourican, Finchley Catholic High School's design technology curriculum leader.", cn: "E) \"我在以前的学校做过Design Ventura，\"芬奇利天主教高中设计技术课程负责人利亚姆·霍里肯说。" },
         { en: "\"Then when I changed schools four years ago, I introduced it here because it helps to develop so many skills.\"", cn: "\"后来四年前我换学校时，我把它引到了这里，因为它有助于培养很多技能。\"" }
       ]
     },
     {
       type: "text",
-      sentences": [
+      sentences: [
         { en: "F) The theme for last year's competition was \"Move\", and Hourican began with three groups working in lunch breaks and after school before selecting the group with the most innovative idea.", cn: "F) 去年比赛的主题是\"移动\"，霍里肯从三个利用午休和放学后时间工作的小组开始，然后选择了最具创新想法的小组。" },
         { en: "Each participating school may submit just one proposal.", cn: "每所参赛学校只能提交一个方案。" },
         { en: "\"It's the taking part and doing the work which is important,\" he says.", cn: "\"重要的是参与和做工作，\"他说。" },
@@ -402,7 +402,7 @@ export default {
     },
     {
       type: "text",
-      sentences": [
+      sentences: [
         { en: "G) Catherine Ritman Smith, head of learning at the Design Museum, is expecting around 10,000 participants aged 13 to 16 to take part this year and says that the project — funded by Deutsche Bank as part of its youth engagement programme Born To Be — is the biggest event in the museum's calendar.", cn: "G) 设计博物馆学习主管凯瑟琳·里特曼·史密斯预计今年将有约10,000名13至16岁的参与者参加，并表示该项目——由德意志银行资助，作为其青年参与计划Born To Be的一部分——是博物馆日程中最大的活动。" },
         { en: "\"We started Design Ventura with around 800 young people in 2010 and it has grown steadily since,\" she says.", cn: "\"我们在2010年以大约800名年轻人启动了Design Ventura，此后稳步增长，\"她说。" },
         { en: "\"Teachers like it because the skills are all transferable and it helps to validate the value of design as a subject,\" she explains, telling me that nearly 600 schools have taken part so far.", cn: "\"老师们喜欢它，因为这些技能都是可转移的，它有助于验证设计作为一门学科的价值，\"她解释道，并告诉我到目前为止已有近600所学校参加。" }
@@ -410,7 +410,7 @@ export default {
     },
     {
       type: "text",
-      sentences": [
+      sentences: [
         { en: "H) So how does the competition work?", cn: "H) 那么比赛是如何运作的呢？" },
         { en: "A single-word theme is announced in the summer.", cn: "夏季会公布一个单词的主题。" },
         { en: "This year it is \"Change\".", cn: "今年的主题是\"改变\"。" },
@@ -422,7 +422,7 @@ export default {
     },
     {
       type: "text",
-      sentences": [
+      sentences: [
         { en: "I) Hourican and his pupils have happy memories of spending a whole day at the museum, having been selected as one of 10 shortlisted schools to present their idea to a panel of judges, including designer Jasper Conran.", cn: "I) 霍里肯和他的学生们对在博物馆度过一整天有着美好的回忆，他们被选为10所入围学校之一，向包括设计师贾斯珀·康兰在内的评审团展示他们的想法。" },
         { en: "Then they worked with the Kin Design Studio in Shoreditch, met designers at their school and attended a lunch with Deutsche Bank employees.", cn: "然后他们与肖尔迪奇的Kin设计工作室合作，在学校会见设计师，并参加了与德意志银行员工的午餐会。" },
         { en: "The students helped to make decisions and there were plenty of discussions — they changed the product's name, for example.", cn: "学生们帮助做决定，进行了大量讨论——例如，他们改了产品的名字。" }
@@ -430,7 +430,7 @@ export default {
     },
     {
       type: "text",
-      sentences": [
+      sentences: [
         { en: "J) \"One of the really useful things about this competition,\" says Hourican, \"is that there's a commercial element because the product is going on sale for real and the boys had to learn about budgeting and marketing, as well as designing their game.\"", cn: "J) \"这次比赛真正有用的一点是，\"霍里肯说，\"它有商业元素，因为产品真的会上市销售，这些男孩必须学习预算和营销，以及设计他们的游戏。\"" },
         { en: "Profits go to charity.", cn: "利润捐给慈善机构。" },
         { en: "\"The winning team chooses where it wants the profits to go,\" says Ritman Smith.", cn: "\"获胜团队选择利润去向，\"里特曼·史密斯说。" },
