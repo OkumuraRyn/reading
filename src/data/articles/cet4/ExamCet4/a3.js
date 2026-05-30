@@ -13,27 +13,12 @@ export default {
       sentences: [
         { en: "Everything changed for 7-year-old Tariq when he slapped some butter on an ear of corn.", cn: "当7岁的塔里克在一根玉米上抹了些黄油时，他的一切都改变了。" },
         { en: "He knew it tasted good, but butter made it better.", cn: "他知道它尝起来不错，但黄油让它更美味。" },
-        { en: "His passion for produce got him a position as South Dakota's official Corn Ambassador.", cn: "他对农产品的热情使他获得了南达科他州官方玉米大使的职位。" }
-      ]
-    },
-    {
-      type: "text",
-      sentences: [
+        { en: "His passion for produce got him a position as South Dakota's official Corn Ambassador.", cn: "他对农产品的热情使他获得了南达科他州官方玉米大使的职位。" },
         { en: "Tariq's profession of love for his favorite vegetable earned him the name \"the Corn Kid\".", cn: "塔里克对他最喜爱的蔬菜表达爱意，为他赢得了\"玉米小子\"的称号。" },
-        { en: "This was after his online interview attracted millions of views and was made into a song.", cn: "此前，他的网络采访吸引了数百万观看量，并被写成了一首歌。" }
-      ]
-    },
-    {
-      type: "text",
-      sentences: [
+        { en: "This was after his online interview attracted millions of views and was made into a song.", cn: "此前，他的网络采访吸引了数百万观看量，并被写成了一首歌。" },
         { en: "South Dakota is one of the top corn producers in America.", cn: "南达科他州是美国最大的玉米产地之一。" },
         { en: "The corn provides nourishment across the globe.", cn: "这种玉米为全球提供营养。" },
-        { en: "Tariq said, \"Not everyone has to like corn, but everyone should definitely try it, especially with butter.\"", cn: "塔里克说：\"不是每个人都必须喜欢玉米，但每个人肯定都应该尝尝，尤其是加黄油。\"" }
-      ]
-    },
-    {
-      type: "text",
-      sentences: [
+        { en: "Tariq said, \"Not everyone has to like corn, but everyone should definitely try it, especially with butter.\"", cn: "塔里克说：\"不是每个人都必须喜欢玉米，但每个人肯定都应该尝尝，尤其是加黄油。\"" },
         { en: "Tariq and his family were invited to South Dakota to attend the honorary ceremony at the state's Corn Palace.", cn: "塔里克和他的家人受邀前往南达科他州，参加在该州玉米宫举行的荣誉仪式。" },
         { en: "Officials wanted to highlight South Dakota's two largest industries: tourism and agriculture.", cn: "官员们希望突出南达科他州最大的两个产业：旅游业和农业。" },
         { en: "Tariq couldn't believe his eyes when he saw the palace made of corn.", cn: "当塔里克看到这座用玉米建造的宫殿时，他简直不敢相信自己的眼睛。" }
@@ -436,6 +421,143 @@ export default {
         { en: "\"The winning team chooses where it wants the profits to go,\" says Ritman Smith.", cn: "\"获胜团队选择利润去向，\"里特曼·史密斯说。" },
         { en: "\"The Finchley Catholic High School product raised about £1,000 for Great Ormond Street Hospital.\"", cn: "\"芬奇利天主教高中的产品为大奥蒙德街医院筹集了约1000英镑。\"" },
         { en: "Winning entries in past years have included a make-your-own cloth kit called Dove Bunting and a threefold, wallet-sized travel game with goals at each end, called Badoiiing.", cn: "往年的获奖作品包括一个名为Dove Bunting的自制布料套件，以及一个名为Badoiiing的三折钱包大小的旅行游戏，两端都有球门。" }
+      ]
+    },
+    {
+      type: "text",
+      sentences: [
+        { en: "K) It costs the schools nothing to participate in Design Ventura; the professional designers provide their services for free.", cn: "K) 学校参与Design Ventura无需任何费用；专业设计师免费提供服务。" },
+        { en: "Among them are architect Asif Khan, a Design Museum trustee who has worked as designer-in-residence at the museum, helping emerging architects.", cn: "其中包括建筑师阿西夫·汗，他是设计博物馆的受托人，曾担任博物馆的驻馆设计师，帮助新兴建筑师。" },
+        { en: "He has recently been commissioned to design the new Museum of London building in Smithfield.", cn: "他最近受委托设计位于史密斯菲尔德的伦敦博物馆新馆。" }
+      ]
+    },
+    {
+      type: "text",
+      sentences: [
+        { en: "L) Another is television presenter and interior designer Naomi Cleaver, who is one of the competition's judges.", cn: "L) 另一位是电视节目主持人和室内设计师娜奥米·克利弗，她是竞赛的评委之一。" },
+        { en: "\"I'm very keen to encourage young people,\" she says, observing that design brings together other subjects such as literature, art, history, geography and science.", cn: "\"我非常热衷于鼓励年轻人，\"她说，并指出设计将文学、艺术、历史、地理和科学等其他学科结合在一起。" },
+        { en: "\"Now that design education is limited in the curriculum, I'm all in favour of competitions such as Design Ventura, which helps to bring the standard curriculum to life,\" says Cleaver.", cn: "\"既然设计教育在课程中受到限制，我完全赞成像Design Ventura这样的竞赛，它有助于让标准课程变得生动起来，\"克利弗说。" },
+        { en: "\"And the judging day is terrific fun.", cn: "\"评审日非常有趣。" },
+        { en: "Some of these students are very imaginative.", cn: "有些学生非常有想象力。" },
+        { en: "One group presented their idea in the form of a puppet show and we see some marvelous demonstration models.", cn: "有一个小组以木偶戏的形式展示了他们的想法，我们看到了一些精彩的演示模型。" },
+        { en: "\"I'm always impressed by the levels of confidence and the support the students get from their teachers.\"", cn: "\"学生们表现出的自信程度以及他们从老师那里获得的支持总是让我印象深刻。\"" }
+      ]
+    },
+    {
+      type: "text",
+      sentences: [
+        { en: "M) Ritman Smith adds: \"Design technology has become a tricky subject to make a case for, and we've heard of departments closing in some schools.", cn: "M) 里特曼·史密斯补充说：\"设计技术已经成为一个难以论证的学科，我们听说一些学校的设计技术系正在关闭。" },
+        { en: "We find that if pupils take part in Design Ventura in Year Nine it can be the trigger which leads them to opt for it at General Certificate of Secondary Education, so we are helping to keep alive something which is crucial to industry and entrepreneurship.\"", cn: "我们发现，如果学生在九年级参加Design Ventura，这可能会成为他们在普通中等教育证书考试中选择该学科的触发器，因此我们正在帮助维持对工业和创业至关重要的东西的活力。\"" }
+      ]
+    },
+    { type: "heading", level: 3, text: "Section C — Passage One" },
+    {
+      type: "text",
+      sentences: [
+        { en: "New research suggests that pandas may be at risk of dying out because they are too comfortable.", cn: "新的研究表明，大熊猫可能因为过于舒适而面临灭绝的风险。" },
+        { en: "Experts say too much happiness can stop the bears from searching for new mates.", cn: "专家说，过多的安逸会阻止大熊猫寻找新的伴侣。" }
+      ]
+    },
+    {
+      type: "text",
+      sentences: [
+        { en: "Environmentalists have long believed that building roads or homes near the bears may threaten their survival by \"reducing or fragmenting their natural habitats\", The Times reported.", cn: "据《泰晤士报》报道，环保主义者长期以来一直认为，在大熊猫附近修建道路或房屋可能会\"减少或碎片化它们的自然栖息地\"，从而威胁它们的生存。" },
+        { en: "But the new research suggests that a \"modest degree of discomfort and fragmentation\" may actually help preserve panda populations.", cn: "但新的研究表明，\"适度程度的不适和碎片化\"实际上可能有助于保护大熊猫种群。" }
+      ]
+    },
+    {
+      type: "text",
+      sentences: [
+        { en: "The research was conducted by scientists from Michigan State University.", cn: "这项研究由密歇根州立大学的科学家进行。" },
+        { en: "It concluded that pandas fail to wander off in search of new mates if they find their habitat too comfortable, resulting in a lack of vital genetic diversity.", cn: "研究得出结论，如果大熊猫觉得栖息地过于舒适，它们就不会四处游荡寻找新的伴侣，从而导致缺乏重要的遗传多样性。" }
+      ]
+    },
+    {
+      type: "text",
+      sentences: [
+        { en: "For their study — outlined in a paper in the journal Conservation Biology — the team looked at genetic diversity and spread among a Chinese panda population.", cn: "在他们的研究中——在《保护生物学》期刊的一篇论文中概述——研究团队考察了中国一个大熊猫种群的遗传多样性和分布。" },
+        { en: "The ideal level of perfectly livable habitat was found to be only 80% of an area, with the remainder either too harsh or too affected by human activity.", cn: "研究发现，理想的完全宜居栖息地水平只占一个区域的80%，其余部分要么过于恶劣，要么受人类活动影响过大。" }
+      ]
+    },
+    {
+      type: "text",
+      sentences: [
+        { en: "The experts concluded that pandas should ideally \"be happy enough to thrive, but not so content that they don't want to move around and find new mates\".", cn: "专家们得出结论，理想情况下，大熊猫应该\"快乐到足以茁壮成长，但不能满足到不想四处走动寻找新的伴侣\"。" }
+      ]
+    },
+    {
+      type: "text",
+      sentences: [
+        { en: "Their conclusions about what The Guardian described as this \"sweet spot\" are in line with the so-called Goldilocks principle: that there can be just the right amount of something.", cn: "他们对《卫报》所称的这个\"最佳平衡点\"的结论，符合所谓的金发姑娘原则：即某事物可以存在恰到好处的量。" },
+        { en: "The concept has been applied to a wide range of disciplines, from developmental psychology to economics and engineering.", cn: "这个概念已被应用于从发展心理学到经济学和工程学的广泛学科。" }
+      ]
+    },
+    {
+      type: "text",
+      sentences: [
+        { en: "Claudio Sillero, a professor of conservation biology at Oxford University, told the newspaper that the new findings could have implications beyond panda conservation.", cn: "牛津大学保护生物学教授克劳迪奥·西莱罗告诉该报，新的发现可能对熊猫保护之外的领域也有启示。" }
+      ]
+    },
+    {
+      type: "text",
+      sentences: [
+        { en: "\"Most large animals that eat meat live in increasingly fragmented landscapes,\" said Sillero, who was not involved in the research.", cn: "\"大多数大型食肉动物生活在日益碎片化的景观中，\"未参与这项研究的西莱罗说。" },
+        { en: "\"It may well be that the messy nature of their relationship with human efforts induces more animals to scatter or travel further, and might result in greater genetic connectivity and enhanced population persistence.\"", cn: "\"很可能，它们与人类活动之间混乱的关系会促使更多动物分散或迁徙更远，从而可能导致更大的遗传连接性和更强的种群持久性。\"" }
+      ]
+    },
+    {
+      type: "text",
+      sentences: [
+        { en: "The most recent count of pandas found that there were more than 1,800 left in the wild, putting them on the list of vulnerable, but not endangered, species.", cn: "最近的大熊猫数量统计发现，野生大熊猫还剩下1800多只，这使它们被列入易危物种名单，而非濒危物种。" }
+      ]
+    },
+    { type: "heading", level: 3, text: "Section C — Passage Two" },
+    {
+      type: "text",
+      sentences: [
+        { en: "With those born with natural talents, it feels as if they excel without really trying.", cn: "对于天生有天赋的人来说，感觉他们似乎毫不费力就能出类拔萃。" },
+        { en: "But what about those of us who don't have a natural talent?", cn: "但我们这些没有天赋的人呢？" },
+        { en: "We've been told all our lives that if you work hard, you too can succeed.", cn: "我们一生都被教导：如果你努力工作，你也能成功。" },
+        { en: "But with the release of Angela Duckworth's Grit, we are given a new key to success.", cn: "但随着安吉拉·达克沃思的《坚毅》一书的出版，我们获得了一把新的成功钥匙。" }
+      ]
+    },
+    {
+      type: "text",
+      sentences: [
+        { en: "\"As much as talent counts, effort counts twice,\" says Duckworth in Grit.", cn: "\"天赋有多重要，努力就有双倍重要，\"达克沃思在《坚毅》中说。" },
+        { en: "She introduces a new concept that talent may be overrated, and if you want real success, what you need is grit the perfect combination of passion and persistence.", cn: "她提出了一个新的概念：天赋可能被高估了，如果你想要真正的成功，你需要的是坚毅——激情和毅力的完美结合。" },
+        { en: "Even if you have natural talent it's nothing without grit.", cn: "即使你有天赋，没有坚毅也毫无价值。" }
+      ]
+    },
+    {
+      type: "text",
+      sentences: [
+        { en: "Duckworth says grit is the difference between success and failure.", cn: "达克沃思说，坚毅是成功与失败的区别。" },
+        { en: "A person who has grit is more likely to succeed than a person who does not.", cn: "有坚毅品质的人比没有的人更有可能成功。" },
+        { en: "When we think about attaining success — whether it's landing that job or learning that new skill — our thoughts are immediately burdened by all the things we must first learn.", cn: "当我们考虑取得成功时——无论是获得那份工作还是学习那项新技能——我们的思绪立刻被我们必须首先学习的所有事情压得喘不过气来。" },
+        { en: "If you want that new job, you have to learn the job skills, then the interview skills, then the dress part — and you must be perfect at all of them.", cn: "如果你想要那份新工作，你必须学习工作技能，然后面试技巧，然后着装部分——你必须在所有这些方面都做到完美。" },
+        { en: "Grit is different because it tells us that perfection isn't the goal.", cn: "坚毅则不同，因为它告诉我们完美不是目标。" }
+      ]
+    },
+    {
+      type: "text",
+      sentences: [
+        { en: "Grit lifts the unreasonable expectations off our shoulders.", cn: "坚毅卸下了我们肩上不合理的期望。" },
+        { en: "Grit tells us that the door is open wider than we first thought possible.", cn: "坚毅告诉我们，大门比我们最初想象的要敞开得更宽。" },
+        { en: "Grit allows us to redefine our goals.", cn: "坚毅允许我们重新定义自己的目标。" },
+        { en: "Think about it: what's something you've always wanted to do, but gave up because you \"don't have the skills for it\"?", cn: "想想看：有什么事情是你一直想做，但因为\"没有相关技能\"而放弃的？" },
+        { en: "What's something you love but aren't good at?", cn: "有什么事情是你热爱但又不擅长的？" }
+      ]
+    },
+    {
+      type: "text",
+      sentences: [
+        { en: "The real workings of grit are to have sustainable passion and continue to try.", cn: "坚毅真正的运作方式是拥有可持续的激情并持续尝试。" },
+        { en: "Effort means more than your natural ability.", cn: "努力的意义超越了你的天赋。" },
+        { en: "Even if you haven't mastered a skill, grit tells you that you can still succeed if you can transform your passion into action.", cn: "即使你还没有掌握一项技能，坚毅告诉你，如果你能将激情转化为行动，你仍然可以成功。" },
+        { en: "In a way, Duckworth is giving new hope to people who have shut the doors on their dreams.", cn: "在某种程度上，达克沃思正在给那些对梦想关上大门的人们带来新的希望。" },
+        { en: "She is saying it is possible that you can accomplish anything.", cn: "她说，你可以完成任何事情是可能的。" },
+        { en: "If at first you fail, then try one more time with grit.", cn: "如果一开始你失败了，那就带着坚毅再试一次。" }
       ]
     }
   ]
