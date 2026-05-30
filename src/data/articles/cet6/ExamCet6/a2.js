@@ -86,13 +86,35 @@ export default {
         { en: "It's no small wonder most of us forget our passwords more often than our keys. Now a new peer-reviewed study by researchers at Aalto University in Finland is attempting to figure out why we forget our passwords in order to help put an end to this frustrating phenomenon. Their findings suggest that how likely you are to remember your password has less to do with the intricacy of the password itself and more to do with how often you anticipate using it. Which is to say: you are far more likely to remember a complicated password if you know you'll frequently be using it to log into an account than you are to remember a simple password for an account that you don't expect to log into very often. The researchers advise websites to include more of an incentive for users to log in more often in order to help them remember their secret codes.", cn: "难怪我们大多数人忘记密码比忘记钥匙更频繁。现在，芬兰阿尔托大学的研究人员进行了一项新的同行评审研究，试图弄清楚我们为什么会忘记密码，以帮助结束这种令人沮丧的现象。他们的发现表明，你记住密码的可能性与密码本身的复杂程度关系不大，而与你预期使用它的频率关系更大。也就是说：如果你知道自己会经常使用一个复杂密码登录某个账户，那么你记住它的可能性远远大于记住一个你不常登录的账户的简单密码。研究人员建议网站提供更多激励措施，鼓励用户更频繁地登录，以帮助他们记住自己的密码。" }
       ]
     },
-    { type: "heading", level: 3, text: "Passage Two" },
-    {
-      type: "text",
-      sentences: [
-        { en: "Four years ago, Jenny Weiner was in a fitness slump. She wanted to improve her physical and mental health. However, her workouts lacked intensity without a proper training programme to follow. When she went to the gym, her daily ritual predominantly involved easy exercise options like jogging; she avoided more formidable exercises like lifting weights. A personal trainer who might push her was out of the question. The extravagant cost was just unaffordable. She then discovered the fitness phone app Slimmeretics. To use the app, you first input your profile about your previous training experiences and preferences, as well as your desired goals. A virtual coach then uses that information to suggest a personalised training regime. After the workout, the app's artificial intelligence software system uses feedback from Ms. Weiner and its other 53 million users around the world to adjust future training sessions. Now Ms. Weiner finds the workouts exciting. This is because no two are ever the same. As a result, the app has helped her to lose more than 25 kilograms. The app's mathematical approach can arrange a more meticulous workout schedule. This has led to optimal results. However, some experts think that apps cannot replace human personal trainers. An app cannot understand human behavior. It will not comprehend that there are competing interests outside of health and fitness. Additionally, a human trainer can add compassion to the workout. He can also make exercise fun and sustainable. Trainers can monitor whether a person is doing exercises correctly. This can safeguard against injuries. An app cannot perceive such subtleties.", cn: "四年前，珍妮·韦纳陷入了健身低谷。她想改善自己的身心健康。然而，由于没有合适的训练计划可循，她的锻炼缺乏强度。当她去健身房时，她的日常活动主要包括轻松的运动选择，如慢跑；她避免了像举重这样更艰苦的锻炼。一个可以推动她的私人教练是不可能的。高昂的费用实在是负担不起。后来她发现了健身手机应用Slimmeretics。使用这款应用时，你首先要输入你的个人资料，包括你以前的训练经历和偏好，以及你期望的目标。然后，一个虚拟教练会利用这些信息推荐个性化的训练方案。锻炼结束后，该应用的人工智能软件系统会利用韦纳女士和全球其他5300万用户的反馈来调整未来的训练课程。现在韦纳女士觉得锻炼很激动人心。这是因为没有两次锻炼是完全相同的。结果，这款应用帮助她减掉了超过25公斤。该应用的数学方法可以安排更细致的锻炼计划。这带来了最佳效果。然而，一些专家认为应用无法取代人类的私人教练。应用无法理解人类行为。它不会理解在健康和健身之外还存在相互冲突的利益。此外，人类教练可以为锻炼增添同情心。他还可以让锻炼变得有趣且可持续。教练可以监控一个人是否正确地做练习。这可以防止受伤。应用无法感知这些微妙之处。" }
-      ]
-    },
+{ type: "heading", level: 3, text: "Passage Two" },
+{
+  type: "text",
+  sentences: [
+    { en: "Four years ago, Jenny Weiner was in a fitness slump.", cn: "四年前，珍妮·韦纳陷入了健身低谷。" },
+    { en: "She wanted to improve her physical and mental health.", cn: "她想改善自己的身心健康。" },
+    { en: "However, her workouts lacked intensity without a proper training programme to follow.", cn: "然而，由于没有合适的训练计划可循，她的锻炼缺乏强度。" },
+    { en: "When she went to the gym, her daily ritual predominantly involved easy exercise options like jogging; she avoided more formidable exercises like lifting weights.", cn: "当她去健身房时，她的日常活动主要包括轻松的运动选择，如慢跑；她避免了像举重这样更艰苦的锻炼。" },
+    { en: "A personal trainer who might push her was out of the question.", cn: "一个可以推动她的私人教练是不可能的。" },
+    { en: "The extravagant cost was just unaffordable.", cn: "高昂的费用实在是负担不起。" },
+    { en: "She then discovered the fitness phone app Slimmeretics.", cn: "后来她发现了健身手机应用Slimmeretics。" },
+    { en: "To use the app, you first input your profile about your previous training experiences and preferences, as well as your desired goals.", cn: "使用这款应用时，你首先要输入你的个人资料，包括你以前的训练经历和偏好，以及你期望的目标。" },
+    { en: "A virtual coach then uses that information to suggest a personalised training regime.", cn: "然后，一个虚拟教练会利用这些信息推荐个性化的训练方案。" },
+    { en: "After the workout, the app's artificial intelligence software system uses feedback from Ms. Weiner and its other 53 million users around the world to adjust future training sessions.", cn: "锻炼结束后，该应用的人工智能软件系统会利用韦纳女士和全球其他5300万用户的反馈来调整未来的训练课程。" },
+    { en: "Now Ms. Weiner finds the workouts exciting.", cn: "现在韦纳女士觉得锻炼很激动人心。" },
+    { en: "This is because no two are ever the same.", cn: "这是因为没有两次锻炼是完全相同的。" },
+    { en: "As a result, the app has helped her to lose more than 25 kilograms.", cn: "结果，这款应用帮助她减掉了超过25公斤。" },
+    { en: "The app's mathematical approach can arrange a more meticulous workout schedule.", cn: "该应用的数学方法可以安排更细致的锻炼计划。" },
+    { en: "This has led to optimal results.", cn: "这带来了最佳效果。" },
+    { en: "However, some experts think that apps cannot replace human personal trainers.", cn: "然而，一些专家认为应用无法取代人类的私人教练。" },
+    { en: "An app cannot understand human behavior.", cn: "应用无法理解人类行为。" },
+    { en: "It will not comprehend that there are competing interests outside of health and fitness.", cn: "它不会理解在健康和健身之外还存在相互冲突的利益。" },
+    { en: "Additionally, a human trainer can add compassion to the workout.", cn: "此外，人类教练可以为锻炼增添同情心。" },
+    { en: "He can also make exercise fun and sustainable.", cn: "他还可以让锻炼变得有趣且可持续。" },
+    { en: "Trainers can monitor whether a person is doing exercises correctly.", cn: "教练可以监控一个人是否正确地做练习。" },
+    { en: "This can safeguard against injuries.", cn: "这可以防止受伤。" },
+    { en: "An app cannot perceive such subtleties.", cn: "应用无法感知这些微妙之处。" }
+  ]
+},
     { type: "heading", level: 3, text: "Section C" },
     { type: "heading", level: 3, text: "Recording One" },
     {
