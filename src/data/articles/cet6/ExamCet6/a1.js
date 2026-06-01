@@ -11,7 +11,7 @@ export default {
     {
       type: "text",
       sentences: [
-        { en: "W: [1] Today's special guest is Lord Blackwell, one of our country's most experienced and distinguished career diplomats. Welcome.", cn: "女：[1] 今天的特邀嘉宾是布莱克威尔勋爵，我国最有经验、最杰出的职业外交官之一。欢迎。" },
+        { en: "W:  Today's special guest is Lord Blackwell, one of our country's most experienced and distinguished career diplomats. Welcome.", cn: "女： 今天的特邀嘉宾是布莱克威尔勋爵，我国最有经验、最杰出的职业外交官之一。欢迎。" },
         { en: "M: It's my pleasure.", cn: "男：这是我的荣幸。" }
       ]
     },
@@ -19,7 +19,7 @@ export default {
       type: "text",
       sentences: [
         { en: "W: Our audience will be most interested in learning about a career in the foreign service. However, before we talk about that, I'd like to ask you about the current developments hitting the news today regarding the Republic of Winopia. What can you tell us?", cn: "女：我们的观众对从事外交服务的职业非常感兴趣。不过，在谈论那之前，我想问您关于今天新闻中报道的威诺皮亚共和国的当前事态。您能告诉我们什么？" },
-        { en: "M: I'm afraid I don't know much beyond what we've all seen on the news. [2] It looks like the government of Winopia seems to be undergoing some sort of crisis of legitimacy and an interim administration has been transitionally established until a head of state is agreed on. But my career work has mostly focused around the Continental spheres of Europe and the Americas, and thus I've never been involved with Winopian relations. It's for this reason that I don't know anything on this matter beyond what we can all read in the newspapers.", cn: "男：恐怕除了我们在新闻上看到的之外，我知道的也不多。[2] 看起来威诺皮亚政府似乎正在经历某种合法性危机，在就国家元首达成一致之前，一个临时行政机构已经过渡性地建立起来。但我的职业工作主要集中在欧洲和美洲的大陆范围，因此我从未参与过与威诺皮亚的关系。正是因为这个原因，除了我们都能在报纸上读到的内容之外，我对这件事一无所知。" }
+        { en: "M: I'm afraid I don't know much beyond what we've all seen on the news.  It looks like the government of Winopia seems to be undergoing some sort of crisis of legitimacy and an interim administration has been transitionally established until a head of state is agreed on. But my career work has mostly focused around the Continental spheres of Europe and the Americas, and thus I've never been involved with Winopian relations. It's for this reason that I don't know anything on this matter beyond what we can all read in the newspapers.", cn: "男：恐怕除了我们在新闻上看到的之外，我知道的也不多。 看起来威诺皮亚政府似乎正在经历某种合法性危机，在就国家元首达成一致之前，一个临时行政机构已经过渡性地建立起来。但我的职业工作主要集中在欧洲和美洲的大陆范围，因此我从未参与过与威诺皮亚的关系。正是因为这个原因，除了我们都能在报纸上读到的内容之外，我对这件事一无所知。" }
       ]
     },
     {
@@ -33,21 +33,21 @@ export default {
       type: "text",
       sentences: [
         { en: "W: So how does one get a career in foreign relations?", cn: "女：那么，如何才能从事外交关系方面的职业呢？" },
-        { en: "M: [3] There are many different paths one can take. All diplomats have their own story. But in my case, I got a degree in electrical engineering followed by six years' service in the Air Force. Then I went to a law school and upon obtaining a degree in international law, I joined the diplomatic core where I've been for 22 years.", cn: "男：[3] 有很多不同的路径可走。所有外交官都有自己的故事。但就我而言，我获得了电气工程学位，随后在空军服役了六年。然后我去了法学院，获得国际法学位后，我加入了外交核心部门，至今已工作了22年。" }
+        { en: "M:  There are many different paths one can take. All diplomats have their own story. But in my case, I got a degree in electrical engineering followed by six years' service in the Air Force. Then I went to a law school and upon obtaining a degree in international law, I joined the diplomatic core where I've been for 22 years.", cn: "男： 有很多不同的路径可走。所有外交官都有自己的故事。但就我而言，我获得了电气工程学位，随后在空军服役了六年。然后我去了法学院，获得国际法学位后，我加入了外交核心部门，至今已工作了22年。" }
       ]
     },
     {
       type: "text",
       sentences: [
-        { en: "W: [4] What would you say are the key skills one needs for the job?", cn: "女：[4] 您认为这份工作需要的关键技能是什么？" },
-        { en: "M: [4] There are so many. Being a hard worker and good student is important—you never stop learning. In addition, a diplomat needs to be very articulate in their discourse and rhetoric. Whether it is diffusing tension or enacting policy, people and communication skills are vital.", cn: "男：[4] 有很多。勤奋努力、善于学习很重要——你永远不会停止学习。此外，外交官需要非常善于表达自己的话语和修辞。无论是缓和紧张局势还是制定政策，人际交往和沟通技巧都至关重要。" }
+        { en: "W:  What would you say are the key skills one needs for the job?", cn: "女： 您认为这份工作需要的关键技能是什么？" },
+        { en: "M:  There are so many. Being a hard worker and good student is important—you never stop learning. In addition, a diplomat needs to be very articulate in their discourse and rhetoric. Whether it is diffusing tension or enacting policy, people and communication skills are vital.", cn: "男： 有很多。勤奋努力、善于学习很重要——你永远不会停止学习。此外，外交官需要非常善于表达自己的话语和修辞。无论是缓和紧张局势还是制定政策，人际交往和沟通技巧都至关重要。" }
       ]
     },
     { type: "heading", level: 3, text: "Conversation Two" },
     {
       type: "text",
       sentences: [
-        { en: "M: [5] It's getting late and we're both displaying signs of weariness. I think we should call it a day and meet again tomorrow morning.", cn: "男：[5] 时间不早了，我们俩都显出了疲倦的迹象。我想我们应该今天就到这里，明天早上再碰面。" },
+        { en: "M:  It's getting late and we're both displaying signs of weariness. I think we should call it a day and meet again tomorrow morning.", cn: "男： 时间不早了，我们俩都显出了疲倦的迹象。我想我们应该今天就到这里，明天早上再碰面。" },
         { en: "W: Oh, come on Jeff. We are so close. Don't you think we're almost done? Let's do two more hours, please.", cn: "女：哦，得了吧，杰夫。我们就快完成了。你不觉得我们快做完了吗？我们再干两个小时吧，求你了。" },
         { en: "M: One hour, then I'm going home.", cn: "男：一个小时，然后我就回家。" }
       ]
@@ -62,8 +62,8 @@ export default {
     {
       type: "text",
       sentences: [
-        { en: "W: [6] Yeah, two months working on nothing but the same contract is a little tough. [7] Nevertheless, I think that with a bit of luck we'll be done by next week.", cn: "女：[6] 是啊，两个月只忙同一份合同确实有点难熬。[7] 不过，我认为运气好的话，我们下周就能完成。" },
-        { en: "M: [7] Ha! You must be delusional.", cn: "男：[7] 哈！你一定是出现幻觉了。" },
+        { en: "W:  Yeah, two months working on nothing but the same contract is a little tough.  Nevertheless, I think that with a bit of luck we'll be done by next week.", cn: "女： 是啊，两个月只忙同一份合同确实有点难熬。 不过，我认为运气好的话，我们下周就能完成。" },
+        { en: "M:  Ha! You must be delusional.", cn: "男： 哈！你一定是出现幻觉了。" },
         { en: "W: You don't think so?", cn: "女：你不这么认为吗？" },
         { en: "M: No chance. Sections four, five, eight and nine still have to be aligned in the new framework. Then we need to proofread the whole thing and make sure all selling points are watertight.", cn: "男：没可能。第四、五、八、九节还需要在新框架中对齐。然后我们需要校对整个文件，确保所有卖点都无懈可击。" }
       ]
@@ -80,7 +80,7 @@ export default {
     {
       type: "text",
       sentences: [
-        { en: "W: Oh Jeff, you're too preoccupied and cynical. It won't be anywhere as bad as that. You'll see. [8] The entire managerial hierarchy wants to see this project implemented as soon as possible and the board too is virtually unanimous in its support. Go on then, let's stop there and meet up again, same time tomorrow.", cn: "女：哦，杰夫，你太多虑、太愤世嫉俗了。情况绝不会那么糟糕。你会看到的。[8] 整个管理层都希望尽快实施这个项目，董事会也几乎一致支持。那就这样吧，我们今天就到这里，明天同一时间再碰面。" }
+        { en: "W: Oh Jeff, you're too preoccupied and cynical. It won't be anywhere as bad as that. You'll see.  The entire managerial hierarchy wants to see this project implemented as soon as possible and the board too is virtually unanimous in its support. Go on then, let's stop there and meet up again, same time tomorrow.", cn: "女：哦，杰夫，你太多虑、太愤世嫉俗了。情况绝不会那么糟糕。你会看到的。 整个管理层都希望尽快实施这个项目，董事会也几乎一致支持。那就这样吧，我们今天就到这里，明天同一时间再碰面。" }
       ]
     },
     { type: "heading", level: 3, text: "Section B" },
@@ -88,26 +88,26 @@ export default {
     {
       type: "text",
       sentences: [
-        { en: "One thing I've learned in a quarter century of management is that there are ample gray areas in human behavior and that there may not always be clear right-or-wrong solutions to employee disputes. [9] When two people have different versions of the same event, it can be hard to know whom to believe. One such circumstance always comes back to me. It happened years ago and it's a measure of the forgettable nature of the conflict that I no longer even recall what the dispute was about, but [10] I definitely recall the resolution. Two talented young executives, one of whom I was managing, had vastly different accounts of the same event and it seemed likely we'd never get to the truth. We reached the deadlock. And the manager of the other individual said, \"Here's something I learned from an excellent manager I once worked for. He used to say, 'when in doubt, assume positive intent.'\" And just like that, we had a path forward.", cn: "在二十五年的管理生涯中，我学到的一件事是，人类行为中存在大量的灰色地带，对于员工之间的争端，可能并不总有明确的对错解决方案。[9] 当两个人对同一事件有不同说法时，很难知道该相信谁。有一个这样的情形总是浮现在我脑海中。这件事发生在多年前，而且从这场冲突容易被遗忘的特性来看，我甚至已经不记得争端是关于什么的了，但[10] 我绝对记得解决方式。两位才华横溢的年轻高管——其中一位是我管理的——对同一事件的说法大相径庭，我们似乎永远也无法弄清真相。我们陷入了僵局。另一位的经理说：“这是我从一位曾经共事过的优秀经理那里学到的。他常说，‘当有疑问时，假定其意图是积极的。’”就这样，我们找到了前进的道路。" }
+        { en: "One thing I've learned in a quarter century of management is that there are ample gray areas in human behavior and that there may not always be clear right-or-wrong solutions to employee disputes.  When two people have different versions of the same event, it can be hard to know whom to believe. One such circumstance always comes back to me. It happened years ago and it's a measure of the forgettable nature of the conflict that I no longer even recall what the dispute was about, but  I definitely recall the resolution. Two talented young executives, one of whom I was managing, had vastly different accounts of the same event and it seemed likely we'd never get to the truth. We reached the deadlock. And the manager of the other individual said, \"Here's something I learned from an excellent manager I once worked for. He used to say, 'when in doubt, assume positive intent.'\" And just like that, we had a path forward.", cn: "在二十五年的管理生涯中，我学到的一件事是，人类行为中存在大量的灰色地带，对于员工之间的争端，可能并不总有明确的对错解决方案。 当两个人对同一事件有不同说法时，很难知道该相信谁。有一个这样的情形总是浮现在我脑海中。这件事发生在多年前，而且从这场冲突容易被遗忘的特性来看，我甚至已经不记得争端是关于什么的了，但 我绝对记得解决方式。两位才华横溢的年轻高管——其中一位是我管理的——对同一事件的说法大相径庭，我们似乎永远也无法弄清真相。我们陷入了僵局。另一位的经理说：“这是我从一位曾经共事过的优秀经理那里学到的。他常说，‘当有疑问时，假定其意图是积极的。’”就这样，我们找到了前进的道路。" }
       ]
     },
     {
       type: "text",
       sentences: [
-        { en: "My counterpart and I agreed we might never ascertain the actual facts of the matter. Quite likely there were elements of truth in both employees' stories. We agreed to monitor their actions and relationship going forward, but to intervene no further. [11] We assumed the best about both of them and moved on. The result was that we were able to put the conflict behind us. In fact, their problems didn't recur. Over the years this general approach has proved useful. Whenever the truth is obscure, assuming positive intent and agreeing to move on can be a constructive decision.", cn: "我和我的同行一致认为，我们可能永远无法确定事情的实际真相。很可能两位员工的故事中都有真实成分。我们同意继续监督他们未来的行动和关系，但不再进一步干预。[11] 我们对两人都做了最好的假设，然后继续前进。结果是我们能够把冲突抛在脑后。事实上，他们的问题没有再出现过。多年来，这种通用方法已被证明是有用的。每当真相不明时，假定积极意图并同意继续前进，可能是一个建设性的决定。" }
+        { en: "My counterpart and I agreed we might never ascertain the actual facts of the matter. Quite likely there were elements of truth in both employees' stories. We agreed to monitor their actions and relationship going forward, but to intervene no further.  We assumed the best about both of them and moved on. The result was that we were able to put the conflict behind us. In fact, their problems didn't recur. Over the years this general approach has proved useful. Whenever the truth is obscure, assuming positive intent and agreeing to move on can be a constructive decision.", cn: "我和我的同行一致认为，我们可能永远无法确定事情的实际真相。很可能两位员工的故事中都有真实成分。我们同意继续监督他们未来的行动和关系，但不再进一步干预。 我们对两人都做了最好的假设，然后继续前进。结果是我们能够把冲突抛在脑后。事实上，他们的问题没有再出现过。多年来，这种通用方法已被证明是有用的。每当真相不明时，假定积极意图并同意继续前进，可能是一个建设性的决定。" }
       ]
     },
     { type: "heading", level: 3, text: "Passage Two" },
     {
       type: "text",
       sentences: [
-        { en: "For some Americans, going out to dinner is a treat, planned and budgeted for. For others, it's just a daily occurrence. [12] And that second group of people is becoming the majority, as the number of Americans who enjoy cooking is declining. In the early 2000s, researcher Eddie Yoon conducted a survey to ascertain Americans' attitudes to cooking. The survey found that 15% of Americans loved to cook, 50% said they hated to cook and 35% reported mixed feelings. When Yoon conducted the same survey 15 years later, only 10% of respondents reported a love of cooking, 45% said they hated it, and 45% had mixed feelings. [13] Yoon asserts cooking is akin to sewing. As recently as the early 20th century, many Americans sewed their own clothing. Today, the vast majority of Americans buy clothing; only a tiny minority still sew and they do it mainly as a hobby. Yoon believes the number of home cooks will diminish in a similar fashion.", cn: "对一些美国人来说，外出就餐是一种享受，需要计划和预算。对另一些人来说，这只是日常事务。[12] 第二类人正成为多数，因为享受烹饪的美国人数量正在下降。在21世纪初，研究员埃迪·尹进行了一项调查，以了解美国人对烹饪的态度。调查发现，15%的美国人喜欢烹饪，50%说他们讨厌烹饪，35%表示感受复杂。15年后，当尹再次进行同样的调查时，只有10%的受访者表示喜欢烹饪，45%说他们讨厌烹饪，45%感受复杂。[13] 尹断言，烹饪类似于缝纫。就在20世纪初，许多美国人还自己缝制衣服。今天，绝大多数美国人购买衣服；只有极少数人还在缝纫，而且主要是作为爱好。尹认为，在家做饭的人数将以类似的方式减少。" }
+        { en: "For some Americans, going out to dinner is a treat, planned and budgeted for. For others, it's just a daily occurrence.  And that second group of people is becoming the majority, as the number of Americans who enjoy cooking is declining. In the early 2000s, researcher Eddie Yoon conducted a survey to ascertain Americans' attitudes to cooking. The survey found that 15% of Americans loved to cook, 50% said they hated to cook and 35% reported mixed feelings. When Yoon conducted the same survey 15 years later, only 10% of respondents reported a love of cooking, 45% said they hated it, and 45% had mixed feelings.  Yoon asserts cooking is akin to sewing. As recently as the early 20th century, many Americans sewed their own clothing. Today, the vast majority of Americans buy clothing; only a tiny minority still sew and they do it mainly as a hobby. Yoon believes the number of home cooks will diminish in a similar fashion.", cn: "对一些美国人来说，外出就餐是一种享受，需要计划和预算。对另一些人来说，这只是日常事务。 第二类人正成为多数，因为享受烹饪的美国人数量正在下降。在21世纪初，研究员埃迪·尹进行了一项调查，以了解美国人对烹饪的态度。调查发现，15%的美国人喜欢烹饪，50%说他们讨厌烹饪，35%表示感受复杂。15年后，当尹再次进行同样的调查时，只有10%的受访者表示喜欢烹饪，45%说他们讨厌烹饪，45%感受复杂。 尹断言，烹饪类似于缝纫。就在20世纪初，许多美国人还自己缝制衣服。今天，绝大多数美国人购买衣服；只有极少数人还在缝纫，而且主要是作为爱好。尹认为，在家做饭的人数将以类似的方式减少。" }
       ]
     },
     {
       type: "text",
       sentences: [
-        { en: "Currently, the average American household spends over $3,000 per year on dining out. However, what people save in convenience, they lose in cash. Take buying lunch on work days, for example. People spend on average $10 per meal when they buy lunch. Making your own lunch, meanwhile, will cost less. [14] One survey found people only spend on average $6.30 when they bring lunch prepared at home. [15] Americans' growing aversion to spending time in the kitchen signifies a host of challenges for the grocery industry. It's likely to detrimentally impact family finances as well.", cn: "目前，美国家庭平均每年在外就餐上的花费超过3000美元。然而，人们在便利上省下的，却在现金上损失了。以工作日购买午餐为例。人们买午餐时每餐平均花费10美元。与此同时，自己做午餐花费更少。[14] 一项调查发现，人们从家里带准备的午餐时平均只花费6.30美元。[15] 美国人越来越不愿意在厨房花时间，这对食品杂货业意味着诸多挑战。这也可能对家庭财务产生不利影响。" }
+        { en: "Currently, the average American household spends over $3,000 per year on dining out. However, what people save in convenience, they lose in cash. Take buying lunch on work days, for example. People spend on average $10 per meal when they buy lunch. Making your own lunch, meanwhile, will cost less.  One survey found people only spend on average $6.30 when they bring lunch prepared at home.  Americans' growing aversion to spending time in the kitchen signifies a host of challenges for the grocery industry. It's likely to detrimentally impact family finances as well.", cn: "目前，美国家庭平均每年在外就餐上的花费超过3000美元。然而，人们在便利上省下的，却在现金上损失了。以工作日购买午餐为例。人们买午餐时每餐平均花费10美元。与此同时，自己做午餐花费更少。 一项调查发现，人们从家里带准备的午餐时平均只花费6.30美元。 美国人越来越不愿意在厨房花时间，这对食品杂货业意味着诸多挑战。这也可能对家庭财务产生不利影响。" }
       ]
     },
     { type: "heading", level: 3, text: "Section C" },
@@ -115,7 +115,7 @@ export default {
     {
       type: "text",
       sentences: [
-        { en: "Every year, of the more than 2.5 billion bags checked onto flights worldwide, 26 million go missing. And of that 26 million, 1 million never make it back to their original owner. Bad weather and flight delays, miscoded destination tags, and some people simply forgetting to pick up one of their bags are a few of the reasons. [16] But the number one reason a bag ends up lost is that it has no ID tag and airlines don't know to whom it belongs.", cn: "每年，在全球超过25亿件托运的行李中，有2600万件丢失。在这2600万件中，有100万件再也未能回到原主人手中。恶劣天气和航班延误、目的地标签编码错误，以及有些人忘记取走自己的行李，都是其中一些原因。[16] 但行李最终丢失的首要原因是它没有身份标签，航空公司不知道它属于谁。" }
+        { en: "Every year, of the more than 2.5 billion bags checked onto flights worldwide, 26 million go missing. And of that 26 million, 1 million never make it back to their original owner. Bad weather and flight delays, miscoded destination tags, and some people simply forgetting to pick up one of their bags are a few of the reasons.  But the number one reason a bag ends up lost is that it has no ID tag and airlines don't know to whom it belongs.", cn: "每年，在全球超过25亿件托运的行李中，有2600万件丢失。在这2600万件中，有100万件再也未能回到原主人手中。恶劣天气和航班延误、目的地标签编码错误，以及有些人忘记取走自己的行李，都是其中一些原因。 但行李最终丢失的首要原因是它没有身份标签，航空公司不知道它属于谁。" }
       ]
     },
     {
@@ -127,20 +127,20 @@ export default {
     {
       type: "text",
       sentences: [
-        { en: "[17] Even so, all that technology may not save your baggage tag from being torn off on the conveyor belt, making you the owner of a bag with no name. Once a bag goes missing and the passenger files a claim, the bag is declared mishandled by the carrier. Mishandled refers to bags that have been delayed, lost, stolen or damaged. Most delayed bags are only one flight behind their owners and can be delivered within 24 hours. The other bags are examined by airline employees for clues to their ownership and destination. If the mystery is solved, those bags are returned to their owners within four or five days.", cn: "[17] 即便如此，所有这些技术也可能无法避免您的行李标签在传送带上被撕掉，使您成为无名行李的主人。一旦行李丢失并且乘客提出索赔，该行李就被承运人宣布为“处理不当”。处理不当指的是行李延误、丢失、被盗或损坏。大多数延误的行李仅比其主人晚到一个航班，并可在24小时内送达。其他行李则由航空公司员工检查，寻找其所有权和目的地的线索。如果谜团解开，这些行李会在四五天内归还给主人。" }
+        { en: " Even so, all that technology may not save your baggage tag from being torn off on the conveyor belt, making you the owner of a bag with no name. Once a bag goes missing and the passenger files a claim, the bag is declared mishandled by the carrier. Mishandled refers to bags that have been delayed, lost, stolen or damaged. Most delayed bags are only one flight behind their owners and can be delivered within 24 hours. The other bags are examined by airline employees for clues to their ownership and destination. If the mystery is solved, those bags are returned to their owners within four or five days.", cn: " 即便如此，所有这些技术也可能无法避免您的行李标签在传送带上被撕掉，使您成为无名行李的主人。一旦行李丢失并且乘客提出索赔，该行李就被承运人宣布为“处理不当”。处理不当指的是行李延误、丢失、被盗或损坏。大多数延误的行李仅比其主人晚到一个航班，并可在24小时内送达。其他行李则由航空公司员工检查，寻找其所有权和目的地的线索。如果谜团解开，这些行李会在四五天内归还给主人。" }
       ]
     },
     {
       type: "text",
       sentences: [
-        { en: "Bags with no destination code or identification tag are shipped to a central warehouse and undergo a comprehensive baggage tracing process over the next 90 days. Airlines inventory their mishandled baggage, and many use a database to match the contents with owners' descriptions. It takes about three months to go from missing inaction to irretrievably lost. Once that happens, the bags are donated to charity, sold at auction, or purchased by a company which sells them to the public. [18] So never pack anything of real value in your checked baggage and make sure your name is on the bag along with your phone number so an agent can contact you.", cn: "没有目的地代码或身份标签的行李会被运送到中央仓库，并在接下来的90天内接受全面的行李追踪流程。航空公司会盘点他们处理不当的行李，许多航空公司使用数据库将行李内容与主人的描述进行匹配。从报失到无法寻回大约需要三个月时间。一旦发生这种情况，行李会被捐给慈善机构、拍卖，或被一家公司购买，然后该公司将其出售给公众。[18] 所以，切勿将任何真正有价值的物品放入托运行李中，并确保您的名字和电话号码都在行李上，以便工作人员可以联系到您。" }
+        { en: "Bags with no destination code or identification tag are shipped to a central warehouse and undergo a comprehensive baggage tracing process over the next 90 days. Airlines inventory their mishandled baggage, and many use a database to match the contents with owners' descriptions. It takes about three months to go from missing inaction to irretrievably lost. Once that happens, the bags are donated to charity, sold at auction, or purchased by a company which sells them to the public.  So never pack anything of real value in your checked baggage and make sure your name is on the bag along with your phone number so an agent can contact you.", cn: "没有目的地代码或身份标签的行李会被运送到中央仓库，并在接下来的90天内接受全面的行李追踪流程。航空公司会盘点他们处理不当的行李，许多航空公司使用数据库将行李内容与主人的描述进行匹配。从报失到无法寻回大约需要三个月时间。一旦发生这种情况，行李会被捐给慈善机构、拍卖，或被一家公司购买，然后该公司将其出售给公众。 所以，切勿将任何真正有价值的物品放入托运行李中，并确保您的名字和电话号码都在行李上，以便工作人员可以联系到您。" }
       ]
     },
     { type: "heading", level: 3, text: "Recording Two" },
     {
       type: "text",
       sentences: [
-        { en: "You've probably been with someone who ignored you while interacting with his or her smartphone, and you've probably engaged in this behavior yourself. In a recent survey, nine out of ten respondents said they'd used their smartphone during their most recent social activity. [19] There's also evidence that this behavior is socially harmful. It can leave people less satisfied with their face-to-face interactions, and it can generate feelings of resentment and jealousy. Now, the *Journal of Applied Social Psychology* has published a new study exploring the reasons for these effects.", cn: "您可能遇到过这样的人：在与您互动的同时还在玩智能手机而忽视您；您自己也可能有过这种行为。在最近的一项调查中，十分之九的受访者表示，他们在最近一次社交活动中使用了智能手机。[19] 还有证据表明，这种行为对社会有害。它会让人们对面对面的互动不那么满意，并可能产生怨恨和嫉妒的情绪。如今，《应用社会心理学杂志》发表了一项新研究，探讨了这些影响背后的原因。" }
+        { en: "You've probably been with someone who ignored you while interacting with his or her smartphone, and you've probably engaged in this behavior yourself. In a recent survey, nine out of ten respondents said they'd used their smartphone during their most recent social activity.  There's also evidence that this behavior is socially harmful. It can leave people less satisfied with their face-to-face interactions, and it can generate feelings of resentment and jealousy. Now, the *Journal of Applied Social Psychology* has published a new study exploring the reasons for these effects.", cn: "您可能遇到过这样的人：在与您互动的同时还在玩智能手机而忽视您；您自己也可能有过这种行为。在最近的一项调查中，十分之九的受访者表示，他们在最近一次社交活动中使用了智能手机。 还有证据表明，这种行为对社会有害。它会让人们对面对面的互动不那么满意，并可能产生怨恨和嫉妒的情绪。如今，《应用社会心理学杂志》发表了一项新研究，探讨了这些影响背后的原因。" }
       ]
     },
     {
@@ -158,32 +158,32 @@ export default {
     {
       type: "text",
       sentences: [
-        { en: "If you've experienced the similar situation, you probably won't be surprised by the results of the experiments. [20] The participants had a negative view of phone use during social interactions. The more it was present, the worse they considered both the quality of the interaction and the quality of the relationship.", cn: "如果您经历过类似的情况，您可能不会对实验结果感到惊讶。[20] 参与者对社交互动中使用手机持负面看法。手机出现得越多，他们对互动质量和关系质量的评价就越差。" }
+        { en: "If you've experienced the similar situation, you probably won't be surprised by the results of the experiments.  The participants had a negative view of phone use during social interactions. The more it was present, the worse they considered both the quality of the interaction and the quality of the relationship.", cn: "如果您经历过类似的情况，您可能不会对实验结果感到惊讶。 参与者对社交互动中使用手机持负面看法。手机出现得越多，他们对互动质量和关系质量的评价就越差。" }
       ]
     },
     {
       type: "text",
       sentences: [
-        { en: "The researchers believed that focusing on one's phone instead of the person one is with has this effect because it's seen as a form of social exclusion. They assert that the behavior is analogous to when people have no choice but to eat alone in the school cafeteria. The twist is that this exclusion occurs while sharing a physical encounter and having a conversation. Researchers found that the behavior had adverse effects on participants' sense of belonging, need for meaning and self-esteem. These negative effects are similar to those caused by traditional forms of social exclusion. The new findings are important because they elaborate our understanding of a subtle but common aspect of our daily experience. [21] This common behavior can create vicious cycles of detachment even as we try to connect with others.", cn: "研究人员认为，专注于手机而非与你在一起的人会产生这种影响，因为这被视为一种社会排斥。他们断言，这种行为类似于人们别无选择，只能在学校食堂独自吃饭的情况。不同之处在于，这种排斥发生在共享物理空间和进行对话的同时。研究人员发现，这种行为对参与者的归属感、意义需求和自尊产生了不利影响。这些负面影响类似于传统形式的社会排斥所造成的影响。这些新发现很重要，因为它们详细阐述了我们对日常体验中一个微妙但常见方面的理解。[21] 这种常见行为即使在我们试图与他人建立联系时，也可能产生疏离的恶性循环。" }
+        { en: "The researchers believed that focusing on one's phone instead of the person one is with has this effect because it's seen as a form of social exclusion. They assert that the behavior is analogous to when people have no choice but to eat alone in the school cafeteria. The twist is that this exclusion occurs while sharing a physical encounter and having a conversation. Researchers found that the behavior had adverse effects on participants' sense of belonging, need for meaning and self-esteem. These negative effects are similar to those caused by traditional forms of social exclusion. The new findings are important because they elaborate our understanding of a subtle but common aspect of our daily experience.  This common behavior can create vicious cycles of detachment even as we try to connect with others.", cn: "研究人员认为，专注于手机而非与你在一起的人会产生这种影响，因为这被视为一种社会排斥。他们断言，这种行为类似于人们别无选择，只能在学校食堂独自吃饭的情况。不同之处在于，这种排斥发生在共享物理空间和进行对话的同时。研究人员发现，这种行为对参与者的归属感、意义需求和自尊产生了不利影响。这些负面影响类似于传统形式的社会排斥所造成的影响。这些新发现很重要，因为它们详细阐述了我们对日常体验中一个微妙但常见方面的理解。 这种常见行为即使在我们试图与他人建立联系时，也可能产生疏离的恶性循环。" }
       ]
     },
     { type: "heading", level: 3, text: "Recording Three" },
     {
       type: "text",
       sentences: [
-        { en: "More and more people travel for a variety of reasons. Many are tourists, but many venture for some personal or professional business. [22] Whatever the reason for traveling, a common complaint of travelers is the impersonal accommodations they find. After spending five consecutive nights in five similar hotels, the business traveler may find it difficult to remember what happened from day to day or even what towns were visited. And the tourists may get the mistaken impression that all cities are pretty much the same, at least as far as decoration, food and service are concerned.", cn: "越来越多的人出于各种原因旅行。许多人是游客，但也有许多人是为了个人或职业事务而冒险出行。[22] 无论旅行的原因是什么，旅行者常见的一个抱怨是他们找到的住宿缺乏人情味。在五家类似的酒店连续住了五晚之后，商务旅行者可能会发现很难记住每天发生了什么，甚至很难记住去过哪些城镇。而游客可能会产生一种错误的印象，即所有城市都大同小异，至少就装饰、食物和服务而言是如此。" }
+        { en: "More and more people travel for a variety of reasons. Many are tourists, but many venture for some personal or professional business.  Whatever the reason for traveling, a common complaint of travelers is the impersonal accommodations they find. After spending five consecutive nights in five similar hotels, the business traveler may find it difficult to remember what happened from day to day or even what towns were visited. And the tourists may get the mistaken impression that all cities are pretty much the same, at least as far as decoration, food and service are concerned.", cn: "越来越多的人出于各种原因旅行。许多人是游客，但也有许多人是为了个人或职业事务而冒险出行。 无论旅行的原因是什么，旅行者常见的一个抱怨是他们找到的住宿缺乏人情味。在五家类似的酒店连续住了五晚之后，商务旅行者可能会发现很难记住每天发生了什么，甚至很难记住去过哪些城镇。而游客可能会产生一种错误的印象，即所有城市都大同小异，至少就装饰、食物和服务而言是如此。" }
       ]
     },
     {
       type: "text",
       sentences: [
-        { en: "To combat this sense of impersonal sameness, travelers are taking advantage of in-home hospitality or bed-and-breakfast arrangements. B&Bs, I mean, bed-and-breakfast arrangements, are private homes which offer lodging and breakfast in a very personalized friendly setting. [23] For decades, B&Bs have been the classic way to visit Europe, especially the British Isles. And in fact, they are not really a new idea in America. The tradition dates back to colonial times when inns were few and far between, and the weary traveler had to depend on the kindness of strangers for a meal and a bed. But the revival of B&Bs as desirable accommodations is a fairly recent phenomenon.", cn: "为了对抗这种缺乏人情味的千篇一律感，旅行者们正在利用家庭式招待或民宿安排。B&B，我是说民宿安排，是指提供住宿和早餐的私人住宅，环境非常个性化且友好。[23] 几十年来，民宿一直是游览欧洲的经典方式，尤其是不列颠群岛。事实上，它们在美国也不是什么新概念。这一传统可以追溯到殖民时代，当时旅馆稀少且相隔甚远，疲惫的旅行者不得不依靠陌生人的善意来获得一顿饭和一张床。但民宿作为一种受欢迎的住宿方式的复兴是相当近期的现象。" }
+        { en: "To combat this sense of impersonal sameness, travelers are taking advantage of in-home hospitality or bed-and-breakfast arrangements. B&Bs, I mean, bed-and-breakfast arrangements, are private homes which offer lodging and breakfast in a very personalized friendly setting.  For decades, B&Bs have been the classic way to visit Europe, especially the British Isles. And in fact, they are not really a new idea in America. The tradition dates back to colonial times when inns were few and far between, and the weary traveler had to depend on the kindness of strangers for a meal and a bed. But the revival of B&Bs as desirable accommodations is a fairly recent phenomenon.", cn: "为了对抗这种缺乏人情味的千篇一律感，旅行者们正在利用家庭式招待或民宿安排。B&B，我是说民宿安排，是指提供住宿和早餐的私人住宅，环境非常个性化且友好。 几十年来，民宿一直是游览欧洲的经典方式，尤其是不列颠群岛。事实上，它们在美国也不是什么新概念。这一传统可以追溯到殖民时代，当时旅馆稀少且相隔甚远，疲惫的旅行者不得不依靠陌生人的善意来获得一顿饭和一张床。但民宿作为一种受欢迎的住宿方式的复兴是相当近期的现象。" }
       ]
     },
     {
       type: "text",
       sentences: [
-        { en: "If the idea of operating a B&B arouses your interest, there are several factors to consider before plunging into this business. [24] The first consideration is your property, not only the building itself, but the location. If you live near a famous historical site or in a popular destination such as New York City or Washington D.C., your home can be fairly simple yet still do well as a B&B. On the other hand, if your home is architecturally unique or has facilities for the traveler such as a private entrance, private bath or swimming pool, people may be willing to go some distance to reach you. Another important factor is the lifestyle of you and your family. You must take into account whether all members of the family truly enjoy visitors, want to repeatedly discuss local sites and activities, and have the time and energy to handle the additional cooking, cleaning, laundry and the book keeping involved. The final consideration is a financial one. [25] Potential B&B hosts must be realistic about opportunities for income. While B&Bs usually have low initial costs, experts estimate it would take at least five rooms rented regularly for the host to earn a living from B&B.", cn: "如果经营民宿的想法激起了您的兴趣，那么在投身这项业务之前有几个因素需要考虑。[24] 首先考虑的是您的房产，不仅是建筑本身，还有位置。如果您住在著名历史遗迹附近或纽约市、华盛顿特区等热门目的地，您的房子可以相当简单，但作为民宿仍然经营得很好。另一方面，如果您的房子在建筑上独特，或者拥有方便旅行者的设施，如私人入口、私人浴室或游泳池，人们可能愿意走一段距离来您这里。另一个重要因素是您和家人的生活方式。您必须考虑所有家庭成员是否真正喜欢访客，是否愿意反复讨论当地的景点和活动，是否有时间和精力处理额外的烹饪、清洁、洗衣和簿记工作。最后一个考虑因素是财务问题。[25] 潜在的民宿经营者必须对收入机会有现实的认识。虽然民宿通常初始成本较低，但专家估计，经营者需要至少定期出租五个房间才能以此谋生。" }
+        { en: "If the idea of operating a B&B arouses your interest, there are several factors to consider before plunging into this business.  The first consideration is your property, not only the building itself, but the location. If you live near a famous historical site or in a popular destination such as New York City or Washington D.C., your home can be fairly simple yet still do well as a B&B. On the other hand, if your home is architecturally unique or has facilities for the traveler such as a private entrance, private bath or swimming pool, people may be willing to go some distance to reach you. Another important factor is the lifestyle of you and your family. You must take into account whether all members of the family truly enjoy visitors, want to repeatedly discuss local sites and activities, and have the time and energy to handle the additional cooking, cleaning, laundry and the book keeping involved. The final consideration is a financial one.  Potential B&B hosts must be realistic about opportunities for income. While B&Bs usually have low initial costs, experts estimate it would take at least five rooms rented regularly for the host to earn a living from B&B.", cn: "如果经营民宿的想法激起了您的兴趣，那么在投身这项业务之前有几个因素需要考虑。 首先考虑的是您的房产，不仅是建筑本身，还有位置。如果您住在著名历史遗迹附近或纽约市、华盛顿特区等热门目的地，您的房子可以相当简单，但作为民宿仍然经营得很好。另一方面，如果您的房子在建筑上独特，或者拥有方便旅行者的设施，如私人入口、私人浴室或游泳池，人们可能愿意走一段距离来您这里。另一个重要因素是您和家人的生活方式。您必须考虑所有家庭成员是否真正喜欢访客，是否愿意反复讨论当地的景点和活动，是否有时间和精力处理额外的烹饪、清洁、洗衣和簿记工作。最后一个考虑因素是财务问题。 潜在的民宿经营者必须对收入机会有现实的认识。虽然民宿通常初始成本较低，但专家估计，经营者需要至少定期出租五个房间才能以此谋生。" }
       ]
     },
     { type: "heading", level: 2, text: "Part III: Reading Comprehension" },
