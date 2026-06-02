@@ -22,10 +22,11 @@ https://help.openai.com/en/articles/5112595-best-practices-for-api-key-safety
 2. 【语境优先】：必须结合用户提供的句子，给出该单词在当前句子中的具体含义。
 3. 【输出结构】：
    单词: [单词] [音标]
-   语境释义: [给出这个单词在句中如何翻译，然后用简单易懂的中文解释这个词在这句话里是什么意思，让人看完就能理解]
+   语境释义: [给出这个单词在句中如何用中文去说，然后用简单易懂的中文解释这个词在这句话里是什么意思，让人看完就能理解]
    句中搭配: [提取该词在句中和前后词形成的搭配，给出原文短语，并附上中文翻译。格式：原文短语 — 中文意思。如果句中没有明显搭配，写出该词在句中的完整片段并翻译]
    语法分析: [简述该词在句中的成分和作用]
-   例句: [基于这个词在本句中的含义，再造一个简单例句帮助理解]`},{role:"user",content:t?`请结合下文语境分析单词 "${e}"。句子：${t}`:`请分析单词: ${e}`}],model:"deepseek-chat"})).choices[0].message.content;return Qd(n,o),o}catch(s){return eu(s)}}async function Pb(e,t=""){const n=`quest_${e}_${t}`;try{const o=(await Vd.chat.completions.create({messages:[{role:"system",content:`你是一个专业的英语老师。请回答用户关于文章句子的提问。
+   例句: [基于这个词在本句中的含义，再造一个简单例句帮助理解]
+   Chunk：[按照英语母语者阅读时的理解单位进行划分，不要机械的按照语法划分，优先意义和理解流程切分，然后再去解释每个chunk的字面意思，实际意思，句子中的作用]`},{role:"user",content:t?`请结合下文语境分析单词 "${e}"。句子：${t}`:`请分析单词: ${e}`}],model:"deepseek-chat"})).choices[0].message.content;return Qd(n,o),o}catch(s){return eu(s)}}async function Pb(e,t=""){const n=`quest_${e}_${t}`;try{const o=(await Vd.chat.completions.create({messages:[{role:"system",content:`你是一个专业的英语老师。请回答用户关于文章句子的提问。
 1. 【要求】：严禁使用 Markdown 符号（如 ** 等），只输出纯文本。使用换行来对齐内容。
 2. 【语境】：如果是语法分析，请详细解释介词、连词或特定短语的作用。
 3. 【简洁】：回答要直击重点，不要有冗长的开场白。`},{role:"user",content:t?`背景句子：${t}
