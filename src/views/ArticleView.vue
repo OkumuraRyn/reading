@@ -235,6 +235,7 @@ onMounted(() => {
 </script>
 
 <style scoped>
+  
 .reader-wrapper {
   position: relative;
   width: 100%;
@@ -320,5 +321,22 @@ onMounted(() => {
 .control-slide-leave-to {
   opacity: 0;
   transform: translateX(-50%) translateY(20px);
+}
+
+  .back-btn {
+  background: none;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  padding: 4px 12px;
+  font-size: 0.9rem;
+  color: #42b983;
+  cursor: pointer;
+  margin-right: auto;
+  margin-left: 12px;
+}
+
+.back-btn:hover {
+  background: #f0fdf4;
+  border-color: #42b983;
 }
 </style>
