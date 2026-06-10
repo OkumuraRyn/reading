@@ -221,6 +221,12 @@ const handleSpellCheck = (e) => {
   input.style.borderColor = isOk ? '#42b983' : '#ef4444'
   input.style.backgroundColor = isOk ? '#f0fdf4' : '#fef2f2'
 }
+  // 在词汇卡片的 jump-link 点击时，保存返回位置
+const handleJumpToWord = (word) => {
+  const vocabCardId = `vocab-card-${word.toLowerCase()}`;
+  studyStore.setReturnTarget(vocabCardId);  // 保存词汇卡片位置
+  studyStore.performJump(word, 'article');
+};
 
 defineExpose({ articleRef })
 </script>
