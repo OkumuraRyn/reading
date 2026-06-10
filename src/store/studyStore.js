@@ -11,6 +11,7 @@ export const useStudyStore = defineStore('study', {
     currentDictEntry: null,
     isAiLoading: false,
     jumpTarget: null,
+    returnTarget: null,
   }),
 
   getters: {
@@ -32,6 +33,16 @@ export const useStudyStore = defineStore('study', {
   },
 
   actions: {
+    // 在 actions 中添加
+// 设置返回位置
+setReturnTarget(elementId) {
+  this.returnTarget = { elementId, t: Date.now() };
+},
+
+// 清除返回位置
+clearReturnTarget() {
+  this.returnTarget = null;
+},
     // 初始化：从 localStorage 恢复
     init() {
       try {
