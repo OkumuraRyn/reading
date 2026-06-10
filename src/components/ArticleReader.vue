@@ -81,7 +81,7 @@
               <div class="v-index">#{{ idx + 1 }}</div>
               <div class="v-info">
                 <strong class="v-playable" @click="$emit('speak', v.word)">{{ v.word }} 🔊</strong>
-                <span class="jump-link" @click="studyStore.performJump(v.word, 'article')">[原文]</span>
+              <span class="jump-link" @click="handleJumpToWord(v.word)">[原文]</span>
               </div>
               <input type="text" placeholder="输入拼写" :data-word="v.word" @keyup.enter="handleSpellCheck" />
               <button class="v-del" @click="studyStore.removeVocabItem(v.word)">×</button>
