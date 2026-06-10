@@ -7,6 +7,13 @@
         <span></span>
         <span></span>
       </button>
+        <button 
+    v-if="studyStore.returnTarget" 
+    class="back-btn" 
+    @click="handleReturnToVocab"
+  >
+    ↩ 
+  </button>
       <button class="read-btn" @click="toggleFullReading">
         {{ readingState === 'playing' ? '｜｜' : readingState === 'paused' ? '▶' : '读' }}
       </button>
@@ -58,6 +65,21 @@ import ArticleReader from '../components/ArticleReader.vue'
 import AiPanel from '../components/AiPanel.vue'
 
 
+  const handleReturnToVocab = () => {
+  if (!studyStore.returnTarget) return;
+  
+  const { elementId } = studyStore.returnTarget;
+  studyStore.clearReturnTarget();  // 清除返回目标
+  
+  nextTick(() => {
+    const element = document.getElementById(elementId);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      element.classList.add('jump-highlight-global');
+      setTimeout(() => element.classList.remove('jump-highlight-global'), 1500);
+    }
+  });
+};
 
   // 计算句子在全局队列中的索引
 const getSentenceGlobalIndex = (pIdx, sIdx) => {
