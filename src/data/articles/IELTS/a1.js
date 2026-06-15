@@ -1,7 +1,7 @@
 // src/data/articles/IELTSGuide/a1.js
 export default {
-  id: "IELTS-1",
-  type: "IELTS",
+  id: "IELTS-GUIDE-1",
+  type: "IELTS指南",
   title: "IELTS Practice Tests - Introduction",
   titleCn: "雅思考试实践测试 - 导言",
   paragraphs: [
@@ -31,23 +31,13 @@ export default {
         { en: "IELTS consists of six modules. All candidates take the same Listening and Speaking modules. There is a choice of Reading and Writing modules according to whether a candidate is taking the Academic or General Training version of the test.", cn: "雅思考试由六个模块组成。所有考生参加相同的听力和口语模块。根据考生参加的是学术类还是培训类考试，可以选择不同的阅读和写作模块。" }
       ]
     },
+    // 使用表格显示 Academic 和 General Training 对比
     {
-      type: "custom",
-      content: `
-        <div class="ielts-table-container">
-          <div class="ielts-two-columns">
-            <div class="ielts-col academic-col">
-              <div class="col-title">Academic</div>
-              <div class="col-desc">For candidates taking the test for entry to undergraduate or postgraduate studies or for professional reasons.</div>
-            </div>
-            <div class="ielts-col general-col">
-              <div class="col-title">General Training</div>
-              <div class="col-desc">For candidates taking the test for entry to vocational or training programmes not at degree level, for admission to secondary schools and for immigration purposes.</div>
-            </div>
-          </div>
-        </div>
-      `,
-      html: true
+      type: "table",
+      headers: ["Academic", "General Training"],
+      rows: [
+        ["For candidates taking the test for entry to undergraduate or postgraduate studies or for professional reasons.", "For candidates taking the test for entry to vocational or training programmes not at degree level, for admission to secondary schools and for immigration purposes."]
+      ]
     },
     {
       type: "text",
@@ -55,48 +45,17 @@ export default {
         { en: "The test modules are taken in the following order:", cn: "考试模块按以下顺序进行：" }
       ]
     },
+    // 使用表格显示各模块详情
     {
-      type: "custom",
-      content: `
-        <div class="ielts-modules-grid">
-          <div class="module-card">
-            <div class="module-name">Listening</div>
-            <div class="module-detail">4 sections, 40 items</div>
-            <div class="module-time">30 minutes</div>
-          </div>
-          <div class="module-card">
-            <div class="module-name">Academic Reading</div>
-            <div class="module-detail">3 sections, 40 items</div>
-            <div class="module-time">60 minutes</div>
-          </div>
-          <div class="module-card">
-            <div class="module-name">General Training Reading</div>
-            <div class="module-detail">3 sections, 40 items</div>
-            <div class="module-time">60 minutes</div>
-          </div>
-          <div class="module-card">
-            <div class="module-name">Academic Writing</div>
-            <div class="module-detail">2 tasks</div>
-            <div class="module-time">60 minutes</div>
-          </div>
-          <div class="module-card">
-            <div class="module-name">General Training Writing</div>
-            <div class="module-detail">2 tasks</div>
-            <div class="module-time">60 minutes</div>
-          </div>
-          <div class="module-card">
-            <div class="module-name">Speaking</div>
-            <div class="module-detail">11 to 14 minutes</div>
-            <div class="module-time"></div>
-          </div>
-          <div class="module-card total-card">
-            <div class="module-name">Total test time</div>
-            <div class="module-detail">2 hours 44 minutes</div>
-            <div class="module-time"></div>
-          </div>
-        </div>
-      `,
-      html: true
+      type: "table",
+      headers: ["Module", "Details", "Time"],
+      rows: [
+        ["Listening", "4 sections, 40 items", "30 minutes"],
+        ["Academic Reading / General Training Reading", "3 sections, 40 items", "60 minutes"],
+        ["Academic Writing / General Training Writing", "2 tasks", "60 minutes"],
+        ["Speaking", "3 parts", "11-14 minutes"],
+        ["Total", "", "2 hours 44 minutes"]
+      ]
     },
     { type: "heading", level: 2, text: "Listening" },
     {
@@ -135,12 +94,6 @@ export default {
       type: "text",
       sentences: [
         { en: "This module consists of three sections with 40 questions. The texts are taken from notices, advertisements, leaflets, newspapers, instruction manuals, books and magazines. The first section contains texts relevant to basic linguistic survival in English, with tasks mainly concerned with providing factual information. The second section focuses on the training context and involves texts of more complex language. The third section involves reading more extended texts, with a more complex structure, but with the emphasis on descriptive and instructive rather than argumentative texts.", cn: "该模块由三个部分组成，共40个问题。文本选自通知、广告、传单、报纸、说明书、书籍和杂志。第一部分包含与英语基本语言生存相关的文本，任务主要涉及提供事实信息。第二部分侧重于培训背景，涉及语言更复杂的文本。第三部分涉及阅读更长的文本，结构更复杂，但重点是描述性和指导性文本，而非议论文。" }
-      ]
-    },
-    {
-      type: "text",
-      sentences: [
-        { en: "Various question types are used, including: multiple choice, short-answer questions, sentence completion, notes/summary/flow-chart/table completion, labelling a diagram, classification, matching, choosing suitable paragraph headings from a list, identification of writer's views/claims – yes, no, not given – or identification of information in the text – true, false, not given.", cn: "使用多种题型，包括：多项选择题、简答题、句子完成题、笔记/摘要/流程图/表格完成题、图表标记题、分类题、匹配题、从列表中选合适的段落标题、识别作者观点/主张——是/否/未提及——或识别文中信息——对/错/未提及。" }
       ]
     },
     { type: "heading", level: 2, text: "Academic Writing" },
@@ -206,25 +159,16 @@ export default {
         { en: "There are three parts:", cn: "共分三部分：" }
       ]
     },
+    // 使用卡片网格显示Speaking三部分
     {
-      type: "custom",
-      content: `
-        <div class="speaking-parts">
-          <div class="part-item">
-            <div class="part-title">Part 1</div>
-            <div class="part-desc">The candidate and the examiner introduce themselves. Candidates then answer general questions about themselves, their home/family, their job/studies, their interests and a wide range of similar familiar topic areas. This part lasts between four and five minutes.</div>
-          </div>
-          <div class="part-item">
-            <div class="part-title">Part 2</div>
-            <div class="part-desc">The candidate is given a task card with prompts and is asked to talk on a particular topic. The candidate has one minute to prepare and they can make some notes if they wish, before speaking for between one and two minutes. The examiner then asks one or two rounding-off questions.</div>
-          </div>
-          <div class="part-item">
-            <div class="part-title">Part 3</div>
-            <div class="part-desc">The examiner and the candidate engage in a discussion of more abstract issues which are thematically linked to the topic prompt in Part 2. The discussion lasts between four and five minutes.</div>
-          </div>
-        </div>
-      `,
-      html: true
+      type: "grid",
+      title: "Speaking Test Format",
+      gridClass: "grid-3cols",
+      items: [
+        { title: "Part 1 (4-5 minutes) - Introduction and general questions about yourself, home, family, work/studies, and interests." },
+        { title: "Part 2 (3-4 minutes) - Speak on a given topic for 1-2 minutes after 1 minute of preparation." },
+        { title: "Part 3 (4-5 minutes) - Two-way discussion on abstract issues related to the Part 2 topic." }
+      ]
     },
     {
       type: "text",
@@ -239,63 +183,22 @@ export default {
         { en: "IELTS results are reported on a nine-band scale. In addition to the score for overall language ability, IELTS provides a score in the form of a profile for each of the four skills (Listening, Reading, Writing and Speaking). These scores are also reported on a nine-band scale. All scores are recorded on the Test Report Form along with details of the candidate's nationality, first language and date of birth. Each Overall Band Score corresponds to a descriptive statement which gives a summary of the English language ability of a candidate classified at that level. The nine bands and their descriptive statements are as follows:", cn: "雅思考试成绩采用九分制报告。除了总体语言能力分数外，雅思还提供四项技能（听力、阅读、写作和口语）的分数。这些分数也采用九分制报告。所有分数都记录在考试成绩单上，同时附有考生的国籍、母语和出生日期。每个总分段对应一个描述性陈述，总结该级别考生的英语语言能力。九个分数段及其描述如下：" }
       ]
     },
+    // 使用表格显示雅思分数段
     {
-      type: "custom",
-      content: `
-        <div class="ielts-band-table">
-          <div class="band-row">
-            <div class="band-score">9</div>
-            <div class="band-level">Expert User</div>
-            <div class="band-desc">Has fully operational command of the language: appropriate, accurate and fluent with complete understanding.</div>
-          </div>
-          <div class="band-row">
-            <div class="band-score">8</div>
-            <div class="band-level">Very Good User</div>
-            <div class="band-desc">Has fully operational command of the language with only occasional unsystematic inaccuracies and inappropriacies. Misunderstandings may occur in unfamiliar situations. Handles complex detailed argumentation well.</div>
-          </div>
-          <div class="band-row">
-            <div class="band-score">7</div>
-            <div class="band-level">Good User</div>
-            <div class="band-desc">Has operational command of the language, though with occasional inaccuracies, inappropriacies and misunderstandings in some situations. Generally handles complex language well and understands detailed reasoning.</div>
-          </div>
-          <div class="band-row">
-            <div class="band-score">6</div>
-            <div class="band-level">Competent User</div>
-            <div class="band-desc">Has generally effective command of the language despite some inaccuracies, inappropriacies and misunderstandings. Can use and understand fairly complex language, particularly in familiar situations.</div>
-          </div>
-          <div class="band-row">
-            <div class="band-score">5</div>
-            <div class="band-level">Modest User</div>
-            <div class="band-desc">Has partial command of the language, coping with overall meaning in most situations, though is likely to make many mistakes. Should be able to handle basic communication in own field.</div>
-          </div>
-          <div class="band-row">
-            <div class="band-score">4</div>
-            <div class="band-level">Limited User</div>
-            <div class="band-desc">Basic competence is limited to familiar situations. Has frequent problems in understanding and expression. Is not able to use complex language.</div>
-          </div>
-          <div class="band-row">
-            <div class="band-score">3</div>
-            <div class="band-level">Extremely Limited User</div>
-            <div class="band-desc">Conveys and understands only general meaning in very familiar situations. Frequent breakdowns in communication occur.</div>
-          </div>
-          <div class="band-row">
-            <div class="band-score">2</div>
-            <div class="band-level">Intermittent User</div>
-            <div class="band-desc">No real communication is possible except for the most basic information using isolated words or short formulae in familiar situations and to meet immediate needs. Has great difficulty understanding spoken and written English.</div>
-          </div>
-          <div class="band-row">
-            <div class="band-score">1</div>
-            <div class="band-level">Non User</div>
-            <div class="band-desc">Essentially has no ability to use the language beyond possibly a few isolated words.</div>
-          </div>
-          <div class="band-row">
-            <div class="band-score">0</div>
-            <div class="band-level">Did not attempt the test.</div>
-            <div class="band-desc">No assessable information provided.</div>
-          </div>
-        </div>
-      `,
-      html: true
+      type: "table",
+      headers: ["Band", "Level", "Description"],
+      rows: [
+        ["9", "Expert User", "Has fully operational command of the language: appropriate, accurate and fluent with complete understanding."],
+        ["8", "Very Good User", "Has fully operational command of the language with only occasional unsystematic inaccuracies and inappropriacies. Misunderstandings may occur in unfamiliar situations. Handles complex detailed argumentation well."],
+        ["7", "Good User", "Has operational command of the language, though with occasional inaccuracies, inappropriacies and misunderstandings in some situations. Generally handles complex language well and understands detailed reasoning."],
+        ["6", "Competent User", "Has generally effective command of the language despite some inaccuracies, inappropriacies and misunderstandings. Can use and understand fairly complex language, particularly in familiar situations."],
+        ["5", "Modest User", "Has partial command of the language, coping with overall meaning in most situations, though is likely to make many mistakes. Should be able to handle basic communication in own field."],
+        ["4", "Limited User", "Basic competence is limited to familiar situations. Has frequent problems in understanding and expression. Is not able to use complex language."],
+        ["3", "Extremely Limited User", "Conveys and understands only general meaning in very familiar situations. Frequent breakdowns in communication occur."],
+        ["2", "Intermittent User", "No real communication is possible except for the most basic information using isolated words or short formulae in familiar situations and to meet immediate needs. Has great difficulty understanding spoken and written English."],
+        ["1", "Non User", "Essentially has no ability to use the language beyond possibly a few isolated words."],
+        ["0", "Did not attempt the test", "No assessable information provided."]
+      ]
     },
     {
       type: "text",
@@ -372,26 +275,11 @@ export default {
     {
       type: "text",
       sentences: [
-        { en: "For more information about IELTS or any other University of Cambridge ESOL examination write to:", cn: "如需了解更多关于雅思或任何其他剑桥大学ESOL考试的信息，请致函：" }
+        { en: "For more information about IELTS or any other University of Cambridge ESOL examination write to:", cn: "如需了解更多关于雅思或任何其他剑桥大学ESOL考试的信息，请致函：" },
+        { en: "University of Cambridge ESOL Examinations, 1 Hills Road, Cambridge, CB1 2EU, United Kingdom", cn: "剑桥大学ESOL考试委员会，英国剑桥郡希尔路1号，CB1 2EU" },
+        { en: "Telephone: +44 1223 553311, Fax: +44 1223 460278, e-mail: ESOLhelpdesk@ucles.org.uk", cn: "电话：+44 1223 553311，传真：+44 1223 460278，电子邮件：ESOLhelpdesk@ucles.org.uk" },
+        { en: "http://www.cambridgeesol.org, http://www.ielts.org", cn: "http://www.cambridgeesol.org，http://www.ielts.org" }
       ]
-    },
-    {
-      type: "custom",
-      content: `
-        <div class="contact-info">
-          <p>University of Cambridge ESOL Examinations<br>
-          1 Hills Road<br>
-          Cambridge<br>
-          CB1 2EU<br>
-          United Kingdom</p>
-          <p>Telephone: +44 1223 553311<br>
-          Fax: +44 1223 460278<br>
-          e-mail: ESOLhelpdesk@ucles.org.uk<br>
-          http://www.cambridgeesol.org<br>
-          http://www.ielts.org</p>
-        </div>
-      `,
-      html: true
     }
   ],
   vocabulary: []
