@@ -6,6 +6,7 @@ const parentNameMap = {
   cet4: 'CET-4 四级核心阅读',
   cet6: 'CET-6 六级深度阅读',
   zsb: '专升本阅读',
+ IELTS: 'IELTS'
 };
 
 /**
