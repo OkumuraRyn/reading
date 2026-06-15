@@ -16,3 +16,146 @@ body {
 button, .sent-item, .word-token, .para-trans-btn, .read-btn, .hamburger-btn {
   touch-action: manipulation;
 }
+/* IELTS Guide 样式 */
+.ielts-two-columns {
+  display: flex;
+  gap: 20px;
+  margin: 20px 0;
+}
+.ielts-col {
+  flex: 1;
+  padding: 16px;
+  border-radius: 8px;
+}
+.academic-col {
+  background: #e8f4f8;
+  border-left: 4px solid #2196F3;
+}
+.general-col {
+  background: #f0f8e8;
+  border-left: 4px solid #4CAF50;
+}
+.col-title {
+  font-weight: bold;
+  font-size: 1.2rem;
+  margin-bottom: 8px;
+}
+.col-desc {
+  font-size: 0.9rem;
+  color: #555;
+}
+
+.ielts-modules-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 16px;
+  margin: 20px 0;
+}
+.module-card {
+  background: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 16px;
+  text-align: center;
+}
+.module-name {
+  font-weight: bold;
+  font-size: 1rem;
+  margin-bottom: 8px;
+  color: #2c3e50;
+}
+.module-detail {
+  font-size: 0.9rem;
+  color: #666;
+}
+.module-time {
+  font-size: 0.85rem;
+  color: #42b983;
+  margin-top: 6px;
+}
+.total-card {
+  background: #eefdf5;
+  border-color: #42b983;
+}
+.total-card .module-name {
+  color: #42b983;
+}
+
+.speaking-parts {
+  margin: 20px 0;
+}
+.part-item {
+  margin-bottom: 20px;
+  padding: 12px;
+  background: #f5f5f5;
+  border-radius: 8px;
+}
+.part-title {
+  font-weight: bold;
+  font-size: 1rem;
+  color: #42b983;
+  margin-bottom: 6px;
+}
+.part-desc {
+  font-size: 0.9rem;
+  line-height: 1.5;
+  color: #444;
+}
+
+.ielts-band-table {
+  margin: 20px 0;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  overflow: hidden;
+}
+.band-row {
+  display: flex;
+  border-bottom: 1px solid #eee;
+}
+.band-row:last-child {
+  border-bottom: none;
+}
+.band-score {
+  width: 60px;
+  padding: 12px;
+  font-weight: bold;
+  font-size: 1.2rem;
+  text-align: center;
+  background: #f0f0f0;
+  border-right: 1px solid #ddd;
+}
+.band-level {
+  width: 160px;
+  padding: 12px;
+  font-weight: bold;
+  background: #fafafa;
+  border-right: 1px solid #ddd;
+}
+.band-desc {
+  flex: 1;
+  padding: 12px;
+  font-size: 0.85rem;
+  line-height: 1.4;
+}
+
+.contact-info {
+  margin: 20px 0;
+  padding: 16px;
+  background: #f5f5f5;
+  border-radius: 8px;
+  font-family: monospace;
+  line-height: 1.6;
+}
+
+@media (max-width: 768px) {
+  .ielts-two-columns {
+    flex-direction: column;
+  }
+  .band-row {
+    flex-direction: column;
+  }
+  .band-score, .band-level, .band-desc {
+    border-right: none;
+    border-bottom: 1px solid #eee;
+  }
+}
