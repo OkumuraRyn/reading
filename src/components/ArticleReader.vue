@@ -2,7 +2,7 @@
 <template>
   <main class="article-section" ref="articleRef">
     <div class="article-content-wrapper">
-      <!-- 文章标题 -->
+            <!-- 文章标题 -->
       <header class="art-header">
         <h1>{{ article.title }}</h1>
         <p v-if="article.titleCn" class="art-title-cn">{{ article.titleCn }}</p>
@@ -11,9 +11,38 @@
       <!-- 正文区域 -->
       <section class="reading-body">
         <template v-for="(para, pIdx) in article.paragraphs" :key="pIdx">
+          <!-- 日期类型 -->
           <div v-if="para.type === 'date'" class="para-date">{{ para.text }}</div>
+          <!-- 标题类型 -->
           <h2 v-else-if="para.type === 'heading' && para.level === 2" class="para-heading-2">{{ para.text }}</h2>
           <h3 v-else-if="para.type === 'heading' && para.level === 3" class="para-heading-3">{{ para.text }}</h3>
+          <!-- 表格类型 -->
+          <div v-else-if="para.type === 'table'" class="para-table">
+            <div class="table-wrapper">
+              <table class="ielts-table">
+                <thead v-if="para.headers">
+                  <tr>
+                    <th v-for="(header, hIdx) in para.headers" :key="hIdx">{{ header }}</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr v-for="(row, rIdx) in para.rows" :key="rIdx">
+                    <td v-for="(cell, cIdx) in row" :key="cIdx" v-html="cell"></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <!-- 网格/卡片类型 -->
+          <div v-else-if="para.type === 'grid'" class="para-grid">
+            <div class="grid-title" v-if="para.title">{{ para.title }}</div>
+            <div class="grid-container" :class="para.gridClass || 'grid-2cols'">
+              <div v-for="(item, gIdx) in para.items" :key="gIdx" class="grid-card">
+                <div class="grid-card-title" v-if="item.title">{{ item.title }}</div>
+              </div>
+            </div>
+          </div>
+          <!-- 普通文本类型 -->
           <div v-else class="para-block">
             <div class="para-content">
               <span
@@ -27,12 +56,6 @@
                 :data-pidx="pIdx"
                 :data-sidx="sIdx"
                 @click.stop="handleSentenceClick(sent)"
-                @touchstart="startLongPress(sent, pIdx, sIdx)"
-                @touchend="cancelLongPress"
-                @touchmove="cancelLongPress"
-                  @mousedown="startLongPress(sent, pIdx, sIdx)"
-  @mouseup="cancelLongPress"
-  @mouseleave="cancelLongPress"
               >
                 <span
                   v-for="(token, tIdx) in tokenize(sent.en)"
@@ -65,7 +88,6 @@
           </div>
         </template>
       </section>
-
       <!-- 默写区域 -->
       <section class="dictation-area">
         <div class="box-header">
@@ -549,6 +571,90 @@ defineExpose({ articleRef })
   .v-info {
     flex-wrap: wrap;
     gap: 4px;
+  }
+}
+.para-table {
+  margin: 24px 0;
+  overflow-x: auto;
+}
+.table-wrapper {
+  overflow-x: auto;
+}
+.ielts-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+  background: white;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+.ielts-table th,
+.ielts-table td {
+  border: 1px solid #e2e8f0;
+  padding: 10px 12px;
+  text-align: left;
+  vertical-align: top;
+}
+.ielts-table th {
+  background: #f1f5f9;
+  font-weight: 700;
+  color: #1e293b;
+}
+.ielts-table td {
+  color: #334155;
+}
+.ielts-table tr:nth-child(even) {
+  background: #fafafa;
+}
+
+/* ========== 网格/卡片样式 ========== */
+.para-grid {
+  margin: 24px 0;
+}
+.grid-title {
+  font-weight: 700;
+  font-size: 1rem;
+  margin-bottom: 12px;
+  color: #2c3e50;
+  border-left: 3px solid #42b983;
+  padding-left: 12px;
+}
+.grid-container {
+  display: grid;
+  gap: 16px;
+}
+.grid-2cols {
+  grid-template-columns: repeat(2, 1fr);
+}
+.grid-3cols {
+  grid-template-columns: repeat(3, 1fr);
+}
+.grid-card {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 14px;
+  transition: all 0.2s;
+}
+.grid-card:hover {
+  border-color: #42b983;
+  box-shadow: 0 2px 8px rgba(66,185,131,0.1);
+}
+.grid-card-title {
+  font-weight: 600;
+  color: #1e293b;
+  margin-bottom: 8px;
+}
+
+@media (max-width: 768px) {
+  .grid-2cols, .grid-3cols {
+    grid-template-columns: 1fr;
+  }
+  .ielts-table th,
+  .ielts-table td {
+    padding: 8px;
+    font-size: 0.8rem;
   }
 }
 </style>
